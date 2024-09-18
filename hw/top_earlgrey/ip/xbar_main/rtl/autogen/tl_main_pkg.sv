@@ -30,6 +30,15 @@ package tl_main_pkg;
   localparam logic [31:0] ADDR_SPACE_RV_PLIC              = 32'h 48000000;
   localparam logic [31:0] ADDR_SPACE_OTBN                 = 32'h 41130000;
   localparam logic [31:0] ADDR_SPACE_KEYMGR               = 32'h 41140000;
+  localparam logic [31:0] ADDR_SPACE_ROT_TOP              = 32'h 42000000;
+  localparam logic [31:0] ADDR_SPACE_SM3                  = 32'h 411a0000;
+  localparam logic [31:0] ADDR_SPACE_SM4                  = 32'h 411b0000;
+  localparam logic [31:0] ADDR_SPACE_RS_ENCODE            = 32'h 42110000;
+  localparam logic [31:0] ADDR_SPACE_RS_DECODE            = 32'h 42120000;
+  localparam logic [31:0] ADDR_SPACE_PUF1                 = 32'h 42130000;
+  localparam logic [31:0] ADDR_SPACE_PUF2                 = 32'h 42140000;
+  localparam logic [31:0] ADDR_SPACE_PUF_REG              = 32'h 42150000;
+  localparam logic [31:0] ADDR_SPACE_PCR                  = 32'h 42160000;
   localparam logic [31:0] ADDR_SPACE_RV_CORE_IBEX__CFG    = 32'h 411f0000;
   localparam logic [31:0] ADDR_SPACE_SRAM_CTRL_MAIN__REGS = 32'h 411c0000;
   localparam logic [31:0] ADDR_SPACE_SRAM_CTRL_MAIN__RAM  = 32'h 10000000;
@@ -58,12 +67,21 @@ package tl_main_pkg;
   localparam logic [31:0] ADDR_MASK_RV_PLIC              = 32'h 07ffffff;
   localparam logic [31:0] ADDR_MASK_OTBN                 = 32'h 0000ffff;
   localparam logic [31:0] ADDR_MASK_KEYMGR               = 32'h 000000ff;
+  localparam logic [31:0] ADDR_MASK_ROT_TOP              = 32'h 0000001f;
+  localparam logic [31:0] ADDR_MASK_SM3                  = 32'h 0000003f;
+  localparam logic [31:0] ADDR_MASK_SM4                  = 32'h 0000003f;
+  localparam logic [31:0] ADDR_MASK_RS_ENCODE            = 32'h 000001ff;
+  localparam logic [31:0] ADDR_MASK_RS_DECODE            = 32'h 000001ff;
+  localparam logic [31:0] ADDR_MASK_PUF1                 = 32'h 0000003f;
+  localparam logic [31:0] ADDR_MASK_PUF2                 = 32'h 0000003f;
+  localparam logic [31:0] ADDR_MASK_PUF_REG              = 32'h 0000003f;
+  localparam logic [31:0] ADDR_MASK_PCR                  = 32'h 0000003f;
   localparam logic [31:0] ADDR_MASK_RV_CORE_IBEX__CFG    = 32'h 000000ff;
   localparam logic [31:0] ADDR_MASK_SRAM_CTRL_MAIN__REGS = 32'h 0000003f;
   localparam logic [31:0] ADDR_MASK_SRAM_CTRL_MAIN__RAM  = 32'h 0001ffff;
 
   localparam int N_HOST   = 3;
-  localparam int N_DEVICE = 24;
+  localparam int N_DEVICE = 33;
 
   typedef enum int {
     TlRvDmRegs = 0,
@@ -87,9 +105,18 @@ package tl_main_pkg;
     TlRvPlic = 18,
     TlOtbn = 19,
     TlKeymgr = 20,
-    TlRvCoreIbexCfg = 21,
-    TlSramCtrlMainRegs = 22,
-    TlSramCtrlMainRam = 23
+    TlRotTop = 21,
+    TlSm3 = 22,
+    TlSm4 = 23,
+    TlRsEncode = 24,
+    TlRsDecode = 25,
+    TlPuf1 = 26,
+    TlPuf2 = 27,
+    TlPufReg = 28,
+    TlPcr = 29,
+    TlRvCoreIbexCfg = 30,
+    TlSramCtrlMainRegs = 31,
+    TlSramCtrlMainRam = 32
   } tl_device_e;
 
   typedef enum int {

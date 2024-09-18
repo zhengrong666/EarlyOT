@@ -1,0 +1,70 @@
+CAPI=2:
+# Copyright lowRISC contributors.
+# Licensed under the Apache License, Version 2.0, see LICENSE for details.
+# SPDX-License-Identifier: Apache-2.0
+name: "lowrisc:dv:rot_top_verilator_sim:0.1"
+description: "rot_top sim"
+
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:systems:rot_top
+  
+  files_verilator:
+    files:
+      - tb_rot_top.cc: { file_type: cppSource }
+      - tb_rot_top.sv: { file_type: systemVerilogSource}
+
+
+
+targets:
+  default: &default_target
+    filesets:
+      - files_rtl
+      - files_verilator
+    toplevel: tb_rot_top
+
+  lint:
+    <<: *default_target
+    default_tool: verilator
+    parameters:
+      - SYNTHESIS=true
+    tools:
+      verilator:
+        mode: lint-only
+        verilator_options:
+          - "-Wall"
+          - "-Wno-UNOPTFLAT"
+  
+  sim:
+    <<: *default_target
+    default_tool: verilator
+    tools:
+      verilator:
+        mode: cc
+        verilator_options:
+          # Disabling tracing reduces compile times but doesn't have a
+          # huge influence on runtime performance.
+          - '--trace'
+          # - '--trace-fst' # this requires -DVM_TRACE_FMT_FST in CFLAGS below!
+          - '--trace-structs'
+          - '--trace-params'
+          - '--trace-max-array 1024'
+          # - '-CFLAGS "-std=c++11 -Wall -DVM_TRACE_FMT_FST -DTOPLEVEL_NAME=otbn_top_sim"'
+          - '-LDFLAGS "-pthread -lutil -lelf"'
+          - "-Wall"
+          - "-Wno-UNOPTFLAT"
+          # RAM primitives wider than 64bit (required for ECC) fail to build in
+          # Verilator without increasing the unroll count (see Verilator#1266)
+          - "--unroll-count 72"
+          - '-Wno-lint'
+
+  syn:
+    <<: *default_target
+    # TODO: set default to DC once
+    # this option is available
+    # olofk/edalize#89
+    default_tool: icarus
+    parameters:
+      - SYNTHESIS=true
+

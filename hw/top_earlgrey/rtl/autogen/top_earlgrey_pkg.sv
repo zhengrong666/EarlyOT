@@ -422,6 +422,96 @@ package top_earlgrey_pkg;
   parameter int unsigned TOP_EARLGREY_KEYMGR_SIZE_BYTES = 32'h100;
 
   /**
+   * Peripheral base address for rot_top in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_ROT_TOP_BASE_ADDR = 32'h42000000;
+
+  /**
+   * Peripheral size in bytes for rot_top in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_ROT_TOP_SIZE_BYTES = 32'h20;
+
+  /**
+   * Peripheral base address for sm3 in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_SM3_BASE_ADDR = 32'h411A0000;
+
+  /**
+   * Peripheral size in bytes for sm3 in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_SM3_SIZE_BYTES = 32'h40;
+
+  /**
+   * Peripheral base address for sm4 in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_SM4_BASE_ADDR = 32'h411B0000;
+
+  /**
+   * Peripheral size in bytes for sm4 in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_SM4_SIZE_BYTES = 32'h40;
+
+  /**
+   * Peripheral base address for rs_encode in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_RS_ENCODE_BASE_ADDR = 32'h42110000;
+
+  /**
+   * Peripheral size in bytes for rs_encode in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_RS_ENCODE_SIZE_BYTES = 32'h200;
+
+  /**
+   * Peripheral base address for rs_decode in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_RS_DECODE_BASE_ADDR = 32'h42120000;
+
+  /**
+   * Peripheral size in bytes for rs_decode in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_RS_DECODE_SIZE_BYTES = 32'h200;
+
+  /**
+   * Peripheral base address for puf1 in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_PUF1_BASE_ADDR = 32'h42130000;
+
+  /**
+   * Peripheral size in bytes for puf1 in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_PUF1_SIZE_BYTES = 32'h40;
+
+  /**
+   * Peripheral base address for puf2 in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_PUF2_BASE_ADDR = 32'h42140000;
+
+  /**
+   * Peripheral size in bytes for puf2 in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_PUF2_SIZE_BYTES = 32'h40;
+
+  /**
+   * Peripheral base address for puf_reg in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_PUF_REG_BASE_ADDR = 32'h42150000;
+
+  /**
+   * Peripheral size in bytes for puf_reg in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_PUF_REG_SIZE_BYTES = 32'h40;
+
+  /**
+   * Peripheral base address for pcr in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_PCR_BASE_ADDR = 32'h42160000;
+
+  /**
+   * Peripheral size in bytes for pcr in top earlgrey.
+   */
+  parameter int unsigned TOP_EARLGREY_PCR_SIZE_BYTES = 32'h40;
+
+  /**
    * Peripheral base address for csrng in top earlgrey.
    */
   parameter int unsigned TOP_EARLGREY_CSRNG_BASE_ADDR = 32'h41150000;
@@ -588,13 +678,14 @@ package top_earlgrey_pkg;
     TopEarlgreyAlertPeripheralKmac = 31,
     TopEarlgreyAlertPeripheralOtbn = 32,
     TopEarlgreyAlertPeripheralKeymgr = 33,
-    TopEarlgreyAlertPeripheralCsrng = 34,
-    TopEarlgreyAlertPeripheralEntropySrc = 35,
-    TopEarlgreyAlertPeripheralEdn0 = 36,
-    TopEarlgreyAlertPeripheralEdn1 = 37,
-    TopEarlgreyAlertPeripheralSramCtrlMain = 38,
-    TopEarlgreyAlertPeripheralRomCtrl = 39,
-    TopEarlgreyAlertPeripheralRvCoreIbex = 40,
+    TopEarlgreyAlertPeripheralRotTop = 34,
+    TopEarlgreyAlertPeripheralCsrng = 35,
+    TopEarlgreyAlertPeripheralEntropySrc = 36,
+    TopEarlgreyAlertPeripheralEdn0 = 37,
+    TopEarlgreyAlertPeripheralEdn1 = 38,
+    TopEarlgreyAlertPeripheralSramCtrlMain = 39,
+    TopEarlgreyAlertPeripheralRomCtrl = 40,
+    TopEarlgreyAlertPeripheralRvCoreIbex = 41,
     TopEarlgreyAlertPeripheralCount
   } alert_peripheral_e;
 
@@ -651,20 +742,32 @@ package top_earlgrey_pkg;
     TopEarlgreyAlertIdOtbnRecov = 48,
     TopEarlgreyAlertIdKeymgrRecovOperationErr = 49,
     TopEarlgreyAlertIdKeymgrFatalFaultErr = 50,
-    TopEarlgreyAlertIdCsrngRecovAlert = 51,
-    TopEarlgreyAlertIdCsrngFatalAlert = 52,
-    TopEarlgreyAlertIdEntropySrcRecovAlert = 53,
-    TopEarlgreyAlertIdEntropySrcFatalAlert = 54,
-    TopEarlgreyAlertIdEdn0RecovAlert = 55,
-    TopEarlgreyAlertIdEdn0FatalAlert = 56,
-    TopEarlgreyAlertIdEdn1RecovAlert = 57,
-    TopEarlgreyAlertIdEdn1FatalAlert = 58,
-    TopEarlgreyAlertIdSramCtrlMainFatalError = 59,
-    TopEarlgreyAlertIdRomCtrlFatal = 60,
-    TopEarlgreyAlertIdRvCoreIbexFatalSwErr = 61,
-    TopEarlgreyAlertIdRvCoreIbexRecovSwErr = 62,
-    TopEarlgreyAlertIdRvCoreIbexFatalHwErr = 63,
-    TopEarlgreyAlertIdRvCoreIbexRecovHwErr = 64,
+    TopEarlgreyAlertIdRotTopFatalFaultHmac = 51,
+    TopEarlgreyAlertIdRotTopRecovOperationErrKmac = 52,
+    TopEarlgreyAlertIdRotTopFatalFaultErrKmac = 53,
+    TopEarlgreyAlertIdRotTopRecovOperationErrKeymgr = 54,
+    TopEarlgreyAlertIdRotTopFatalFaultErrKeymgr = 55,
+    TopEarlgreyAlertIdRotTopFatalRomCtrl = 56,
+    TopEarlgreyAlertIdRotTopRecovAlertEdn = 57,
+    TopEarlgreyAlertIdRotTopFatalAlertEdn = 58,
+    TopEarlgreyAlertIdRotTopRecovAlertCsrng = 59,
+    TopEarlgreyAlertIdRotTopFatalAlertCsrng = 60,
+    TopEarlgreyAlertIdRotTopRecovAlertEntropySrc = 61,
+    TopEarlgreyAlertIdRotTopFatalAlertEntropyEntropySrc = 62,
+    TopEarlgreyAlertIdCsrngRecovAlert = 63,
+    TopEarlgreyAlertIdCsrngFatalAlert = 64,
+    TopEarlgreyAlertIdEntropySrcRecovAlert = 65,
+    TopEarlgreyAlertIdEntropySrcFatalAlert = 66,
+    TopEarlgreyAlertIdEdn0RecovAlert = 67,
+    TopEarlgreyAlertIdEdn0FatalAlert = 68,
+    TopEarlgreyAlertIdEdn1RecovAlert = 69,
+    TopEarlgreyAlertIdEdn1FatalAlert = 70,
+    TopEarlgreyAlertIdSramCtrlMainFatalError = 71,
+    TopEarlgreyAlertIdRomCtrlFatal = 72,
+    TopEarlgreyAlertIdRvCoreIbexFatalSwErr = 73,
+    TopEarlgreyAlertIdRvCoreIbexRecovSwErr = 74,
+    TopEarlgreyAlertIdRvCoreIbexFatalHwErr = 75,
+    TopEarlgreyAlertIdRvCoreIbexRecovHwErr = 76,
     TopEarlgreyAlertIdCount
   } alert_id_e;
 
@@ -951,16 +1054,25 @@ package top_earlgrey_pkg;
     PeripheralOtbn,
     PeripheralOtpCtrl,
     PeripheralPattgen,
+    PeripheralPcr,
     PeripheralPinmuxAon,
+    PeripheralPuf1,
+    PeripheralPuf2,
+    PeripheralPufReg,
     PeripheralPwmAon,
     PeripheralPwrmgrAon,
     PeripheralRomCtrl,
+    PeripheralRotTop,
+    PeripheralRsDecode,
+    PeripheralRsEncode,
     PeripheralRstmgrAon,
     PeripheralRvCoreIbex,
     PeripheralRvDm,
     PeripheralRvPlic,
     PeripheralRvTimer,
     PeripheralSensorCtrlAon,
+    PeripheralSm3,
+    PeripheralSm4,
     PeripheralSpiDevice,
     PeripheralSpiHost0,
     PeripheralSpiHost1,

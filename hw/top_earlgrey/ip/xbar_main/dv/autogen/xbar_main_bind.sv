@@ -152,6 +152,60 @@ module xbar_main_bind;
     .h2d    (tl_keymgr_o),
     .d2h    (tl_keymgr_i)
   );
+  bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_rot_top (
+    .clk_i  (clk_main_i),
+    .rst_ni (rst_main_ni),
+    .h2d    (tl_rot_top_o),
+    .d2h    (tl_rot_top_i)
+  );
+  bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_sm3 (
+    .clk_i  (clk_main_i),
+    .rst_ni (rst_main_ni),
+    .h2d    (tl_sm3_o),
+    .d2h    (tl_sm3_i)
+  );
+  bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_sm4 (
+    .clk_i  (clk_main_i),
+    .rst_ni (rst_main_ni),
+    .h2d    (tl_sm4_o),
+    .d2h    (tl_sm4_i)
+  );
+  bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_rs_encode (
+    .clk_i  (clk_main_i),
+    .rst_ni (rst_main_ni),
+    .h2d    (tl_rs_encode_o),
+    .d2h    (tl_rs_encode_i)
+  );
+  bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_rs_decode (
+    .clk_i  (clk_main_i),
+    .rst_ni (rst_main_ni),
+    .h2d    (tl_rs_decode_o),
+    .d2h    (tl_rs_decode_i)
+  );
+  bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_puf1 (
+    .clk_i  (clk_main_i),
+    .rst_ni (rst_main_ni),
+    .h2d    (tl_puf1_o),
+    .d2h    (tl_puf1_i)
+  );
+  bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_puf2 (
+    .clk_i  (clk_main_i),
+    .rst_ni (rst_main_ni),
+    .h2d    (tl_puf2_o),
+    .d2h    (tl_puf2_i)
+  );
+  bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_puf_reg (
+    .clk_i  (clk_main_i),
+    .rst_ni (rst_main_ni),
+    .h2d    (tl_puf_reg_o),
+    .d2h    (tl_puf_reg_i)
+  );
+  bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_pcr (
+    .clk_i  (clk_main_i),
+    .rst_ni (rst_main_ni),
+    .h2d    (tl_pcr_o),
+    .d2h    (tl_pcr_i)
+  );
   bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_rv_core_ibex__cfg (
     .clk_i  (clk_main_i),
     .rst_ni (rst_main_ni),

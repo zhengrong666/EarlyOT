@@ -92,6 +92,15 @@
       keymgr
       kmac
       sram_ctrl_main.regs
+      rot_top
+      sm3
+      sm4
+      rs_encode
+      rs_decode
+      puf1
+      puf2
+      puf_reg
+      pcr
       rv_core_ibex.cfg
     ]
     rv_dm.sba:
@@ -119,6 +128,15 @@
       keymgr
       kmac
       sram_ctrl_main.regs
+      rot_top
+      sm3
+      sm4
+      rs_encode
+      rs_decode
+      puf1
+      puf2
+      puf_reg
+      pcr
       rv_core_ibex.cfg
     ]
   }
@@ -556,6 +574,177 @@
         {
           base_addr: 0x41140000
           size_byte: 0x100
+        }
+      ]
+      xbar: false
+      stub: false
+      pipeline: true
+    }
+    {
+      name: rot_top
+      type: device
+      clock: clk_main_i
+      reset: rst_main_ni
+      req_fifo_pass: false
+      rsp_fifo_pass: false
+      inst_type: rot_top
+      addr_range:
+      [
+        {
+          base_addr: 0x42000000
+          size_byte: 0x20
+        }
+      ]
+      xbar: false
+      stub: false
+      pipeline: true
+    }
+    {
+      name: sm3
+      type: device
+      clock: clk_main_i
+      reset: rst_main_ni
+      req_fifo_pass: false
+      rsp_fifo_pass: false
+      inst_type: sm3
+      addr_range:
+      [
+        {
+          base_addr: 0x411a0000
+          size_byte: 0x40
+        }
+      ]
+      xbar: false
+      stub: false
+      pipeline: true
+    }
+    {
+      name: sm4
+      type: device
+      clock: clk_main_i
+      reset: rst_main_ni
+      req_fifo_pass: false
+      rsp_fifo_pass: false
+      inst_type: sm4
+      addr_range:
+      [
+        {
+          base_addr: 0x411b0000
+          size_byte: 0x40
+        }
+      ]
+      xbar: false
+      stub: false
+      pipeline: true
+    }
+    {
+      name: rs_encode
+      type: device
+      clock: clk_main_i
+      reset: rst_main_ni
+      req_fifo_pass: false
+      rsp_fifo_pass: false
+      inst_type: rs_encode
+      addr_range:
+      [
+        {
+          base_addr: 0x42110000
+          size_byte: 0x200
+        }
+      ]
+      xbar: false
+      stub: false
+      pipeline: true
+    }
+    {
+      name: rs_decode
+      type: device
+      clock: clk_main_i
+      reset: rst_main_ni
+      req_fifo_pass: false
+      rsp_fifo_pass: false
+      inst_type: rs_decode
+      addr_range:
+      [
+        {
+          base_addr: 0x42120000
+          size_byte: 0x200
+        }
+      ]
+      xbar: false
+      stub: false
+      pipeline: true
+    }
+    {
+      name: puf1
+      type: device
+      clock: clk_main_i
+      reset: rst_main_ni
+      req_fifo_pass: false
+      rsp_fifo_pass: false
+      inst_type: puf
+      addr_range:
+      [
+        {
+          base_addr: 0x42130000
+          size_byte: 0x40
+        }
+      ]
+      xbar: false
+      stub: false
+      pipeline: true
+    }
+    {
+      name: puf2
+      type: device
+      clock: clk_main_i
+      reset: rst_main_ni
+      req_fifo_pass: false
+      rsp_fifo_pass: false
+      inst_type: puf
+      addr_range:
+      [
+        {
+          base_addr: 0x42140000
+          size_byte: 0x40
+        }
+      ]
+      xbar: false
+      stub: false
+      pipeline: true
+    }
+    {
+      name: puf_reg
+      type: device
+      clock: clk_main_i
+      reset: rst_main_ni
+      req_fifo_pass: false
+      rsp_fifo_pass: false
+      inst_type: puf
+      addr_range:
+      [
+        {
+          base_addr: 0x42150000
+          size_byte: 0x40
+        }
+      ]
+      xbar: false
+      stub: false
+      pipeline: true
+    }
+    {
+      name: pcr
+      type: device
+      clock: clk_main_i
+      reset: rst_main_ni
+      req_fifo_pass: false
+      rsp_fifo_pass: false
+      inst_type: puf
+      addr_range:
+      [
+        {
+          base_addr: 0x42160000
+          size_byte: 0x40
         }
       ]
       xbar: false

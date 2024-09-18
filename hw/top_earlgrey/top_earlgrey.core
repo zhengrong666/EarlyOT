@@ -56,6 +56,11 @@ filesets:
       - lowrisc:prim:usb_diff_rx
       - lowrisc:prim:mubi
       - lowrisc:systems:top_earlgrey_pkg
+      - lowrisc:ip:sm3
+      - lowrisc:ip:sm4
+      - zgc:ip:rs_encode
+      - zgc:ip:rs_decode
+      - zgc:ip:puf
       - "fileset_partner  ? (partner:systems:ast_pkg)"
       - "!fileset_partner ? (lowrisc:systems:ast_pkg)"
     files:

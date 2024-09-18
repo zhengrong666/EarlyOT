@@ -1,0 +1,81 @@
+{
+  name: "pcr",
+  human_name: "Platform Configuration Register",
+  one_line_desc: "Manages Platform Configuration Registers for secure measurements",
+  cip_id: "39",
+  design_spec: "../doc",
+  dv_doc: "../doc/dv",
+  hw_checklist: "../doc/checklist",
+  sw_checklist: "/sw/device/lib/dif/dif_pcr",
+  version: "1.0.0",
+  
+  clocking: [{clock: "clk_i", reset: "rst_ni"}],
+  bus_interfaces: [
+    { protocol: "tlul", direction: "device" }
+  ],
+  regwidth: "32",
+  registers: [
+    {
+      name: "CTRL",
+      desc: "PCR Control Register",
+      swaccess: "rw",
+      hwaccess: "hro",
+      fields: [
+        {
+          bits: "4:0",
+          name: "select",
+          desc: "Selects which PCR to read/write (0-23)",
+          resval: "0"
+        },
+        {
+          bits: "5",
+          name: "wr_en",
+          desc: "Write enable for PCR_WR, cleared after write operation",
+          swaccess: "rw",
+          resval: "0"
+        },
+        {
+          bits: "6",
+          name: "rd_en",
+          desc: "Read enable for PCR_RD, cleared after read operation",
+          swaccess: "rw",
+          resval: "0"
+        }
+      ]
+    },
+    {
+      multireg: {
+        name: "PCR_WR",
+        desc: "PCR Write Register",
+        count: "8",
+        cname: "PCR_WR",
+        swaccess: "wo",
+        hwaccess: "hro",
+        fields: [
+          {
+            bits: "31:0",
+            name: "data",
+            desc: "Data to write to selected PCR (32-bit chunk)"
+          }
+        ],
+      }
+    },
+    {
+      multireg: {
+        name: "PCR_RD",
+        desc: "PCR Read Register",
+        count: "8",
+        cname: "PCR_RD",
+        swaccess: "ro",
+        hwaccess: "hwo",
+        fields: [
+          {
+            bits: "31:0",
+            name: "data",
+            desc: "Data read from selected PCR (32-bit chunk)"
+          }
+        ],
+      }
+    }
+  ]
+}

@@ -56,6 +56,18 @@ parameter string LIST_OF_ALERTS[] = {
   "otbn_recov",
   "keymgr_recov_operation_err",
   "keymgr_fatal_fault_err",
+  "rot_top_fatal_fault_hmac",
+  "rot_top_recov_operation_err_kmac",
+  "rot_top_fatal_fault_err_kmac",
+  "rot_top_recov_operation_err_keymgr",
+  "rot_top_fatal_fault_err_keymgr",
+  "rot_top_fatal_rom_ctrl",
+  "rot_top_recov_alert_edn",
+  "rot_top_fatal_alert_edn",
+  "rot_top_recov_alert_csrng",
+  "rot_top_fatal_alert_csrng",
+  "rot_top_recov_alert_entropy_src",
+  "rot_top_fatal_alert_entropy_entropy_src",
   "csrng_recov_alert",
   "csrng_fatal_alert",
   "entropy_src_recov_alert",
@@ -72,4 +84,4 @@ parameter string LIST_OF_ALERTS[] = {
   "rv_core_ibex_recov_hw_err"
 };
 
-parameter uint NUM_ALERTS = 65;
+parameter uint NUM_ALERTS = 77;

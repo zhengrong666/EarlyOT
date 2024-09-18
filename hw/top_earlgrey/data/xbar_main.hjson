@@ -193,6 +193,69 @@
       req_fifo_pass: false,
       rsp_fifo_pass: false,
     },
+    { name:      "rot_top",
+      type:      "device",
+      clock:     "clk_main_i"
+      reset:     "rst_main_ni"
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "sm3",
+      type:      "device",
+      clock:     "clk_main_i"
+      reset:     "rst_main_ni"
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "sm4",
+      type:      "device",
+      clock:     "clk_main_i"
+      reset:     "rst_main_ni"
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "rs_encode",
+      type:      "device",
+      clock:     "clk_main_i"
+      reset:     "rst_main_ni"
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "rs_decode",
+      type:      "device",
+      clock:     "clk_main_i"
+      reset:     "rst_main_ni"
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "puf1",
+      type:      "device",
+      clock:     "clk_main_i"
+      reset:     "rst_main_ni"
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "puf2",
+      type:      "device",
+      clock:     "clk_main_i"
+      reset:     "rst_main_ni"
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "puf_reg",
+      type:      "device",
+      clock:     "clk_main_i"
+      reset:     "rst_main_ni"
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "pcr",
+      type:      "device",
+      clock:     "clk_main_i"
+      reset:     "rst_main_ni"
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
     { name:      "rv_core_ibex.cfg",
       type:      "device",
       clock:     "clk_main_i"
@@ -221,7 +284,7 @@
       "sram_ctrl_main.ram", "peri", "spi_host0", "spi_host1", "usbdev",
       "flash_ctrl.core", "flash_ctrl.prim", "flash_ctrl.mem",
       "aes", "entropy_src", "csrng", "edn0", "edn1", "hmac",
-      "rv_plic", "otbn", "keymgr", "kmac", "sram_ctrl_main.regs",
+      "rv_plic", "otbn", "keymgr", "kmac", "sram_ctrl_main.regs", "rot_top", "sm3", "sm4", "rs_encode", "rs_decode", "puf1","puf2","puf_reg","pcr",
       "rv_core_ibex.cfg"
     ],
     rv_dm.sba: [
@@ -229,7 +292,7 @@
       "sram_ctrl_main.ram", "peri", "spi_host0", "spi_host1", "usbdev",
       "flash_ctrl.core", "flash_ctrl.prim", "flash_ctrl.mem",
       "aes", "entropy_src", "csrng", "edn0", "edn1", "hmac",
-      "rv_plic", "otbn", "keymgr", "kmac", "sram_ctrl_main.regs",
+      "rv_plic", "otbn", "keymgr", "kmac", "sram_ctrl_main.regs", "rot_top", "sm3", "sm4", "rs_encode", "rs_decode", "puf1","puf2","puf_reg","pcr",
       "rv_core_ibex.cfg",
     ],
   },

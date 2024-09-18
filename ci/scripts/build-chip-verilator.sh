@@ -21,8 +21,8 @@ case "$tl" in
         fileset=fileset_top
         fusesoc_core=lowrisc:dv:chip_verilator_sim
         vname=Vchip_sim_tb
-        verilator_options="--threads 4"
-        make_options="-j 4"
+        verilator_options="--threads 16"
+        make_options="-j 16"
         ;;
     englishbreakfast)
         fileset=fileset_topgen

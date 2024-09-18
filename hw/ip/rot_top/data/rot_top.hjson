@@ -1,0 +1,159 @@
+// Copyright lowRISC contributors.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+{
+  name:               "rot_top",
+  human_name:         "ROT TOP",
+  one_line_desc:      "ROT",
+  one_paragraph_desc: '''
+  rot
+  '''
+  cip_id:             "37",
+  design_spec:        "../doc",
+  dv_doc:             "../doc/dv",
+  //hw_checklist:       "../doc/checklist",
+  //sw_checklist:       "/sw/device/lib/dif/dif_keymgr",
+  version:            "1.0.0",
+  life_stage:         "L1",
+  design_stage:       "D2S",
+  verification_stage: "V2S",
+  dif_stage:          "S2",
+  clocking: [
+    {clock: "clk_i", reset: "rst_ni", primary: true},
+    {clock: "clk_edn_i", reset: "rst_edn_ni"}
+  ]
+  bus_interfaces: [
+    { protocol: "tlul", direction: "device" }
+  ],
+
+  interrupt_list: [
+    { name: "kmac_kmac_done"
+      desc: "KMAC/SHA3 absorbing has been completed"
+    }
+    { name: "kmac_fifo_empty"
+      desc: "Message FIFO empty condition"
+    }
+    { name: "kmac_kmac_err"
+      desc: "KMAC/SHA3 error occurred. ERR_CODE register shows the details"
+    }
+    { name: "keymgr_op_done",   desc: "Operation complete" }
+    { name: "hmac_hmac_done",
+      desc: "HMAC-256 completes a message with key"
+    }
+    { name: "hmac_fifo_empty",
+      desc: "Message FIFO empty condition"
+    }
+    { name: "hmac_hmac_err",
+      desc: "HMAC error occurred. ERR_CODE register shows which error occurred"
+    }
+    { name: "entropy_src_es_entropy_valid"
+      desc: "Asserted when entropy source bits are available."}
+    { name: "entropy_src_es_health_test_failed"
+      desc: "Asserted when the alert count has been met."}
+    { name: "entropy_src_es_observe_fifo_ready"
+      desc: "Asserted when the observe FIFO has filled to the threshold level."}
+    { name: "entropy_src_es_fatal_err"
+      desc: "Asserted when a FIFO error occurs, or if an illegal state machine state is reached."}
+    { name: "edn0_edn_cmd_req_done"
+      desc: "Asserted when a software CSRNG request has completed."}
+    { name: "edn0_edn_fatal_err"
+      desc: "Asserted when a FIFO error occurs."}
+    { name: "csrng_cs_cmd_req_done"
+      desc: "Asserted when a command request is completed."}
+    { name: "csrng_cs_entropy_req"
+      desc: "Asserted when a request for entropy has been made."}
+    { name: "csrng_cs_hw_inst_exc"
+      desc: "Asserted when a hardware-attached CSRNG instance encounters a command exception"}
+    { name: "csrng_cs_fatal_err"
+      desc: "Asserted when a FIFO error or a fatal alert occurs. Check the !!ERR_CODE register to get more information."}
+  ],
+  alert_list: [
+    { name: "fatal_fault_hmac",
+      desc: '''
+      This fatal alert is triggered when a fatal TL-UL bus integrity fault is detected.
+      '''
+    }
+    { name: "recov_operation_err_kmac"
+      desc: '''
+        Alert for KMAC operation error. It occurs when the shadow registers have update errors.
+        '''
+    }
+    { name: "fatal_fault_err_kmac",
+      desc: '''
+      This fatal alert is triggered when a fatal error is detected inside the KMAC unit.
+      Examples for such faults include:
+      i) TL-UL bus integrity fault.
+      ii) Storage errors in the shadow registers.
+      iii) Errors in the message, round, or key counter.
+      iv) Any internal FSM entering an invalid state.
+      v) An error in the redundant lfsr.
+      The KMAC unit cannot recover from such an error and needs to be reset.
+      '''
+    }
+    { name: "recov_operation_err_keymgr",
+      desc: '''
+        Alert for key manager operation errors.  These errors could have been caused by
+        software'''
+    }
+    { name: "fatal_fault_err_keymgr",
+      desc: "Alert for key manager faults.  These errors cannot be caused by software",
+    }
+    { name: "fatal_rom_ctrl"
+      desc: "A fatal error. Fatal alerts are non-recoverable and will be asserted until a hard reset."
+    }
+    { name: "recov_alert_edn",
+      desc: "This alert is triggered when entropy bus data matches on consecutive clock cycles."
+    }
+    { name: "fatal_alert_edn",
+      desc: '''
+            This alert triggers (i) if an illegal state machine state is reached, or
+            (ii) if a fatal integrity failure is detected on the TL-UL bus.
+            ''',
+    }
+    { name: "recov_alert_csrng",
+      desc: "This alert is triggered when a recoverable alert occurs.  Check the !!RECOV_ALERT_STS register to get more information."
+    }
+    { name: "fatal_alert_csrng",
+      desc: '''
+            This alert triggers (i) if an illegal state machine state is reached, or
+            (ii) if an AES fatal alert condition occurs, or (iii) if a fatal integrity
+            failure is detected on the TL-UL bus.
+            '''
+    }
+    { name: "recov_alert_entropy_src",
+      desc: "This alert is triggered upon the alert health test threshold criteria not met."
+    }
+    { name: "fatal_alert_entropy_entropy_src",
+      desc: '''
+            This alert triggers for any condition detected in the !!ERR_CODE register,
+            which includes FIFO errors, COUNTER errors, FSM state errors,
+            and also when integrity failures are detected on the TL-UL bus.
+            ''',
+    }
+
+  ],
+
+
+
+
+regwidth: "32",
+  registers: [
+    { name: "CFG_REGWEN",
+      desc: "Key manager configuration enable",
+      swaccess: "ro",  // this lock is HW managed
+      hwaccess: "hwo",
+      hwext: "true",
+      fields: [
+        { bits: "0",
+          name: "EN",
+          resval: "1"
+          desc: '''
+            key manager configuration enable.
+            When key manager operation is started (see CONTROL), registers protected by this EN are no longer
+            modifiable until the operation completes.
+          '''
+        },
+      ]
+    }
+  ]
+}

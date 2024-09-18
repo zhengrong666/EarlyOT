@@ -41,7 +41,16 @@ IPS ?= aes           \
        sysrst_ctrl   \
        trial1        \
        uart          \
-       usbdev
+       usbdev        \
+       rot_top       \
+       sm3           \
+       sm4           \
+       rs_decode     \
+       rs_encode     \
+       puf           \
+       puf_reg       \
+       pcr
+
 
 TOPS ?= top_earlgrey
 

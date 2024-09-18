@@ -595,6 +595,132 @@ pub const KEYMGR_BASE_ADDR: usize = 0x41140000;
 /// `KEYMGR_BASE_ADDR + KEYMGR_SIZE_BYTES`.
 pub const KEYMGR_SIZE_BYTES: usize = 0x100;
 
+/// Peripheral base address for rot_top in top earlgrey.
+///
+/// This should be used with #mmio_region_from_addr to access the memory-mapped
+/// registers associated with the peripheral (usually via a DIF).
+pub const ROT_TOP_BASE_ADDR: usize = 0x42000000;
+
+/// Peripheral size for rot_top in top earlgrey.
+///
+/// This is the size (in bytes) of the peripheral's reserved memory area. All
+/// memory-mapped registers associated with this peripheral should have an
+/// address between #ROT_TOP_BASE_ADDR and
+/// `ROT_TOP_BASE_ADDR + ROT_TOP_SIZE_BYTES`.
+pub const ROT_TOP_SIZE_BYTES: usize = 0x20;
+
+/// Peripheral base address for sm3 in top earlgrey.
+///
+/// This should be used with #mmio_region_from_addr to access the memory-mapped
+/// registers associated with the peripheral (usually via a DIF).
+pub const SM3_BASE_ADDR: usize = 0x411A0000;
+
+/// Peripheral size for sm3 in top earlgrey.
+///
+/// This is the size (in bytes) of the peripheral's reserved memory area. All
+/// memory-mapped registers associated with this peripheral should have an
+/// address between #SM3_BASE_ADDR and
+/// `SM3_BASE_ADDR + SM3_SIZE_BYTES`.
+pub const SM3_SIZE_BYTES: usize = 0x40;
+
+/// Peripheral base address for sm4 in top earlgrey.
+///
+/// This should be used with #mmio_region_from_addr to access the memory-mapped
+/// registers associated with the peripheral (usually via a DIF).
+pub const SM4_BASE_ADDR: usize = 0x411B0000;
+
+/// Peripheral size for sm4 in top earlgrey.
+///
+/// This is the size (in bytes) of the peripheral's reserved memory area. All
+/// memory-mapped registers associated with this peripheral should have an
+/// address between #SM4_BASE_ADDR and
+/// `SM4_BASE_ADDR + SM4_SIZE_BYTES`.
+pub const SM4_SIZE_BYTES: usize = 0x40;
+
+/// Peripheral base address for rs_encode in top earlgrey.
+///
+/// This should be used with #mmio_region_from_addr to access the memory-mapped
+/// registers associated with the peripheral (usually via a DIF).
+pub const RS_ENCODE_BASE_ADDR: usize = 0x42110000;
+
+/// Peripheral size for rs_encode in top earlgrey.
+///
+/// This is the size (in bytes) of the peripheral's reserved memory area. All
+/// memory-mapped registers associated with this peripheral should have an
+/// address between #RS_ENCODE_BASE_ADDR and
+/// `RS_ENCODE_BASE_ADDR + RS_ENCODE_SIZE_BYTES`.
+pub const RS_ENCODE_SIZE_BYTES: usize = 0x200;
+
+/// Peripheral base address for rs_decode in top earlgrey.
+///
+/// This should be used with #mmio_region_from_addr to access the memory-mapped
+/// registers associated with the peripheral (usually via a DIF).
+pub const RS_DECODE_BASE_ADDR: usize = 0x42120000;
+
+/// Peripheral size for rs_decode in top earlgrey.
+///
+/// This is the size (in bytes) of the peripheral's reserved memory area. All
+/// memory-mapped registers associated with this peripheral should have an
+/// address between #RS_DECODE_BASE_ADDR and
+/// `RS_DECODE_BASE_ADDR + RS_DECODE_SIZE_BYTES`.
+pub const RS_DECODE_SIZE_BYTES: usize = 0x200;
+
+/// Peripheral base address for puf1 in top earlgrey.
+///
+/// This should be used with #mmio_region_from_addr to access the memory-mapped
+/// registers associated with the peripheral (usually via a DIF).
+pub const PUF1_BASE_ADDR: usize = 0x42130000;
+
+/// Peripheral size for puf1 in top earlgrey.
+///
+/// This is the size (in bytes) of the peripheral's reserved memory area. All
+/// memory-mapped registers associated with this peripheral should have an
+/// address between #PUF1_BASE_ADDR and
+/// `PUF1_BASE_ADDR + PUF1_SIZE_BYTES`.
+pub const PUF1_SIZE_BYTES: usize = 0x40;
+
+/// Peripheral base address for puf2 in top earlgrey.
+///
+/// This should be used with #mmio_region_from_addr to access the memory-mapped
+/// registers associated with the peripheral (usually via a DIF).
+pub const PUF2_BASE_ADDR: usize = 0x42140000;
+
+/// Peripheral size for puf2 in top earlgrey.
+///
+/// This is the size (in bytes) of the peripheral's reserved memory area. All
+/// memory-mapped registers associated with this peripheral should have an
+/// address between #PUF2_BASE_ADDR and
+/// `PUF2_BASE_ADDR + PUF2_SIZE_BYTES`.
+pub const PUF2_SIZE_BYTES: usize = 0x40;
+
+/// Peripheral base address for puf_reg in top earlgrey.
+///
+/// This should be used with #mmio_region_from_addr to access the memory-mapped
+/// registers associated with the peripheral (usually via a DIF).
+pub const PUF_REG_BASE_ADDR: usize = 0x42150000;
+
+/// Peripheral size for puf_reg in top earlgrey.
+///
+/// This is the size (in bytes) of the peripheral's reserved memory area. All
+/// memory-mapped registers associated with this peripheral should have an
+/// address between #PUF_REG_BASE_ADDR and
+/// `PUF_REG_BASE_ADDR + PUF_REG_SIZE_BYTES`.
+pub const PUF_REG_SIZE_BYTES: usize = 0x40;
+
+/// Peripheral base address for pcr in top earlgrey.
+///
+/// This should be used with #mmio_region_from_addr to access the memory-mapped
+/// registers associated with the peripheral (usually via a DIF).
+pub const PCR_BASE_ADDR: usize = 0x42160000;
+
+/// Peripheral size for pcr in top earlgrey.
+///
+/// This is the size (in bytes) of the peripheral's reserved memory area. All
+/// memory-mapped registers associated with this peripheral should have an
+/// address between #PCR_BASE_ADDR and
+/// `PCR_BASE_ADDR + PCR_SIZE_BYTES`.
+pub const PCR_SIZE_BYTES: usize = 0x40;
+
 /// Peripheral base address for csrng in top earlgrey.
 ///
 /// This should be used with #mmio_region_from_addr to access the memory-mapped
@@ -806,14 +932,16 @@ pub enum PlicPeripheral {
     Otbn = 25,
     /// keymgr
     Keymgr = 26,
+    /// rot_top
+    RotTop = 27,
     /// csrng
-    Csrng = 27,
+    Csrng = 28,
     /// entropy_src
-    EntropySrc = 28,
+    EntropySrc = 29,
     /// edn0
-    Edn0 = 29,
+    Edn0 = 30,
     /// edn1
-    Edn1 = 30,
+    Edn1 = 31,
 }
 
 impl TryFrom<u32> for PlicPeripheral {
@@ -847,10 +975,11 @@ impl TryFrom<u32> for PlicPeripheral {
             24 => Ok(Self::Kmac),
             25 => Ok(Self::Otbn),
             26 => Ok(Self::Keymgr),
-            27 => Ok(Self::Csrng),
-            28 => Ok(Self::EntropySrc),
-            29 => Ok(Self::Edn0),
-            30 => Ok(Self::Edn1),
+            27 => Ok(Self::RotTop),
+            28 => Ok(Self::Csrng),
+            29 => Ok(Self::EntropySrc),
+            30 => Ok(Self::Edn0),
+            31 => Ok(Self::Edn1),
             _ => Err(val),
         }
     }
@@ -1211,30 +1340,64 @@ pub enum PlicIrqId {
     OtbnDone = 172,
     /// keymgr_op_done
     KeymgrOpDone = 173,
+    /// rot_top_kmac_kmac_done
+    RotTopKmacKmacDone = 174,
+    /// rot_top_kmac_fifo_empty
+    RotTopKmacFifoEmpty = 175,
+    /// rot_top_kmac_kmac_err
+    RotTopKmacKmacErr = 176,
+    /// rot_top_keymgr_op_done
+    RotTopKeymgrOpDone = 177,
+    /// rot_top_hmac_hmac_done
+    RotTopHmacHmacDone = 178,
+    /// rot_top_hmac_fifo_empty
+    RotTopHmacFifoEmpty = 179,
+    /// rot_top_hmac_hmac_err
+    RotTopHmacHmacErr = 180,
+    /// rot_top_entropy_src_es_entropy_valid
+    RotTopEntropySrcEsEntropyValid = 181,
+    /// rot_top_entropy_src_es_health_test_failed
+    RotTopEntropySrcEsHealthTestFailed = 182,
+    /// rot_top_entropy_src_es_observe_fifo_ready
+    RotTopEntropySrcEsObserveFifoReady = 183,
+    /// rot_top_entropy_src_es_fatal_err
+    RotTopEntropySrcEsFatalErr = 184,
+    /// rot_top_edn0_edn_cmd_req_done
+    RotTopEdn0EdnCmdReqDone = 185,
+    /// rot_top_edn0_edn_fatal_err
+    RotTopEdn0EdnFatalErr = 186,
+    /// rot_top_csrng_cs_cmd_req_done
+    RotTopCsrngCsCmdReqDone = 187,
+    /// rot_top_csrng_cs_entropy_req
+    RotTopCsrngCsEntropyReq = 188,
+    /// rot_top_csrng_cs_hw_inst_exc
+    RotTopCsrngCsHwInstExc = 189,
+    /// rot_top_csrng_cs_fatal_err
+    RotTopCsrngCsFatalErr = 190,
     /// csrng_cs_cmd_req_done
-    CsrngCsCmdReqDone = 174,
+    CsrngCsCmdReqDone = 191,
     /// csrng_cs_entropy_req
-    CsrngCsEntropyReq = 175,
+    CsrngCsEntropyReq = 192,
     /// csrng_cs_hw_inst_exc
-    CsrngCsHwInstExc = 176,
+    CsrngCsHwInstExc = 193,
     /// csrng_cs_fatal_err
-    CsrngCsFatalErr = 177,
+    CsrngCsFatalErr = 194,
     /// entropy_src_es_entropy_valid
-    EntropySrcEsEntropyValid = 178,
+    EntropySrcEsEntropyValid = 195,
     /// entropy_src_es_health_test_failed
-    EntropySrcEsHealthTestFailed = 179,
+    EntropySrcEsHealthTestFailed = 196,
     /// entropy_src_es_observe_fifo_ready
-    EntropySrcEsObserveFifoReady = 180,
+    EntropySrcEsObserveFifoReady = 197,
     /// entropy_src_es_fatal_err
-    EntropySrcEsFatalErr = 181,
+    EntropySrcEsFatalErr = 198,
     /// edn0_edn_cmd_req_done
-    Edn0EdnCmdReqDone = 182,
+    Edn0EdnCmdReqDone = 199,
     /// edn0_edn_fatal_err
-    Edn0EdnFatalErr = 183,
+    Edn0EdnFatalErr = 200,
     /// edn1_edn_cmd_req_done
-    Edn1EdnCmdReqDone = 184,
+    Edn1EdnCmdReqDone = 201,
     /// edn1_edn_fatal_err
-    Edn1EdnFatalErr = 185,
+    Edn1EdnFatalErr = 202,
 }
 
 impl TryFrom<u32> for PlicIrqId {
@@ -1415,18 +1578,35 @@ impl TryFrom<u32> for PlicIrqId {
             171 => Ok(Self::KmacKmacErr),
             172 => Ok(Self::OtbnDone),
             173 => Ok(Self::KeymgrOpDone),
-            174 => Ok(Self::CsrngCsCmdReqDone),
-            175 => Ok(Self::CsrngCsEntropyReq),
-            176 => Ok(Self::CsrngCsHwInstExc),
-            177 => Ok(Self::CsrngCsFatalErr),
-            178 => Ok(Self::EntropySrcEsEntropyValid),
-            179 => Ok(Self::EntropySrcEsHealthTestFailed),
-            180 => Ok(Self::EntropySrcEsObserveFifoReady),
-            181 => Ok(Self::EntropySrcEsFatalErr),
-            182 => Ok(Self::Edn0EdnCmdReqDone),
-            183 => Ok(Self::Edn0EdnFatalErr),
-            184 => Ok(Self::Edn1EdnCmdReqDone),
-            185 => Ok(Self::Edn1EdnFatalErr),
+            174 => Ok(Self::RotTopKmacKmacDone),
+            175 => Ok(Self::RotTopKmacFifoEmpty),
+            176 => Ok(Self::RotTopKmacKmacErr),
+            177 => Ok(Self::RotTopKeymgrOpDone),
+            178 => Ok(Self::RotTopHmacHmacDone),
+            179 => Ok(Self::RotTopHmacFifoEmpty),
+            180 => Ok(Self::RotTopHmacHmacErr),
+            181 => Ok(Self::RotTopEntropySrcEsEntropyValid),
+            182 => Ok(Self::RotTopEntropySrcEsHealthTestFailed),
+            183 => Ok(Self::RotTopEntropySrcEsObserveFifoReady),
+            184 => Ok(Self::RotTopEntropySrcEsFatalErr),
+            185 => Ok(Self::RotTopEdn0EdnCmdReqDone),
+            186 => Ok(Self::RotTopEdn0EdnFatalErr),
+            187 => Ok(Self::RotTopCsrngCsCmdReqDone),
+            188 => Ok(Self::RotTopCsrngCsEntropyReq),
+            189 => Ok(Self::RotTopCsrngCsHwInstExc),
+            190 => Ok(Self::RotTopCsrngCsFatalErr),
+            191 => Ok(Self::CsrngCsCmdReqDone),
+            192 => Ok(Self::CsrngCsEntropyReq),
+            193 => Ok(Self::CsrngCsHwInstExc),
+            194 => Ok(Self::CsrngCsFatalErr),
+            195 => Ok(Self::EntropySrcEsEntropyValid),
+            196 => Ok(Self::EntropySrcEsHealthTestFailed),
+            197 => Ok(Self::EntropySrcEsObserveFifoReady),
+            198 => Ok(Self::EntropySrcEsFatalErr),
+            199 => Ok(Self::Edn0EdnCmdReqDone),
+            200 => Ok(Self::Edn0EdnFatalErr),
+            201 => Ok(Self::Edn1EdnCmdReqDone),
+            202 => Ok(Self::Edn1EdnFatalErr),
             _ => Err(val),
         }
     }
@@ -1518,20 +1698,22 @@ pub enum AlertPeripheral {
     Otbn = 32,
     /// keymgr
     Keymgr = 33,
+    /// rot_top
+    RotTop = 34,
     /// csrng
-    Csrng = 34,
+    Csrng = 35,
     /// entropy_src
-    EntropySrc = 35,
+    EntropySrc = 36,
     /// edn0
-    Edn0 = 36,
+    Edn0 = 37,
     /// edn1
-    Edn1 = 37,
+    Edn1 = 38,
     /// sram_ctrl_main
-    SramCtrlMain = 38,
+    SramCtrlMain = 39,
     /// rom_ctrl
-    RomCtrl = 39,
+    RomCtrl = 40,
     /// rv_core_ibex
-    RvCoreIbex = 40,
+    RvCoreIbex = 41,
 }
 
 /// Alert Handler Alert Source.
@@ -1643,34 +1825,58 @@ pub enum AlertId {
     KeymgrRecovOperationErr = 49,
     /// keymgr_fatal_fault_err
     KeymgrFatalFaultErr = 50,
+    /// rot_top_fatal_fault_hmac
+    RotTopFatalFaultHmac = 51,
+    /// rot_top_recov_operation_err_kmac
+    RotTopRecovOperationErrKmac = 52,
+    /// rot_top_fatal_fault_err_kmac
+    RotTopFatalFaultErrKmac = 53,
+    /// rot_top_recov_operation_err_keymgr
+    RotTopRecovOperationErrKeymgr = 54,
+    /// rot_top_fatal_fault_err_keymgr
+    RotTopFatalFaultErrKeymgr = 55,
+    /// rot_top_fatal_rom_ctrl
+    RotTopFatalRomCtrl = 56,
+    /// rot_top_recov_alert_edn
+    RotTopRecovAlertEdn = 57,
+    /// rot_top_fatal_alert_edn
+    RotTopFatalAlertEdn = 58,
+    /// rot_top_recov_alert_csrng
+    RotTopRecovAlertCsrng = 59,
+    /// rot_top_fatal_alert_csrng
+    RotTopFatalAlertCsrng = 60,
+    /// rot_top_recov_alert_entropy_src
+    RotTopRecovAlertEntropySrc = 61,
+    /// rot_top_fatal_alert_entropy_entropy_src
+    RotTopFatalAlertEntropyEntropySrc = 62,
     /// csrng_recov_alert
-    CsrngRecovAlert = 51,
+    CsrngRecovAlert = 63,
     /// csrng_fatal_alert
-    CsrngFatalAlert = 52,
+    CsrngFatalAlert = 64,
     /// entropy_src_recov_alert
-    EntropySrcRecovAlert = 53,
+    EntropySrcRecovAlert = 65,
     /// entropy_src_fatal_alert
-    EntropySrcFatalAlert = 54,
+    EntropySrcFatalAlert = 66,
     /// edn0_recov_alert
-    Edn0RecovAlert = 55,
+    Edn0RecovAlert = 67,
     /// edn0_fatal_alert
-    Edn0FatalAlert = 56,
+    Edn0FatalAlert = 68,
     /// edn1_recov_alert
-    Edn1RecovAlert = 57,
+    Edn1RecovAlert = 69,
     /// edn1_fatal_alert
-    Edn1FatalAlert = 58,
+    Edn1FatalAlert = 70,
     /// sram_ctrl_main_fatal_error
-    SramCtrlMainFatalError = 59,
+    SramCtrlMainFatalError = 71,
     /// rom_ctrl_fatal
-    RomCtrlFatal = 60,
+    RomCtrlFatal = 72,
     /// rv_core_ibex_fatal_sw_err
-    RvCoreIbexFatalSwErr = 61,
+    RvCoreIbexFatalSwErr = 73,
     /// rv_core_ibex_recov_sw_err
-    RvCoreIbexRecovSwErr = 62,
+    RvCoreIbexRecovSwErr = 74,
     /// rv_core_ibex_fatal_hw_err
-    RvCoreIbexFatalHwErr = 63,
+    RvCoreIbexFatalHwErr = 75,
     /// rv_core_ibex_recov_hw_err
-    RvCoreIbexRecovHwErr = 64,
+    RvCoreIbexRecovHwErr = 76,
 }
 
 impl TryFrom<u32> for AlertId {
@@ -1728,20 +1934,32 @@ impl TryFrom<u32> for AlertId {
             48 => Ok(Self::OtbnRecov),
             49 => Ok(Self::KeymgrRecovOperationErr),
             50 => Ok(Self::KeymgrFatalFaultErr),
-            51 => Ok(Self::CsrngRecovAlert),
-            52 => Ok(Self::CsrngFatalAlert),
-            53 => Ok(Self::EntropySrcRecovAlert),
-            54 => Ok(Self::EntropySrcFatalAlert),
-            55 => Ok(Self::Edn0RecovAlert),
-            56 => Ok(Self::Edn0FatalAlert),
-            57 => Ok(Self::Edn1RecovAlert),
-            58 => Ok(Self::Edn1FatalAlert),
-            59 => Ok(Self::SramCtrlMainFatalError),
-            60 => Ok(Self::RomCtrlFatal),
-            61 => Ok(Self::RvCoreIbexFatalSwErr),
-            62 => Ok(Self::RvCoreIbexRecovSwErr),
-            63 => Ok(Self::RvCoreIbexFatalHwErr),
-            64 => Ok(Self::RvCoreIbexRecovHwErr),
+            51 => Ok(Self::RotTopFatalFaultHmac),
+            52 => Ok(Self::RotTopRecovOperationErrKmac),
+            53 => Ok(Self::RotTopFatalFaultErrKmac),
+            54 => Ok(Self::RotTopRecovOperationErrKeymgr),
+            55 => Ok(Self::RotTopFatalFaultErrKeymgr),
+            56 => Ok(Self::RotTopFatalRomCtrl),
+            57 => Ok(Self::RotTopRecovAlertEdn),
+            58 => Ok(Self::RotTopFatalAlertEdn),
+            59 => Ok(Self::RotTopRecovAlertCsrng),
+            60 => Ok(Self::RotTopFatalAlertCsrng),
+            61 => Ok(Self::RotTopRecovAlertEntropySrc),
+            62 => Ok(Self::RotTopFatalAlertEntropyEntropySrc),
+            63 => Ok(Self::CsrngRecovAlert),
+            64 => Ok(Self::CsrngFatalAlert),
+            65 => Ok(Self::EntropySrcRecovAlert),
+            66 => Ok(Self::EntropySrcFatalAlert),
+            67 => Ok(Self::Edn0RecovAlert),
+            68 => Ok(Self::Edn0FatalAlert),
+            69 => Ok(Self::Edn1RecovAlert),
+            70 => Ok(Self::Edn1FatalAlert),
+            71 => Ok(Self::SramCtrlMainFatalError),
+            72 => Ok(Self::RomCtrlFatal),
+            73 => Ok(Self::RvCoreIbexFatalSwErr),
+            74 => Ok(Self::RvCoreIbexRecovSwErr),
+            75 => Ok(Self::RvCoreIbexFatalHwErr),
+            76 => Ok(Self::RvCoreIbexRecovHwErr),
             _ => Err(val),
         }
     }
@@ -1751,7 +1969,7 @@ impl TryFrom<u32> for AlertId {
 ///
 /// This array is a mapping from `PlicIrqId` to
 /// `PlicPeripheral`.
-pub const PLIC_INTERRUPT_FOR_PERIPHERAL: [PlicPeripheral; 186] = [
+pub const PLIC_INTERRUPT_FOR_PERIPHERAL: [PlicPeripheral; 203] = [
     // None -> PlicPeripheral::Unknown
     PlicPeripheral::Unknown,
     // Uart0TxWatermark -> PlicPeripheral::Uart0
@@ -2100,6 +2318,40 @@ pub const PLIC_INTERRUPT_FOR_PERIPHERAL: [PlicPeripheral; 186] = [
     PlicPeripheral::Otbn,
     // KeymgrOpDone -> PlicPeripheral::Keymgr
     PlicPeripheral::Keymgr,
+    // RotTopKmacKmacDone -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopKmacFifoEmpty -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopKmacKmacErr -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopKeymgrOpDone -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopHmacHmacDone -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopHmacFifoEmpty -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopHmacHmacErr -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopEntropySrcEsEntropyValid -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopEntropySrcEsHealthTestFailed -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopEntropySrcEsObserveFifoReady -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopEntropySrcEsFatalErr -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopEdn0EdnCmdReqDone -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopEdn0EdnFatalErr -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopCsrngCsCmdReqDone -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopCsrngCsEntropyReq -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopCsrngCsHwInstExc -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
+    // RotTopCsrngCsFatalErr -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
     // CsrngCsCmdReqDone -> PlicPeripheral::Csrng
     PlicPeripheral::Csrng,
     // CsrngCsEntropyReq -> PlicPeripheral::Csrng
@@ -2130,7 +2382,7 @@ pub const PLIC_INTERRUPT_FOR_PERIPHERAL: [PlicPeripheral; 186] = [
 ///
 /// This array is a mapping from `AlertId` to
 /// `AlertPeripheral`.
-pub const ALERT_FOR_PERIPHERAL: [AlertPeripheral; 65] = [
+pub const ALERT_FOR_PERIPHERAL: [AlertPeripheral; 77] = [
     // Uart0FatalFault -> AlertPeripheral::Uart0
     AlertPeripheral::Uart0,
     // Uart1FatalFault -> AlertPeripheral::Uart1
@@ -2233,6 +2485,30 @@ pub const ALERT_FOR_PERIPHERAL: [AlertPeripheral; 65] = [
     AlertPeripheral::Keymgr,
     // KeymgrFatalFaultErr -> AlertPeripheral::Keymgr
     AlertPeripheral::Keymgr,
+    // RotTopFatalFaultHmac -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopRecovOperationErrKmac -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopFatalFaultErrKmac -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopRecovOperationErrKeymgr -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopFatalFaultErrKeymgr -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopFatalRomCtrl -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopRecovAlertEdn -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopFatalAlertEdn -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopRecovAlertCsrng -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopFatalAlertCsrng -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopRecovAlertEntropySrc -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopFatalAlertEntropyEntropySrc -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
     // CsrngRecovAlert -> AlertPeripheral::Csrng
     AlertPeripheral::Csrng,
     // CsrngFatalAlert -> AlertPeripheral::Csrng

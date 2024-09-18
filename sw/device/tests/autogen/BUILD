@@ -63,6 +63,7 @@ package(default_visibility = ["//visibility:public"])
             "//sw/device/lib/dif:otp_ctrl",
             "//sw/device/lib/dif:pattgen",
             "//sw/device/lib/dif:pwrmgr",
+            "//sw/device/lib/dif:rot_top",
             "//sw/device/lib/dif:rv_plic",
             "//sw/device/lib/dif:rv_timer",
             "//sw/device/lib/dif:sensor_ctrl",
@@ -77,7 +78,7 @@ package(default_visibility = ["//visibility:public"])
             "//sw/device/lib/testing/test_framework:ottf_main",
         ],
     )
-    for min in range(0, 23, 10)
+    for min in range(0, 24, 10)
 ]
 
 test_suite(
@@ -131,6 +132,7 @@ opentitan_test(
         "//sw/device/lib/dif:pwm",
         "//sw/device/lib/dif:pwrmgr",
         "//sw/device/lib/dif:rom_ctrl",
+        "//sw/device/lib/dif:rot_top",
         "//sw/device/lib/dif:rstmgr",
         "//sw/device/lib/dif:rv_core_ibex",
         "//sw/device/lib/dif:rv_plic",

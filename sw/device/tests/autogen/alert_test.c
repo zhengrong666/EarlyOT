@@ -32,6 +32,7 @@
 #include "sw/device/lib/dif/dif_pwm.h"
 #include "sw/device/lib/dif/dif_pwrmgr.h"
 #include "sw/device/lib/dif/dif_rom_ctrl.h"
+#include "sw/device/lib/dif/dif_rot_top.h"
 #include "sw/device/lib/dif/dif_rstmgr.h"
 #include "sw/device/lib/dif/dif_rv_core_ibex.h"
 #include "sw/device/lib/dif/dif_rv_plic.h"
@@ -78,6 +79,7 @@ static dif_pinmux_t pinmux_aon;
 static dif_pwm_t pwm_aon;
 static dif_pwrmgr_t pwrmgr_aon;
 static dif_rom_ctrl_t rom_ctrl;
+static dif_rot_top_t rot_top;
 static dif_rstmgr_t rstmgr_aon;
 static dif_rv_core_ibex_t rv_core_ibex;
 static dif_rv_plic_t rv_plic;
@@ -174,6 +176,9 @@ static void init_peripherals(void) {
 
   base_addr = mmio_region_from_addr(TOP_EARLGREY_ROM_CTRL_REGS_BASE_ADDR);
   CHECK_DIF_OK(dif_rom_ctrl_init(base_addr, &rom_ctrl));
+
+  base_addr = mmio_region_from_addr(TOP_EARLGREY_ROT_TOP_BASE_ADDR);
+  CHECK_DIF_OK(dif_rot_top_init(base_addr, &rot_top));
 
   base_addr = mmio_region_from_addr(TOP_EARLGREY_RSTMGR_AON_BASE_ADDR);
   CHECK_DIF_OK(dif_rstmgr_init(base_addr, &rstmgr_aon));
@@ -635,6 +640,21 @@ static void trigger_alert_test(void) {
 
     // Verify that alert handler received it.
     exp_alert = kTopEarlgreyAlertIdRomCtrlFatal + i;
+    CHECK_DIF_OK(dif_alert_handler_alert_is_cause(
+        &alert_handler, exp_alert, &is_cause));
+    CHECK(is_cause, "Expect alert %d!", exp_alert);
+
+    // Clear alert cause register
+    CHECK_DIF_OK(dif_alert_handler_alert_acknowledge(
+        &alert_handler, exp_alert));
+  }
+
+  // Write rot_top's alert_test reg and check alert_cause.
+  for (dif_rot_top_alert_t i = 0; i < 12; ++i) {
+    CHECK_DIF_OK(dif_rot_top_alert_force(&rot_top, kDifRotTopAlertFatalFaultHmac + i));
+
+    // Verify that alert handler received it.
+    exp_alert = kTopEarlgreyAlertIdRotTopFatalFaultHmac + i;
     CHECK_DIF_OK(dif_alert_handler_alert_is_cause(
         &alert_handler, exp_alert, &is_cause));
     CHECK(is_cause, "Expect alert %d!", exp_alert);

@@ -1,0 +1,92 @@
+CAPI=2:
+name: "lowrisc:ip:puf_reg:1.0"
+description: "Platform Configuration Register (puf_reg)"
+
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:prim:all
+      - lowrisc:prim:util
+      - lowrisc:ip:tlul
+    files:
+      - rtl/puf_reg_reg_pkg.sv
+      - rtl/puf_reg_reg_top.sv
+      - rtl/puf_reg_core.sv
+      - rtl/puf_reg.sv
+    file_type: systemVerilogSource
+
+  files_verilator_waiver:
+    depend:
+      # common waivers
+      - lowrisc:lint:common
+      - lowrisc:lint:comportable
+    files:
+      - lint/puf_reg.vlt
+    file_type: vlt
+
+  files_ascentlint_waiver:
+    depend:
+      # common waivers
+      - lowrisc:lint:common
+      - lowrisc:lint:comportable
+    files:
+      - lint/puf_reg.waiver
+    file_type: waiver
+
+  files_veriblelint_waiver:
+    depend:
+      # common waivers
+      - lowrisc:lint:common
+      - lowrisc:lint:comportable
+
+#  No DV yet in this PR
+#
+#  files_formal:
+#    files:
+#      - dv/tb/puf_reg_bind.sv
+#    file_type: systemVerilogSource
+
+parameters:
+  SYNTHESIS:
+    datatype: bool
+    paramtype: vlogdefine
+
+
+targets:
+  default: &default_target
+    filesets:
+      - tool_verilator   ? (files_verilator_waiver)
+      - tool_ascentlint  ? (files_ascentlint_waiver)
+      - tool_veriblelint ? (files_veriblelint_waiver)
+#     files_formal yet undefined
+#     - target_formal    ? (files_formal)
+      - files_rtl
+    toplevel: puf_reg
+
+#  files_formal yet undefined
+#
+#  formal:
+#    filesets:
+#      - files_rtl
+#      - files_formal
+#    toplevel: puf_reg
+
+  lint:
+    <<: *default_target
+    default_tool: verilator
+    parameters:
+      - SYNTHESIS=true
+    tools:
+      verilator:
+        mode: lint-only
+        verilator_options:
+          - "-Wall"
+
+  syn:
+    <<: *default_target
+    # TODO: set default to DC once
+    # this option is available
+    # olofk/edalize#89
+    default_tool: icarus
+    parameters:
+      - SYNTHESIS=true

@@ -61,6 +61,15 @@ tl_if edn1_tl_if(clk_main, rst_n);
 tl_if rv_plic_tl_if(clk_main, rst_n);
 tl_if otbn_tl_if(clk_main, rst_n);
 tl_if keymgr_tl_if(clk_main, rst_n);
+tl_if rot_top_tl_if(clk_main, rst_n);
+tl_if sm3_tl_if(clk_main, rst_n);
+tl_if sm4_tl_if(clk_main, rst_n);
+tl_if rs_encode_tl_if(clk_main, rst_n);
+tl_if rs_decode_tl_if(clk_main, rst_n);
+tl_if puf1_tl_if(clk_main, rst_n);
+tl_if puf2_tl_if(clk_main, rst_n);
+tl_if puf_reg_tl_if(clk_main, rst_n);
+tl_if pcr_tl_if(clk_main, rst_n);
 tl_if rv_core_ibex__cfg_tl_if(clk_main, rst_n);
 tl_if sram_ctrl_main__regs_tl_if(clk_main, rst_n);
 tl_if sram_ctrl_main__ram_tl_if(clk_main, rst_n);
@@ -143,6 +152,15 @@ initial begin
     `DRIVE_CHIP_TL_DEVICE_IF(rv_plic, rv_plic, tl)
     `DRIVE_CHIP_TL_DEVICE_IF(otbn, otbn, tl)
     `DRIVE_CHIP_TL_DEVICE_IF(keymgr, keymgr, tl)
+    `DRIVE_CHIP_TL_DEVICE_IF(rot_top, rot_top, tl)
+    `DRIVE_CHIP_TL_DEVICE_IF(sm3, sm3, tl)
+    `DRIVE_CHIP_TL_DEVICE_IF(sm4, sm4, tl)
+    `DRIVE_CHIP_TL_DEVICE_IF(rs_encode, rs_encode, tl)
+    `DRIVE_CHIP_TL_DEVICE_IF(rs_decode, rs_decode, tl)
+    `DRIVE_CHIP_TL_DEVICE_IF(puf1, puf1, tl)
+    `DRIVE_CHIP_TL_DEVICE_IF(puf2, puf2, tl)
+    `DRIVE_CHIP_TL_DEVICE_IF(puf_reg, puf_reg, tl)
+    `DRIVE_CHIP_TL_DEVICE_IF(pcr, pcr, tl)
     `DRIVE_CHIP_TL_DEVICE_IF(rv_core_ibex__cfg, rv_core_ibex, cfg_tl_d)
     `DRIVE_CHIP_TL_DEVICE_IF(sram_ctrl_main__regs, sram_ctrl_main, regs_tl)
     `DRIVE_CHIP_TL_DEVICE_IF(sram_ctrl_main__ram, sram_ctrl_main, ram_tl)

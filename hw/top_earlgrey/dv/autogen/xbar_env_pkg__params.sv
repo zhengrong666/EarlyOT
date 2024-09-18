@@ -67,6 +67,33 @@ tl_device_t xbar_devices[$] = '{
     '{"keymgr", '{
         '{32'h41140000, 32'h411400ff}
     }},
+    '{"rot_top", '{
+        '{32'h42000000, 32'h4200001f}
+    }},
+    '{"sm3", '{
+        '{32'h411a0000, 32'h411a003f}
+    }},
+    '{"sm4", '{
+        '{32'h411b0000, 32'h411b003f}
+    }},
+    '{"rs_encode", '{
+        '{32'h42110000, 32'h421101ff}
+    }},
+    '{"rs_decode", '{
+        '{32'h42120000, 32'h421201ff}
+    }},
+    '{"puf1", '{
+        '{32'h42130000, 32'h4213003f}
+    }},
+    '{"puf2", '{
+        '{32'h42140000, 32'h4214003f}
+    }},
+    '{"puf_reg", '{
+        '{32'h42150000, 32'h4215003f}
+    }},
+    '{"pcr", '{
+        '{32'h42160000, 32'h4216003f}
+    }},
     '{"rv_core_ibex__cfg", '{
         '{32'h411f0000, 32'h411f00ff}
     }},
@@ -216,6 +243,15 @@ tl_host_t xbar_hosts[$] = '{
         "keymgr",
         "kmac",
         "sram_ctrl_main__regs",
+        "rot_top",
+        "sm3",
+        "sm4",
+        "rs_encode",
+        "rs_decode",
+        "puf1",
+        "puf2",
+        "puf_reg",
+        "pcr",
         "rv_core_ibex__cfg"}}
     ,
     '{"rv_dm__sba", 2, '{
@@ -268,5 +304,14 @@ tl_host_t xbar_hosts[$] = '{
         "keymgr",
         "kmac",
         "sram_ctrl_main__regs",
+        "rot_top",
+        "sm3",
+        "sm4",
+        "rs_encode",
+        "rs_decode",
+        "puf1",
+        "puf2",
+        "puf_reg",
+        "pcr",
         "rv_core_ibex__cfg"}}
 };

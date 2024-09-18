@@ -1,0 +1,20 @@
+CAPI=2:
+# Copyright lowRISC contributors.
+# Licensed under the Apache License, Version 2.0, see LICENSE for details.
+# SPDX-License-Identifier: Apache-2.0
+name: "zgc:ip:rs_code:1.0"
+description: "rs_code unit"
+filesets:
+  files_rtl:
+    files:
+      - rtl/berlekamp.sv
+      - rtl/chien-search.sv
+      - rtl/data-rom.sv
+      - rtl/inverse.sv
+      - rtl/syndrome.sv
+    file_type: systemVerilogSource
+
+targets:
+  default: &default_target
+    filesets:
+      - files_rtl

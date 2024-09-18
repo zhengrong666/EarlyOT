@@ -86,6 +86,15 @@ module top_earlgrey #(
   // parameters for keymgr
   parameter bit KeymgrUseOtpSeedsInsteadOfFlash = 0,
   parameter bit KeymgrKmacEnMasking = 1,
+  // parameters for rot_top
+  // parameters for sm3
+  // parameters for sm4
+  // parameters for rs_encode
+  // parameters for rs_decode
+  // parameters for puf1
+  // parameters for puf2
+  // parameters for puf_reg
+  // parameters for pcr
   // parameters for csrng
   parameter aes_pkg::sbox_impl_e CsrngSBoxImpl = aes_pkg::SBoxImplCanright,
   // parameters for entropy_src
@@ -363,6 +372,15 @@ module top_earlgrey #(
   // kmac
   // otbn
   // keymgr
+  // rot_top
+  // sm3
+  // sm4
+  // rs_encode
+  // rs_decode
+  // puf1
+  // puf2
+  // puf_reg
+  // pcr
   // csrng
   // entropy_src
   // edn0
@@ -372,7 +390,7 @@ module top_earlgrey #(
   // rv_core_ibex
 
 
-  logic [185:0]  intr_vector;
+  logic [202:0]  intr_vector;
   // Interrupt source list
   logic intr_uart0_tx_watermark;
   logic intr_uart0_rx_watermark;
@@ -516,6 +534,23 @@ module top_earlgrey #(
   logic intr_kmac_kmac_err;
   logic intr_otbn_done;
   logic intr_keymgr_op_done;
+  logic intr_rot_top_kmac_kmac_done;
+  logic intr_rot_top_kmac_fifo_empty;
+  logic intr_rot_top_kmac_kmac_err;
+  logic intr_rot_top_keymgr_op_done;
+  logic intr_rot_top_hmac_hmac_done;
+  logic intr_rot_top_hmac_fifo_empty;
+  logic intr_rot_top_hmac_hmac_err;
+  logic intr_rot_top_entropy_src_es_entropy_valid;
+  logic intr_rot_top_entropy_src_es_health_test_failed;
+  logic intr_rot_top_entropy_src_es_observe_fifo_ready;
+  logic intr_rot_top_entropy_src_es_fatal_err;
+  logic intr_rot_top_edn0_edn_cmd_req_done;
+  logic intr_rot_top_edn0_edn_fatal_err;
+  logic intr_rot_top_csrng_cs_cmd_req_done;
+  logic intr_rot_top_csrng_cs_entropy_req;
+  logic intr_rot_top_csrng_cs_hw_inst_exc;
+  logic intr_rot_top_csrng_cs_fatal_err;
   logic intr_csrng_cs_cmd_req_done;
   logic intr_csrng_cs_entropy_req;
   logic intr_csrng_cs_hw_inst_exc;
@@ -679,6 +714,24 @@ module top_earlgrey #(
   tlul_pkg::tl_d2h_t       otbn_tl_rsp;
   tlul_pkg::tl_h2d_t       keymgr_tl_req;
   tlul_pkg::tl_d2h_t       keymgr_tl_rsp;
+  tlul_pkg::tl_h2d_t       rot_top_tl_req;
+  tlul_pkg::tl_d2h_t       rot_top_tl_rsp;
+  tlul_pkg::tl_h2d_t       sm3_tl_req;
+  tlul_pkg::tl_d2h_t       sm3_tl_rsp;
+  tlul_pkg::tl_h2d_t       sm4_tl_req;
+  tlul_pkg::tl_d2h_t       sm4_tl_rsp;
+  tlul_pkg::tl_h2d_t       rs_encode_tl_req;
+  tlul_pkg::tl_d2h_t       rs_encode_tl_rsp;
+  tlul_pkg::tl_h2d_t       rs_decode_tl_req;
+  tlul_pkg::tl_d2h_t       rs_decode_tl_rsp;
+  tlul_pkg::tl_h2d_t       puf1_tl_req;
+  tlul_pkg::tl_d2h_t       puf1_tl_rsp;
+  tlul_pkg::tl_h2d_t       puf2_tl_req;
+  tlul_pkg::tl_d2h_t       puf2_tl_rsp;
+  tlul_pkg::tl_h2d_t       puf_reg_tl_req;
+  tlul_pkg::tl_d2h_t       puf_reg_tl_rsp;
+  tlul_pkg::tl_h2d_t       pcr_tl_req;
+  tlul_pkg::tl_d2h_t       pcr_tl_rsp;
   tlul_pkg::tl_h2d_t       rv_core_ibex_cfg_tl_d_req;
   tlul_pkg::tl_d2h_t       rv_core_ibex_cfg_tl_d_rsp;
   tlul_pkg::tl_h2d_t       sram_ctrl_main_regs_tl_req;
@@ -2410,8 +2463,135 @@ module top_earlgrey #(
       .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel]),
       .rst_edn_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
   );
+  rot_top #(
+    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[62:51])
+  ) u_rot_top (
+
+      // Interrupt
+      .intr_kmac_kmac_done_o                    (intr_rot_top_kmac_kmac_done),
+      .intr_kmac_fifo_empty_o                   (intr_rot_top_kmac_fifo_empty),
+      .intr_kmac_kmac_err_o                     (intr_rot_top_kmac_kmac_err),
+      .intr_keymgr_op_done_o                    (intr_rot_top_keymgr_op_done),
+      .intr_hmac_hmac_done_o                    (intr_rot_top_hmac_hmac_done),
+      .intr_hmac_fifo_empty_o                   (intr_rot_top_hmac_fifo_empty),
+      .intr_hmac_hmac_err_o                     (intr_rot_top_hmac_hmac_err),
+      .intr_entropy_src_es_entropy_valid_o      (intr_rot_top_entropy_src_es_entropy_valid),
+      .intr_entropy_src_es_health_test_failed_o (intr_rot_top_entropy_src_es_health_test_failed),
+      .intr_entropy_src_es_observe_fifo_ready_o (intr_rot_top_entropy_src_es_observe_fifo_ready),
+      .intr_entropy_src_es_fatal_err_o          (intr_rot_top_entropy_src_es_fatal_err),
+      .intr_edn0_edn_cmd_req_done_o             (intr_rot_top_edn0_edn_cmd_req_done),
+      .intr_edn0_edn_fatal_err_o                (intr_rot_top_edn0_edn_fatal_err),
+      .intr_csrng_cs_cmd_req_done_o             (intr_rot_top_csrng_cs_cmd_req_done),
+      .intr_csrng_cs_entropy_req_o              (intr_rot_top_csrng_cs_entropy_req),
+      .intr_csrng_cs_hw_inst_exc_o              (intr_rot_top_csrng_cs_hw_inst_exc),
+      .intr_csrng_cs_fatal_err_o                (intr_rot_top_csrng_cs_fatal_err),
+      // [51]: fatal_fault_hmac
+      // [52]: recov_operation_err_kmac
+      // [53]: fatal_fault_err_kmac
+      // [54]: recov_operation_err_keymgr
+      // [55]: fatal_fault_err_keymgr
+      // [56]: fatal_rom_ctrl
+      // [57]: recov_alert_edn
+      // [58]: fatal_alert_edn
+      // [59]: recov_alert_csrng
+      // [60]: fatal_alert_csrng
+      // [61]: recov_alert_entropy_src
+      // [62]: fatal_alert_entropy_entropy_src
+      .alert_tx_o  ( alert_tx[62:51] ),
+      .alert_rx_i  ( alert_rx[62:51] ),
+
+      // Inter-module signals
+      .tl_i(rot_top_tl_req),
+      .tl_o(rot_top_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clkmgr_aon_clocks.clk_main_secure),
+      .clk_edn_i (clkmgr_aon_clocks.clk_main_secure),
+      .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel]),
+      .rst_edn_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
+  );
+  sm3 u_sm3 (
+
+      // Inter-module signals
+      .tl_i(sm3_tl_req),
+      .tl_o(sm3_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clkmgr_aon_clocks.clk_main_secure),
+      .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
+  );
+  sm4 u_sm4 (
+
+      // Inter-module signals
+      .tl_i(sm4_tl_req),
+      .tl_o(sm4_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clkmgr_aon_clocks.clk_main_secure),
+      .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
+  );
+  rs_encode u_rs_encode (
+
+      // Inter-module signals
+      .tl_i(rs_encode_tl_req),
+      .tl_o(rs_encode_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clkmgr_aon_clocks.clk_main_secure),
+      .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
+  );
+  rs_decode u_rs_decode (
+
+      // Inter-module signals
+      .tl_i(rs_decode_tl_req),
+      .tl_o(rs_decode_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clkmgr_aon_clocks.clk_main_secure),
+      .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
+  );
+  puf u_puf1 (
+
+      // Inter-module signals
+      .tl_i(puf1_tl_req),
+      .tl_o(puf1_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clkmgr_aon_clocks.clk_main_secure),
+      .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
+  );
+  puf u_puf2 (
+
+      // Inter-module signals
+      .tl_i(puf2_tl_req),
+      .tl_o(puf2_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clkmgr_aon_clocks.clk_main_secure),
+      .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
+  );
+  puf u_puf_reg (
+
+      // Inter-module signals
+      .tl_i(puf_reg_tl_req),
+      .tl_o(puf_reg_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clkmgr_aon_clocks.clk_main_secure),
+      .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
+  );
+  puf u_pcr (
+
+      // Inter-module signals
+      .tl_i(pcr_tl_req),
+      .tl_o(pcr_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clkmgr_aon_clocks.clk_main_secure),
+      .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
+  );
   csrng #(
-    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[52:51]),
+    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[64:63]),
     .RndCnstCsKeymgrDivNonProduction(RndCnstCsrngCsKeymgrDivNonProduction),
     .RndCnstCsKeymgrDivProduction(RndCnstCsrngCsKeymgrDivProduction),
     .SBoxImpl(CsrngSBoxImpl)
@@ -2422,10 +2602,10 @@ module top_earlgrey #(
       .intr_cs_entropy_req_o  (intr_csrng_cs_entropy_req),
       .intr_cs_hw_inst_exc_o  (intr_csrng_cs_hw_inst_exc),
       .intr_cs_fatal_err_o    (intr_csrng_cs_fatal_err),
-      // [51]: recov_alert
-      // [52]: fatal_alert
-      .alert_tx_o  ( alert_tx[52:51] ),
-      .alert_rx_i  ( alert_rx[52:51] ),
+      // [63]: recov_alert
+      // [64]: fatal_alert
+      .alert_tx_o  ( alert_tx[64:63] ),
+      .alert_rx_i  ( alert_rx[64:63] ),
 
       // Inter-module signals
       .csrng_cmd_i(csrng_csrng_cmd_req),
@@ -2444,7 +2624,7 @@ module top_earlgrey #(
       .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
   );
   entropy_src #(
-    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[54:53]),
+    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[66:65]),
     .EsFifoDepth(EntropySrcEsFifoDepth),
     .DistrFifoDepth(EntropySrcDistrFifoDepth),
     .Stub(EntropySrcStub)
@@ -2455,10 +2635,10 @@ module top_earlgrey #(
       .intr_es_health_test_failed_o (intr_entropy_src_es_health_test_failed),
       .intr_es_observe_fifo_ready_o (intr_entropy_src_es_observe_fifo_ready),
       .intr_es_fatal_err_o          (intr_entropy_src_es_fatal_err),
-      // [53]: recov_alert
-      // [54]: fatal_alert
-      .alert_tx_o  ( alert_tx[54:53] ),
-      .alert_rx_i  ( alert_rx[54:53] ),
+      // [65]: recov_alert
+      // [66]: fatal_alert
+      .alert_tx_o  ( alert_tx[66:65] ),
+      .alert_rx_i  ( alert_rx[66:65] ),
 
       // Inter-module signals
       .entropy_src_hw_if_i(csrng_entropy_src_hw_if_req),
@@ -2480,16 +2660,16 @@ module top_earlgrey #(
       .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
   );
   edn #(
-    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[56:55])
+    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[68:67])
   ) u_edn0 (
 
       // Interrupt
       .intr_edn_cmd_req_done_o (intr_edn0_edn_cmd_req_done),
       .intr_edn_fatal_err_o    (intr_edn0_edn_fatal_err),
-      // [55]: recov_alert
-      // [56]: fatal_alert
-      .alert_tx_o  ( alert_tx[56:55] ),
-      .alert_rx_i  ( alert_rx[56:55] ),
+      // [67]: recov_alert
+      // [68]: fatal_alert
+      .alert_tx_o  ( alert_tx[68:67] ),
+      .alert_rx_i  ( alert_rx[68:67] ),
 
       // Inter-module signals
       .csrng_cmd_o(csrng_csrng_cmd_req[0]),
@@ -2504,16 +2684,16 @@ module top_earlgrey #(
       .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
   );
   edn #(
-    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[58:57])
+    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[70:69])
   ) u_edn1 (
 
       // Interrupt
       .intr_edn_cmd_req_done_o (intr_edn1_edn_cmd_req_done),
       .intr_edn_fatal_err_o    (intr_edn1_edn_fatal_err),
-      // [57]: recov_alert
-      // [58]: fatal_alert
-      .alert_tx_o  ( alert_tx[58:57] ),
-      .alert_rx_i  ( alert_rx[58:57] ),
+      // [69]: recov_alert
+      // [70]: fatal_alert
+      .alert_tx_o  ( alert_tx[70:69] ),
+      .alert_rx_i  ( alert_rx[70:69] ),
 
       // Inter-module signals
       .csrng_cmd_o(csrng_csrng_cmd_req[1]),
@@ -2528,7 +2708,7 @@ module top_earlgrey #(
       .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
   );
   sram_ctrl #(
-    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[59:59]),
+    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[71:71]),
     .RndCnstSramKey(RndCnstSramCtrlMainSramKey),
     .RndCnstSramNonce(RndCnstSramCtrlMainSramNonce),
     .RndCnstLfsrSeed(RndCnstSramCtrlMainLfsrSeed),
@@ -2536,9 +2716,9 @@ module top_earlgrey #(
     .MemSizeRam(131072),
     .InstrExec(SramCtrlMainInstrExec)
   ) u_sram_ctrl_main (
-      // [59]: fatal_error
-      .alert_tx_o  ( alert_tx[59:59] ),
-      .alert_rx_i  ( alert_rx[59:59] ),
+      // [71]: fatal_error
+      .alert_tx_o  ( alert_tx[71:71] ),
+      .alert_rx_i  ( alert_rx[71:71] ),
 
       // Inter-module signals
       .sram_otp_key_o(otp_ctrl_sram_otp_key_req[0]),
@@ -2559,16 +2739,16 @@ module top_earlgrey #(
       .rst_otp_ni (rstmgr_aon_resets.rst_lc_io_div4_n[rstmgr_pkg::Domain0Sel])
   );
   rom_ctrl #(
-    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[60:60]),
+    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[72:72]),
     .BootRomInitFile(RomCtrlBootRomInitFile),
     .RndCnstScrNonce(RndCnstRomCtrlScrNonce),
     .RndCnstScrKey(RndCnstRomCtrlScrKey),
     .SecDisableScrambling(SecRomCtrlDisableScrambling),
     .MemSizeRom(32768)
   ) u_rom_ctrl (
-      // [60]: fatal
-      .alert_tx_o  ( alert_tx[60:60] ),
-      .alert_rx_i  ( alert_rx[60:60] ),
+      // [72]: fatal
+      .alert_tx_o  ( alert_tx[72:72] ),
+      .alert_rx_i  ( alert_rx[72:72] ),
 
       // Inter-module signals
       .rom_cfg_i(ast_rom_cfg),
@@ -2586,7 +2766,7 @@ module top_earlgrey #(
       .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
   );
   rv_core_ibex #(
-    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[64:61]),
+    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[76:73]),
     .RndCnstLfsrSeed(RndCnstRvCoreIbexLfsrSeed),
     .RndCnstLfsrPerm(RndCnstRvCoreIbexLfsrPerm),
     .RndCnstIbexKeyDefault(RndCnstRvCoreIbexIbexKeyDefault),
@@ -2613,12 +2793,12 @@ module top_earlgrey #(
     .DmExceptionAddr(RvCoreIbexDmExceptionAddr),
     .PipeLine(RvCoreIbexPipeLine)
   ) u_rv_core_ibex (
-      // [61]: fatal_sw_err
-      // [62]: recov_sw_err
-      // [63]: fatal_hw_err
-      // [64]: recov_hw_err
-      .alert_tx_o  ( alert_tx[64:61] ),
-      .alert_rx_i  ( alert_rx[64:61] ),
+      // [73]: fatal_sw_err
+      // [74]: recov_sw_err
+      // [75]: fatal_hw_err
+      // [76]: recov_hw_err
+      .alert_tx_o  ( alert_tx[76:73] ),
+      .alert_rx_i  ( alert_rx[76:73] ),
 
       // Inter-module signals
       .rst_cpu_n_o(),
@@ -2662,18 +2842,35 @@ module top_earlgrey #(
   );
   // interrupt assignments
   assign intr_vector = {
-      intr_edn1_edn_fatal_err, // IDs [185 +: 1]
-      intr_edn1_edn_cmd_req_done, // IDs [184 +: 1]
-      intr_edn0_edn_fatal_err, // IDs [183 +: 1]
-      intr_edn0_edn_cmd_req_done, // IDs [182 +: 1]
-      intr_entropy_src_es_fatal_err, // IDs [181 +: 1]
-      intr_entropy_src_es_observe_fifo_ready, // IDs [180 +: 1]
-      intr_entropy_src_es_health_test_failed, // IDs [179 +: 1]
-      intr_entropy_src_es_entropy_valid, // IDs [178 +: 1]
-      intr_csrng_cs_fatal_err, // IDs [177 +: 1]
-      intr_csrng_cs_hw_inst_exc, // IDs [176 +: 1]
-      intr_csrng_cs_entropy_req, // IDs [175 +: 1]
-      intr_csrng_cs_cmd_req_done, // IDs [174 +: 1]
+      intr_edn1_edn_fatal_err, // IDs [202 +: 1]
+      intr_edn1_edn_cmd_req_done, // IDs [201 +: 1]
+      intr_edn0_edn_fatal_err, // IDs [200 +: 1]
+      intr_edn0_edn_cmd_req_done, // IDs [199 +: 1]
+      intr_entropy_src_es_fatal_err, // IDs [198 +: 1]
+      intr_entropy_src_es_observe_fifo_ready, // IDs [197 +: 1]
+      intr_entropy_src_es_health_test_failed, // IDs [196 +: 1]
+      intr_entropy_src_es_entropy_valid, // IDs [195 +: 1]
+      intr_csrng_cs_fatal_err, // IDs [194 +: 1]
+      intr_csrng_cs_hw_inst_exc, // IDs [193 +: 1]
+      intr_csrng_cs_entropy_req, // IDs [192 +: 1]
+      intr_csrng_cs_cmd_req_done, // IDs [191 +: 1]
+      intr_rot_top_csrng_cs_fatal_err, // IDs [190 +: 1]
+      intr_rot_top_csrng_cs_hw_inst_exc, // IDs [189 +: 1]
+      intr_rot_top_csrng_cs_entropy_req, // IDs [188 +: 1]
+      intr_rot_top_csrng_cs_cmd_req_done, // IDs [187 +: 1]
+      intr_rot_top_edn0_edn_fatal_err, // IDs [186 +: 1]
+      intr_rot_top_edn0_edn_cmd_req_done, // IDs [185 +: 1]
+      intr_rot_top_entropy_src_es_fatal_err, // IDs [184 +: 1]
+      intr_rot_top_entropy_src_es_observe_fifo_ready, // IDs [183 +: 1]
+      intr_rot_top_entropy_src_es_health_test_failed, // IDs [182 +: 1]
+      intr_rot_top_entropy_src_es_entropy_valid, // IDs [181 +: 1]
+      intr_rot_top_hmac_hmac_err, // IDs [180 +: 1]
+      intr_rot_top_hmac_fifo_empty, // IDs [179 +: 1]
+      intr_rot_top_hmac_hmac_done, // IDs [178 +: 1]
+      intr_rot_top_keymgr_op_done, // IDs [177 +: 1]
+      intr_rot_top_kmac_kmac_err, // IDs [176 +: 1]
+      intr_rot_top_kmac_fifo_empty, // IDs [175 +: 1]
+      intr_rot_top_kmac_kmac_done, // IDs [174 +: 1]
       intr_keymgr_op_done, // IDs [173 +: 1]
       intr_otbn_done, // IDs [172 +: 1]
       intr_kmac_kmac_err, // IDs [171 +: 1]
@@ -2927,6 +3124,42 @@ module top_earlgrey #(
     // port: tl_keymgr
     .tl_keymgr_o(keymgr_tl_req),
     .tl_keymgr_i(keymgr_tl_rsp),
+
+    // port: tl_rot_top
+    .tl_rot_top_o(rot_top_tl_req),
+    .tl_rot_top_i(rot_top_tl_rsp),
+
+    // port: tl_sm3
+    .tl_sm3_o(sm3_tl_req),
+    .tl_sm3_i(sm3_tl_rsp),
+
+    // port: tl_sm4
+    .tl_sm4_o(sm4_tl_req),
+    .tl_sm4_i(sm4_tl_rsp),
+
+    // port: tl_rs_encode
+    .tl_rs_encode_o(rs_encode_tl_req),
+    .tl_rs_encode_i(rs_encode_tl_rsp),
+
+    // port: tl_rs_decode
+    .tl_rs_decode_o(rs_decode_tl_req),
+    .tl_rs_decode_i(rs_decode_tl_rsp),
+
+    // port: tl_puf1
+    .tl_puf1_o(puf1_tl_req),
+    .tl_puf1_i(puf1_tl_rsp),
+
+    // port: tl_puf2
+    .tl_puf2_o(puf2_tl_req),
+    .tl_puf2_i(puf2_tl_rsp),
+
+    // port: tl_puf_reg
+    .tl_puf_reg_o(puf_reg_tl_req),
+    .tl_puf_reg_i(puf_reg_tl_rsp),
+
+    // port: tl_pcr
+    .tl_pcr_o(pcr_tl_req),
+    .tl_pcr_i(pcr_tl_rsp),
 
     // port: tl_rv_core_ibex__cfg
     .tl_rv_core_ibex__cfg_o(rv_core_ibex_cfg_tl_d_req),

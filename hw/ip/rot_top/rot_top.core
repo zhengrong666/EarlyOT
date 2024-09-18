@@ -1,0 +1,68 @@
+CAPI=2:
+# Copyright lowRISC contributors.
+# Licensed under the Apache License, Version 2.0, see LICENSE for details.
+# SPDX-License-Identifier: Apache-2.0
+name: "lowrisc:systems:rot_top:0.1"
+description: "Technology-independent Earl Grey toplevel"
+filesets:
+  files_rtl_generic:
+    depend:
+      #- lowrisc:opentitan:top_earlgrey_alert_handler
+      - lowrisc:ip:tlul
+      #- lowrisc:ip:puf128_slave_tlul
+      - lowrisc:ip:entropy_src
+      - lowrisc:ip:csrng
+      - lowrisc:ip:edn
+      - lowrisc:ip:hmac
+      - lowrisc:ip:kmac
+      - lowrisc:ip:keymgr
+      - lowrisc:constants:rot_top_pkg
+      - lowrisc:ip:rom_ctrl
+      - lowrisc:prim:all
+      - lowrisc:prim:mubi
+    files:
+      - rtl/top_earlgrey_rnd_cnst_rot_pkg.sv
+      - rtl/rot_top.sv
+      - rtl/xbar_main_rot.sv
+      - rtl/otbn_otp_ctrl.sv
+    file_type: systemVerilogSource
+
+
+
+targets:
+  default: &default_target
+    filesets:
+      - files_rtl_generic
+    toplevel: rot_top
+
+  sim:
+    default_tool: icarus
+    filesets:
+      - files_rtl_generic
+    toplevel: rot_top
+
+  lint:
+    <<: *default_target
+    default_tool: verilator
+    tools:
+      verilator:
+        mode: lint-only
+        verilator_options:
+          - "-Wall"
+          - "-Wno-UNOPTFLAT"
+          - "-Wno-WIDTH"
+          - "-Wno-UNUSED"
+
+  syn:
+    <<: *default_target
+    # TODO: set default to DC once
+    # this option is available
+    # olofk/edalize#89
+    default_tool: icarus
+    parameters:
+      - SYNTHESIS=true
+    toplevel: rot_top
+
+  formal:
+    <<: *default_target
+    toplevel: rot_top

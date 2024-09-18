@@ -6757,6 +6757,436 @@
       }
     }
     {
+      name: rot_top
+      type: rot_top
+      clock_srcs:
+      {
+        clk_i: main
+        clk_edn_i: main
+      }
+      clock_group: secure
+      reset_connections:
+      {
+        rst_ni:
+        {
+          name: lc
+          domain: "0"
+        }
+        rst_edn_ni:
+        {
+          name: lc
+          domain: "0"
+        }
+      }
+      clock_connections:
+      {
+        clk_i: clkmgr_aon_clocks.clk_main_secure
+        clk_edn_i: clkmgr_aon_clocks.clk_main_secure
+      }
+      domain:
+      [
+        "0"
+      ]
+      param_decl: {}
+      param_list: []
+      inter_signal_list:
+      [
+        {
+          name: tl
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: rsp
+          width: 1
+          inst_name: rot_top
+          default: ""
+          end_idx: -1
+          top_signame: rot_top_tl
+          index: -1
+        }
+      ]
+      base_addrs:
+      {
+        null: 0x42000000
+      }
+    }
+    {
+      name: sm3
+      type: sm3
+      clock_srcs:
+      {
+        clk_i: main
+      }
+      clock_group: secure
+      reset_connections:
+      {
+        rst_ni:
+        {
+          name: lc
+          domain: "0"
+        }
+      }
+      clock_connections:
+      {
+        clk_i: clkmgr_aon_clocks.clk_main_secure
+      }
+      domain:
+      [
+        "0"
+      ]
+      param_decl: {}
+      param_list: []
+      inter_signal_list:
+      [
+        {
+          name: tl
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: rsp
+          width: 1
+          inst_name: sm3
+          default: ""
+          end_idx: -1
+          top_signame: sm3_tl
+          index: -1
+        }
+      ]
+      base_addrs:
+      {
+        null: 0x411a0000
+      }
+    }
+    {
+      name: sm4
+      type: sm4
+      clock_srcs:
+      {
+        clk_i: main
+      }
+      clock_group: secure
+      reset_connections:
+      {
+        rst_ni:
+        {
+          name: lc
+          domain: "0"
+        }
+      }
+      clock_connections:
+      {
+        clk_i: clkmgr_aon_clocks.clk_main_secure
+      }
+      domain:
+      [
+        "0"
+      ]
+      param_decl: {}
+      param_list: []
+      inter_signal_list:
+      [
+        {
+          name: tl
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: rsp
+          width: 1
+          inst_name: sm4
+          default: ""
+          end_idx: -1
+          top_signame: sm4_tl
+          index: -1
+        }
+      ]
+      base_addrs:
+      {
+        null: 0x411b0000
+      }
+    }
+    {
+      name: rs_encode
+      type: rs_encode
+      clock_srcs:
+      {
+        clk_i: main
+      }
+      clock_group: secure
+      reset_connections:
+      {
+        rst_ni:
+        {
+          name: lc
+          domain: "0"
+        }
+      }
+      clock_connections:
+      {
+        clk_i: clkmgr_aon_clocks.clk_main_secure
+      }
+      domain:
+      [
+        "0"
+      ]
+      param_decl: {}
+      param_list: []
+      inter_signal_list:
+      [
+        {
+          name: tl
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: rsp
+          width: 1
+          inst_name: rs_encode
+          default: ""
+          end_idx: -1
+          top_signame: rs_encode_tl
+          index: -1
+        }
+      ]
+      base_addrs:
+      {
+        null: 0x42110000
+      }
+    }
+    {
+      name: rs_decode
+      type: rs_decode
+      clock_srcs:
+      {
+        clk_i: main
+      }
+      clock_group: secure
+      reset_connections:
+      {
+        rst_ni:
+        {
+          name: lc
+          domain: "0"
+        }
+      }
+      clock_connections:
+      {
+        clk_i: clkmgr_aon_clocks.clk_main_secure
+      }
+      domain:
+      [
+        "0"
+      ]
+      param_decl: {}
+      param_list: []
+      inter_signal_list:
+      [
+        {
+          name: tl
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: rsp
+          width: 1
+          inst_name: rs_decode
+          default: ""
+          end_idx: -1
+          top_signame: rs_decode_tl
+          index: -1
+        }
+      ]
+      base_addrs:
+      {
+        null: 0x42120000
+      }
+    }
+    {
+      name: puf1
+      type: puf
+      clock_srcs:
+      {
+        clk_i: main
+      }
+      clock_group: secure
+      reset_connections:
+      {
+        rst_ni:
+        {
+          name: lc
+          domain: "0"
+        }
+      }
+      clock_connections:
+      {
+        clk_i: clkmgr_aon_clocks.clk_main_secure
+      }
+      domain:
+      [
+        "0"
+      ]
+      param_decl: {}
+      param_list: []
+      inter_signal_list:
+      [
+        {
+          name: tl
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: rsp
+          width: 1
+          inst_name: puf1
+          default: ""
+          end_idx: -1
+          top_signame: puf1_tl
+          index: -1
+        }
+      ]
+      base_addrs:
+      {
+        null: 0x42130000
+      }
+    }
+    {
+      name: puf2
+      type: puf
+      clock_srcs:
+      {
+        clk_i: main
+      }
+      clock_group: secure
+      reset_connections:
+      {
+        rst_ni:
+        {
+          name: lc
+          domain: "0"
+        }
+      }
+      clock_connections:
+      {
+        clk_i: clkmgr_aon_clocks.clk_main_secure
+      }
+      domain:
+      [
+        "0"
+      ]
+      param_decl: {}
+      param_list: []
+      inter_signal_list:
+      [
+        {
+          name: tl
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: rsp
+          width: 1
+          inst_name: puf2
+          default: ""
+          end_idx: -1
+          top_signame: puf2_tl
+          index: -1
+        }
+      ]
+      base_addrs:
+      {
+        null: 0x42140000
+      }
+    }
+    {
+      name: puf_reg
+      type: puf
+      clock_srcs:
+      {
+        clk_i: main
+      }
+      clock_group: secure
+      reset_connections:
+      {
+        rst_ni:
+        {
+          name: lc
+          domain: "0"
+        }
+      }
+      clock_connections:
+      {
+        clk_i: clkmgr_aon_clocks.clk_main_secure
+      }
+      domain:
+      [
+        "0"
+      ]
+      param_decl: {}
+      param_list: []
+      inter_signal_list:
+      [
+        {
+          name: tl
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: rsp
+          width: 1
+          inst_name: puf_reg
+          default: ""
+          end_idx: -1
+          top_signame: puf_reg_tl
+          index: -1
+        }
+      ]
+      base_addrs:
+      {
+        null: 0x42150000
+      }
+    }
+    {
+      name: pcr
+      type: puf
+      clock_srcs:
+      {
+        clk_i: main
+      }
+      clock_group: secure
+      reset_connections:
+      {
+        rst_ni:
+        {
+          name: lc
+          domain: "0"
+        }
+      }
+      clock_connections:
+      {
+        clk_i: clkmgr_aon_clocks.clk_main_secure
+      }
+      domain:
+      [
+        "0"
+      ]
+      param_decl: {}
+      param_list: []
+      inter_signal_list:
+      [
+        {
+          name: tl
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: rsp
+          width: 1
+          inst_name: pcr
+          default: ""
+          end_idx: -1
+          top_signame: pcr_tl
+          index: -1
+        }
+      ]
+      base_addrs:
+      {
+        null: 0x42160000
+      }
+    }
+    {
       name: csrng
       type: csrng
       clock_srcs:
@@ -8752,6 +9182,42 @@
       [
         main.tl_keymgr
       ]
+      rot_top.tl:
+      [
+        main.tl_rot_top
+      ]
+      sm3.tl:
+      [
+        main.tl_sm3
+      ]
+      sm4.tl:
+      [
+        main.tl_sm4
+      ]
+      rs_encode.tl:
+      [
+        main.tl_rs_encode
+      ]
+      rs_decode.tl:
+      [
+        main.tl_rs_decode
+      ]
+      puf1.tl:
+      [
+        main.tl_puf1
+      ]
+      puf2.tl:
+      [
+        main.tl_puf2
+      ]
+      puf_reg.tl:
+      [
+        main.tl_puf_reg
+      ]
+      pcr.tl:
+      [
+        main.tl_pcr
+      ]
       rv_core_ibex.cfg_tl_d:
       [
         main.tl_rv_core_ibex__cfg
@@ -9028,6 +9494,15 @@
           keymgr
           kmac
           sram_ctrl_main.regs
+          rot_top
+          sm3
+          sm4
+          rs_encode
+          rs_decode
+          puf1
+          puf2
+          puf_reg
+          pcr
           rv_core_ibex.cfg
         ]
         rv_dm.sba:
@@ -9055,6 +9530,15 @@
           keymgr
           kmac
           sram_ctrl_main.regs
+          rot_top
+          sm3
+          sm4
+          rs_encode
+          rs_decode
+          puf1
+          puf2
+          puf_reg
+          pcr
           rv_core_ibex.cfg
         ]
       }
@@ -9499,6 +9983,177 @@
           pipeline: true
         }
         {
+          name: rot_top
+          type: device
+          clock: clk_main_i
+          reset: rst_main_ni
+          req_fifo_pass: false
+          rsp_fifo_pass: false
+          inst_type: rot_top
+          addr_range:
+          [
+            {
+              base_addr: 0x42000000
+              size_byte: 0x20
+            }
+          ]
+          xbar: false
+          stub: false
+          pipeline: true
+        }
+        {
+          name: sm3
+          type: device
+          clock: clk_main_i
+          reset: rst_main_ni
+          req_fifo_pass: false
+          rsp_fifo_pass: false
+          inst_type: sm3
+          addr_range:
+          [
+            {
+              base_addr: 0x411a0000
+              size_byte: 0x40
+            }
+          ]
+          xbar: false
+          stub: false
+          pipeline: true
+        }
+        {
+          name: sm4
+          type: device
+          clock: clk_main_i
+          reset: rst_main_ni
+          req_fifo_pass: false
+          rsp_fifo_pass: false
+          inst_type: sm4
+          addr_range:
+          [
+            {
+              base_addr: 0x411b0000
+              size_byte: 0x40
+            }
+          ]
+          xbar: false
+          stub: false
+          pipeline: true
+        }
+        {
+          name: rs_encode
+          type: device
+          clock: clk_main_i
+          reset: rst_main_ni
+          req_fifo_pass: false
+          rsp_fifo_pass: false
+          inst_type: rs_encode
+          addr_range:
+          [
+            {
+              base_addr: 0x42110000
+              size_byte: 0x200
+            }
+          ]
+          xbar: false
+          stub: false
+          pipeline: true
+        }
+        {
+          name: rs_decode
+          type: device
+          clock: clk_main_i
+          reset: rst_main_ni
+          req_fifo_pass: false
+          rsp_fifo_pass: false
+          inst_type: rs_decode
+          addr_range:
+          [
+            {
+              base_addr: 0x42120000
+              size_byte: 0x200
+            }
+          ]
+          xbar: false
+          stub: false
+          pipeline: true
+        }
+        {
+          name: puf1
+          type: device
+          clock: clk_main_i
+          reset: rst_main_ni
+          req_fifo_pass: false
+          rsp_fifo_pass: false
+          inst_type: puf
+          addr_range:
+          [
+            {
+              base_addr: 0x42130000
+              size_byte: 0x40
+            }
+          ]
+          xbar: false
+          stub: false
+          pipeline: true
+        }
+        {
+          name: puf2
+          type: device
+          clock: clk_main_i
+          reset: rst_main_ni
+          req_fifo_pass: false
+          rsp_fifo_pass: false
+          inst_type: puf
+          addr_range:
+          [
+            {
+              base_addr: 0x42140000
+              size_byte: 0x40
+            }
+          ]
+          xbar: false
+          stub: false
+          pipeline: true
+        }
+        {
+          name: puf_reg
+          type: device
+          clock: clk_main_i
+          reset: rst_main_ni
+          req_fifo_pass: false
+          rsp_fifo_pass: false
+          inst_type: puf
+          addr_range:
+          [
+            {
+              base_addr: 0x42150000
+              size_byte: 0x40
+            }
+          ]
+          xbar: false
+          stub: false
+          pipeline: true
+        }
+        {
+          name: pcr
+          type: device
+          clock: clk_main_i
+          reset: rst_main_ni
+          req_fifo_pass: false
+          rsp_fifo_pass: false
+          inst_type: puf
+          addr_range:
+          [
+            {
+              base_addr: 0x42160000
+              size_byte: 0x40
+            }
+          ]
+          xbar: false
+          stub: false
+          pipeline: true
+        }
+        {
           name: rv_core_ibex.cfg
           type: device
           clock: clk_main_i
@@ -9849,6 +10504,114 @@
           inst_name: main
           default: ""
           top_signame: keymgr_tl
+          index: -1
+        }
+        {
+          name: tl_rot_top
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: req
+          width: 1
+          inst_name: main
+          default: ""
+          top_signame: rot_top_tl
+          index: -1
+        }
+        {
+          name: tl_sm3
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: req
+          width: 1
+          inst_name: main
+          default: ""
+          top_signame: sm3_tl
+          index: -1
+        }
+        {
+          name: tl_sm4
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: req
+          width: 1
+          inst_name: main
+          default: ""
+          top_signame: sm4_tl
+          index: -1
+        }
+        {
+          name: tl_rs_encode
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: req
+          width: 1
+          inst_name: main
+          default: ""
+          top_signame: rs_encode_tl
+          index: -1
+        }
+        {
+          name: tl_rs_decode
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: req
+          width: 1
+          inst_name: main
+          default: ""
+          top_signame: rs_decode_tl
+          index: -1
+        }
+        {
+          name: tl_puf1
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: req
+          width: 1
+          inst_name: main
+          default: ""
+          top_signame: puf1_tl
+          index: -1
+        }
+        {
+          name: tl_puf2
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: req
+          width: 1
+          inst_name: main
+          default: ""
+          top_signame: puf2_tl
+          index: -1
+        }
+        {
+          name: tl_puf_reg
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: req
+          width: 1
+          inst_name: main
+          default: ""
+          top_signame: puf_reg_tl
+          index: -1
+        }
+        {
+          name: tl_pcr
+          struct: tl
+          package: tlul_pkg
+          type: req_rsp
+          act: req
+          width: 1
+          inst_name: main
+          default: ""
+          top_signame: pcr_tl
           index: -1
         }
         {
@@ -13516,6 +14279,7 @@
     kmac
     otbn
     keymgr
+    rot_top
     csrng
     entropy_src
     edn0
@@ -14660,6 +15424,142 @@
       default_val: false
     }
     {
+      name: rot_top_kmac_kmac_done
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_kmac_fifo_empty
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_kmac_kmac_err
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_keymgr_op_done
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_hmac_hmac_done
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_hmac_fifo_empty
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_hmac_hmac_err
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_entropy_src_es_entropy_valid
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_entropy_src_es_health_test_failed
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_entropy_src_es_observe_fifo_ready
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_entropy_src_es_fatal_err
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_edn0_edn_cmd_req_done
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_edn0_edn_fatal_err
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_csrng_cs_cmd_req_done
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_csrng_cs_entropy_req
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_csrng_cs_hw_inst_exc
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
+      name: rot_top_csrng_cs_fatal_err
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
       name: csrng_cs_cmd_req_done
       width: 1
       type: interrupt
@@ -14792,6 +15692,7 @@
     kmac
     otbn
     keymgr
+    rot_top
     csrng
     entropy_src
     edn0
@@ -15258,6 +16159,114 @@
       type: alert
       async: "1"
       module_name: keymgr
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_fatal_fault_hmac
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_recov_operation_err_kmac
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_fatal_fault_err_kmac
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_recov_operation_err_keymgr
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_fatal_fault_err_keymgr
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_fatal_rom_ctrl
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_recov_alert_edn
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_fatal_alert_edn
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_recov_alert_csrng
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_fatal_alert_csrng
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_recov_alert_entropy_src
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_fatal_alert_entropy_entropy_src
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
       lpg_name: secure_lc_0
       lpg_idx: 19
     }
@@ -19639,6 +20648,123 @@
         index: -1
       }
       {
+        name: tl
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: rsp
+        width: 1
+        inst_name: rot_top
+        default: ""
+        end_idx: -1
+        top_signame: rot_top_tl
+        index: -1
+      }
+      {
+        name: tl
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: rsp
+        width: 1
+        inst_name: sm3
+        default: ""
+        end_idx: -1
+        top_signame: sm3_tl
+        index: -1
+      }
+      {
+        name: tl
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: rsp
+        width: 1
+        inst_name: sm4
+        default: ""
+        end_idx: -1
+        top_signame: sm4_tl
+        index: -1
+      }
+      {
+        name: tl
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: rsp
+        width: 1
+        inst_name: rs_encode
+        default: ""
+        end_idx: -1
+        top_signame: rs_encode_tl
+        index: -1
+      }
+      {
+        name: tl
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: rsp
+        width: 1
+        inst_name: rs_decode
+        default: ""
+        end_idx: -1
+        top_signame: rs_decode_tl
+        index: -1
+      }
+      {
+        name: tl
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: rsp
+        width: 1
+        inst_name: puf1
+        default: ""
+        end_idx: -1
+        top_signame: puf1_tl
+        index: -1
+      }
+      {
+        name: tl
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: rsp
+        width: 1
+        inst_name: puf2
+        default: ""
+        end_idx: -1
+        top_signame: puf2_tl
+        index: -1
+      }
+      {
+        name: tl
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: rsp
+        width: 1
+        inst_name: puf_reg
+        default: ""
+        end_idx: -1
+        top_signame: puf_reg_tl
+        index: -1
+      }
+      {
+        name: tl
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: rsp
+        width: 1
+        inst_name: pcr
+        default: ""
+        end_idx: -1
+        top_signame: pcr_tl
+        index: -1
+      }
+      {
         name: csrng_cmd
         struct: csrng
         package: csrng_pkg
@@ -20630,6 +21756,114 @@
         inst_name: main
         default: ""
         top_signame: keymgr_tl
+        index: -1
+      }
+      {
+        name: tl_rot_top
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: req
+        width: 1
+        inst_name: main
+        default: ""
+        top_signame: rot_top_tl
+        index: -1
+      }
+      {
+        name: tl_sm3
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: req
+        width: 1
+        inst_name: main
+        default: ""
+        top_signame: sm3_tl
+        index: -1
+      }
+      {
+        name: tl_sm4
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: req
+        width: 1
+        inst_name: main
+        default: ""
+        top_signame: sm4_tl
+        index: -1
+      }
+      {
+        name: tl_rs_encode
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: req
+        width: 1
+        inst_name: main
+        default: ""
+        top_signame: rs_encode_tl
+        index: -1
+      }
+      {
+        name: tl_rs_decode
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: req
+        width: 1
+        inst_name: main
+        default: ""
+        top_signame: rs_decode_tl
+        index: -1
+      }
+      {
+        name: tl_puf1
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: req
+        width: 1
+        inst_name: main
+        default: ""
+        top_signame: puf1_tl
+        index: -1
+      }
+      {
+        name: tl_puf2
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: req
+        width: 1
+        inst_name: main
+        default: ""
+        top_signame: puf2_tl
+        index: -1
+      }
+      {
+        name: tl_puf_reg
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: req
+        width: 1
+        inst_name: main
+        default: ""
+        top_signame: puf_reg_tl
+        index: -1
+      }
+      {
+        name: tl_pcr
+        struct: tl
+        package: tlul_pkg
+        type: req_rsp
+        act: req
+        width: 1
+        inst_name: main
+        default: ""
+        top_signame: pcr_tl
         index: -1
       }
       {
@@ -23357,6 +24591,204 @@
         package: tlul_pkg
         struct: tl_d2h
         signame: keymgr_tl_rsp
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: rsp
+        default: ""
+      }
+      {
+        package: tlul_pkg
+        struct: tl_h2d
+        signame: rot_top_tl_req
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: req
+        default: tlul_pkg::TL_H2D_DEFAULT
+      }
+      {
+        package: tlul_pkg
+        struct: tl_d2h
+        signame: rot_top_tl_rsp
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: rsp
+        default: ""
+      }
+      {
+        package: tlul_pkg
+        struct: tl_h2d
+        signame: sm3_tl_req
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: req
+        default: tlul_pkg::TL_H2D_DEFAULT
+      }
+      {
+        package: tlul_pkg
+        struct: tl_d2h
+        signame: sm3_tl_rsp
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: rsp
+        default: ""
+      }
+      {
+        package: tlul_pkg
+        struct: tl_h2d
+        signame: sm4_tl_req
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: req
+        default: tlul_pkg::TL_H2D_DEFAULT
+      }
+      {
+        package: tlul_pkg
+        struct: tl_d2h
+        signame: sm4_tl_rsp
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: rsp
+        default: ""
+      }
+      {
+        package: tlul_pkg
+        struct: tl_h2d
+        signame: rs_encode_tl_req
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: req
+        default: tlul_pkg::TL_H2D_DEFAULT
+      }
+      {
+        package: tlul_pkg
+        struct: tl_d2h
+        signame: rs_encode_tl_rsp
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: rsp
+        default: ""
+      }
+      {
+        package: tlul_pkg
+        struct: tl_h2d
+        signame: rs_decode_tl_req
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: req
+        default: tlul_pkg::TL_H2D_DEFAULT
+      }
+      {
+        package: tlul_pkg
+        struct: tl_d2h
+        signame: rs_decode_tl_rsp
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: rsp
+        default: ""
+      }
+      {
+        package: tlul_pkg
+        struct: tl_h2d
+        signame: puf1_tl_req
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: req
+        default: tlul_pkg::TL_H2D_DEFAULT
+      }
+      {
+        package: tlul_pkg
+        struct: tl_d2h
+        signame: puf1_tl_rsp
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: rsp
+        default: ""
+      }
+      {
+        package: tlul_pkg
+        struct: tl_h2d
+        signame: puf2_tl_req
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: req
+        default: tlul_pkg::TL_H2D_DEFAULT
+      }
+      {
+        package: tlul_pkg
+        struct: tl_d2h
+        signame: puf2_tl_rsp
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: rsp
+        default: ""
+      }
+      {
+        package: tlul_pkg
+        struct: tl_h2d
+        signame: puf_reg_tl_req
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: req
+        default: tlul_pkg::TL_H2D_DEFAULT
+      }
+      {
+        package: tlul_pkg
+        struct: tl_d2h
+        signame: puf_reg_tl_rsp
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: rsp
+        default: ""
+      }
+      {
+        package: tlul_pkg
+        struct: tl_h2d
+        signame: pcr_tl_req
+        width: 1
+        type: req_rsp
+        end_idx: -1
+        act: rsp
+        suffix: req
+        default: tlul_pkg::TL_H2D_DEFAULT
+      }
+      {
+        package: tlul_pkg
+        struct: tl_d2h
+        signame: pcr_tl_rsp
         width: 1
         type: req_rsp
         end_idx: -1
