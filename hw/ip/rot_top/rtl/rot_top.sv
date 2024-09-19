@@ -32,6 +32,7 @@ module rot_top #(
     input rst_shadowed_ni,
     input clk_edn_i,
     input rst_edn_ni,
+    input scan_mode,
 
     // Bus Interface
     input  tlul_pkg::tl_h2d_t tl_i,
@@ -58,7 +59,7 @@ module rot_top #(
     output logic intr_otbn_done,
 
     // key output
-    output keymgr_pkg::hw_key_req_t       keymgr_aes_key,
+    // output keymgr_pkg::hw_key_req_t       keymgr_aes_key,
     // output keymgr_pkg::hw_key_req_t       keymgr_kmac_key,
     // output keymgr_pkg::otbn_key_req_t       keymgr_otbn_key,
 
@@ -76,8 +77,8 @@ module rot_top #(
     // output kmac_pkg::app_req_t kmac_app_req_rom,
     output rom_ctrl_pkg::pwrmgr_data_t       rom_ctrl_pwrmgr_data,
     // input prim_rom_pkg::rom_cfg_t       ast_rom_cfg,
-    input tlul_pkg::tl_h2d_t rom_ctrl_rom_tl_req,
-    output tlul_pkg::tl_d2h_t rom_ctrl_rom_tl_rsp,
+    // input tlul_pkg::tl_h2d_t rom_ctrl_rom_tl_req,
+    // output tlul_pkg::tl_d2h_t rom_ctrl_rom_tl_rsp,
 
     // kmac
     // output kmac_pkg::app_rsp_t kmac_app_rsp_lc,
@@ -109,9 +110,9 @@ module rot_top #(
     // input lc_ctrl_pkg::lc_tx_t       flash_ctrl_rma_ack,
     // output lc_ctrl_pkg::lc_tx_t       otbn_lc_rma_ack,
 
-    // alerts NAlerts = 14
-    input  prim_alert_pkg::alert_rx_t [14-1:0] alert_rx_i,
-    output prim_alert_pkg::alert_tx_t [14-1:0] alert_tx_o
+    // alerts NAlerts = 16
+    input  prim_alert_pkg::alert_rx_t [16-1:0] alert_rx_i,
+    output prim_alert_pkg::alert_tx_t [16-1:0] alert_tx_o
 );
 
   import tlul_pkg::*;
@@ -124,6 +125,8 @@ module rot_top #(
 
   // Signals
   //tlul signle
+  tlul_pkg::tl_h2d_t       aes_tl_req;
+  tlul_pkg::tl_d2h_t       aes_tl_rsp;
   tlul_pkg::tl_h2d_t       hmac_tl_req;
   tlul_pkg::tl_d2h_t       hmac_tl_rsp;
   tlul_pkg::tl_h2d_t       kmac_tl_req;
@@ -136,8 +139,8 @@ module rot_top #(
   tlul_pkg::tl_d2h_t       edn0_tl_rsp;
   tlul_pkg::tl_h2d_t       keymgr_tl_req;
   tlul_pkg::tl_d2h_t       keymgr_tl_rsp;
-  // tlul_pkg::tl_h2d_t       rom_ctrl_rom_tl_req;
-  // tlul_pkg::tl_d2h_t       rom_ctrl_rom_tl_rsp;
+  tlul_pkg::tl_h2d_t       rom_ctrl_rom_tl_req;
+  tlul_pkg::tl_d2h_t       rom_ctrl_rom_tl_rsp;
   tlul_pkg::tl_h2d_t       rom_ctrl_regs_tl_req;
   tlul_pkg::tl_d2h_t       rom_ctrl_regs_tl_rsp;
   tlul_pkg::tl_h2d_t       otbn_tl_req;
@@ -150,14 +153,20 @@ module rot_top #(
   tlul_pkg::tl_d2h_t       rs_encode_tl_rsp;
   tlul_pkg::tl_h2d_t       rs_decode_tl_req;
   tlul_pkg::tl_d2h_t       rs_decode_tl_rsp;
-  tlul_pkg::tl_h2d_t       puf_tl_req;
-  tlul_pkg::tl_d2h_t       puf_tl_rsp;
+  tlul_pkg::tl_h2d_t       puf1_tl_req;
+  tlul_pkg::tl_d2h_t       puf1_tl_rsp;
+  tlul_pkg::tl_h2d_t       puf2_tl_req;
+  tlul_pkg::tl_d2h_t       puf2_tl_rsp;
+  tlul_pkg::tl_h2d_t       puf_reg_tl_req;
+  tlul_pkg::tl_d2h_t       puf_reg_tl_rsp;
+  tlul_pkg::tl_h2d_t       pcr_tl_req;
+  tlul_pkg::tl_d2h_t       pcr_tl_rsp;
 
   // Alert list
-  // localparam NAlerts = 12;
-  // prim_alert_pkg::alert_tx_t [NAlerts-1:0]  alert_tx;
+  localparam NAlerts = 16;
+  prim_alert_pkg::alert_tx_t [NAlerts-1:0]  alert_tx_o;
   // prim_alert_pkg::alert_rx_t [NAlerts-1:0]  alert_rx;
-  // localparam prim_alert_pkg::alert_rx_t [NAlerts-1:0] alert_rx = {NAlerts{prim_alert_pkg::ALERT_RX_DEFAULT}};
+  localparam prim_alert_pkg::alert_rx_t [NAlerts-1:0] alert_rx_i = {NAlerts{prim_alert_pkg::ALERT_RX_DEFAULT}};
 
   
   // Interrupt source list
@@ -196,7 +205,7 @@ module rot_top #(
   // otp_ctrl_pkg::otp_device_id_t       keymgr_otp_device_id;
   localparam otp_ctrl_pkg::otp_keymgr_key_t otp_ctrl_otp_keymgr_key = otp_ctrl_pkg::OTP_KEYMGR_KEY_DEFAULT;
   localparam otp_ctrl_pkg::otp_device_id_t keymgr_otp_device_id = 256'h48ecf6c738f0f108a5b08620695ffd4d48ecf6c738f0f108a5b08620695ffd4d;
-  // keymgr_pkg::hw_key_req_t       keymgr_aes_key;
+  keymgr_pkg::hw_key_req_t       keymgr_aes_key;
   keymgr_pkg::hw_key_req_t       keymgr_kmac_key;
   keymgr_pkg::otbn_key_req_t       keymgr_otbn_key;
   kmac_pkg::app_req_t [2:0] kmac_app_req;
@@ -225,6 +234,7 @@ module rot_top #(
 
   //csrng
   csrng_pkg::csrng_req_t [1:0]  csrng_csrng_cmd_req;
+  assign csrng_csrng_cmd_req[1] = '0;
   csrng_pkg::csrng_rsp_t [1:0] csrng_csrng_cmd_rsp;
   // prim_mubi_pkg::mubi8_t       csrng_otp_en_csrng_sw_app_read;
   localparam  MuBi8False = 8'h69;
@@ -292,19 +302,55 @@ module rot_top #(
   // assign csrng_csrng_cmd_req[1] = rot_top_csrng_csrng_cmd_req;
   // assign rot_top_csrng_csrng_cmd_rsp = csrng_csrng_cmd_rsp[1];
 
-  assign edn0_edn_req_intr[1] = edn0_edn_req[1];
+  // assign edn0_edn_req_intr[1] = edn0_edn_req[1];
   assign edn0_edn_req_intr[2] = edn0_edn_req[2];
   assign edn0_edn_req_intr[4] = edn0_edn_req[4];
   // assign edn0_edn_req_intr[5] = edn0_edn_req[5];
   // assign edn0_edn_req_intr[6] = edn0_edn_req[6];
   assign edn0_edn_req_intr[7] = edn0_edn_req[7];
 
-  assign edn0_edn_rsp[1] = edn0_edn_rsp_intr[1];
+  // assign edn0_edn_rsp[1] = edn0_edn_rsp_intr[1];
   assign edn0_edn_rsp[2] = edn0_edn_rsp_intr[2];
   assign edn0_edn_rsp[4] = edn0_edn_rsp_intr[4];
   // assign edn0_edn_rsp[5] = edn0_edn_rsp_intr[5];
   // assign edn0_edn_rsp[6] = edn0_edn_rsp_intr[6];
   assign edn0_edn_rsp[7] = edn0_edn_rsp_intr[7];
+
+  aes #(
+    .AlertAsyncOn(2'b11),
+    .AES192Enable(1'b1),
+    .SecMasking(SecAesMasking),
+    .SecSBoxImpl(SecAesSBoxImpl),
+    .SecStartTriggerDelay(SecAesStartTriggerDelay),
+    .SecAllowForcingMasks(SecAesAllowForcingMasks),
+    .SecSkipPRNGReseeding(SecAesSkipPRNGReseeding),
+    .RndCnstClearingLfsrSeed(RndCnstAesClearingLfsrSeed),
+    .RndCnstClearingLfsrPerm(RndCnstAesClearingLfsrPerm),
+    .RndCnstClearingSharePerm(RndCnstAesClearingSharePerm),
+    .RndCnstMaskingLfsrSeed(RndCnstAesMaskingLfsrSeed),
+    .RndCnstMaskingLfsrPerm(RndCnstAesMaskingLfsrPerm)
+  ) u_aes (
+      // [15]: recov_ctrl_update_err
+      // [14]: fatal_fault
+      .alert_tx_o  ( alert_tx[15:14] ),
+      .alert_rx_i  ( alert_rx[15:14] ),
+
+      // Inter-module signals
+      .idle_o(clkmgr_aon_idle[0]),
+      .lc_escalate_en_i(lc_ctrl_lc_escalate_en),
+      .edn_o(edn0_edn_req_intr[1]),
+      .edn_i(edn0_edn_rsp_intr[1]),
+      .keymgr_key_i(keymgr_aes_key),
+      .tl_i(aes_tl_req),
+      .tl_o(aes_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i,
+      .clk_edn_i,
+      .rst_shadowed_ni,
+      .rst_ni,
+      .rst_edn_ni
+  );
 
   hmac #(
     .AlertAsyncOn(1'b1)
@@ -336,7 +382,7 @@ module rot_top #(
     .SecIdleAcceptSwMsg(SecKmacIdleAcceptSwMsg),
     .RndCnstLfsrSeed(RndCnstKmacLfsrSeed),
     .RndCnstLfsrPerm(RndCnstKmacLfsrPerm),
-    .RndCnstLfsrFwdPerm(RndCnstKmacLfsrFwdPerm),
+    .RndCnstBufferLfsrSeed(RndCnstKmacBufferLfsrSeed),
     .RndCnstMsgPerm(RndCnstKmacMsgPerm)
   ) u_kmac (
 
@@ -374,6 +420,7 @@ module rot_top #(
   
   keymgr #(
     .AlertAsyncOn(2'b11),
+    .UseOtpSeedsInsteadOfFlash(KeymgrUseOtpSeedsInsteadOfFlash),
     .KmacEnMasking(KeymgrKmacEnMasking),
     .RndCnstLfsrSeed(RndCnstKeymgrLfsrSeed),
     .RndCnstLfsrPerm(RndCnstKeymgrLfsrPerm),
@@ -429,7 +476,8 @@ module rot_top #(
     .BootRomInitFile(RomCtrlBootRomInitFile),
     .RndCnstScrNonce(RndCnstRomCtrlScrNonce),
     .RndCnstScrKey(RndCnstRomCtrlScrKey),
-    .SecDisableScrambling(SecRomCtrlDisableScrambling)
+    .SecDisableScrambling(SecRomCtrlDisableScrambling),
+    .MemSizeRom(32768)
   ) u_rom_ctrl (
       // [5]: fatal
       .alert_tx_o  ( alert_tx_o[5:5] ),
@@ -527,6 +575,7 @@ module rot_top #(
   entropy_src #(
     .AlertAsyncOn(2'b11),
     .EsFifoDepth(EntropySrcEsFifoDepth),
+    .DistrFifoDepth(EntropySrcDistrFifoDepth),
     .Stub(EntropySrcStub)
   ) u_entropy_src (
 
@@ -636,6 +685,7 @@ module rot_top #(
       // Inter-module signals
       .tl_i(rs_encode_tl_req),
       .tl_o(rs_encode_tl_rsp),
+      .scan_mode(scan_mode),
 
       // Clock and reset connections
       .clk_i (clk_i),
@@ -646,12 +696,13 @@ module rot_top #(
       // Inter-module signals
       .tl_i(rs_decode_tl_req),
       .tl_o(rs_decode_tl_rsp),
+      .scan_mode(scan_mode),
 
       // Clock and reset connections
       .clk_i (clk_i),
       .rst_ni (rst_ni)
   );
-  puf u_puf (
+  puf u_puf1 (
 
       // Inter-module signals
       .tl_i(puf_tl_req),
@@ -667,17 +718,53 @@ module rot_top #(
       .rst_ni (rst_ni)
   );
 
+  puf u_puf2 (
+
+      // Inter-module signals
+      .tl_i(puf2_tl_req),
+      .tl_o(puf2_tl_rsp),
+
+      .rng4bit                 (  ),
+      .rng4bit_done            (  ),
+      .rng_mode                (  ),
+      .es_rng_req              ( '0 ),
+
+      // Clock and reset connections
+      .clk_i (clk_i),
+      .rst_ni (rst_ni)
+  );
+  puf u_puf_reg (
+
+      // Inter-module signals
+      .tl_i(puf_reg_tl_req),
+      .tl_o(puf_reg_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clk_i),
+      .rst_ni (rst_ni])
+  );
+  puf u_pcr (
+
+      // Inter-module signals
+      .tl_i(pcr_tl_req),
+      .tl_o(pcr_tl_rsp),
+
+      // Clock and reset connections
+      .clk_i (clk_i),
+      .rst_ni (rst_ni)
+  );
+
   xbar_main_rot u_xbar_main (
     .clk_i,
     .rst_ni,
 
     // port: tl_rv_core_ibex__corei
-    .tl_host_i(tl_i),
-    .tl_host_o(tl_o),
+    .tl_rot_i(tl_i),
+    .tl_rot_o(tl_o),
 
     // // port: tl_rom_ctrl__rom
-    // .tl_rom_ctrl__rom_o(rom_ctrl_rom_tl_req),
-    // .tl_rom_ctrl__rom_i(rom_ctrl_rom_tl_rsp),
+    .tl_rom_ctrl__rom_o(rom_ctrl_rom_tl_req),
+    .tl_rom_ctrl__rom_i(rom_ctrl_rom_tl_rsp),
 
     // port: tl_rom_ctrl__regs
     .tl_rom_ctrl__regs_o(rom_ctrl_regs_tl_req),
@@ -690,6 +777,10 @@ module rot_top #(
     // port: tl_kmac
     .tl_kmac_o(kmac_tl_req),
     .tl_kmac_i(kmac_tl_rsp),
+
+    // port: tl_aes
+    .tl_aes_o(aes_tl_req),
+    .tl_aes_i(aes_tl_rsp),
 
     // port: tl_keymgr
     .tl_keymgr_o(keymgr_tl_req),
@@ -727,9 +818,21 @@ module rot_top #(
     .tl_rs_decode_o(rs_decode_tl_req),
     .tl_rs_decode_i(rs_decode_tl_rsp),
 
-    // port: tl_puf
-    .tl_puf_o(puf_tl_req),
-    .tl_puf_i(puf_tl_rsp)
+    // port: tl_puf1
+    .tl_puf1_o(puf1_tl_req),
+    .tl_puf1_i(puf1_tl_rsp),
+
+    // port: tl_puf2
+    .tl_puf2_o(puf2_tl_req),
+    .tl_puf2_i(puf2_tl_rsp),
+
+    // port: tl_puf_reg
+    .tl_puf_reg_o(puf_reg_tl_req),
+    .tl_puf_reg_i(puf_reg_tl_rsp),
+
+    // port: tl_pcr
+    .tl_pcr_o(pcr_tl_req),
+    .tl_pcr_i(pcr_tl_rsp)
 
   );
     

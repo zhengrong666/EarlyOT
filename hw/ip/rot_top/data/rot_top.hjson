@@ -66,6 +66,9 @@
       desc: "Asserted when a hardware-attached CSRNG instance encounters a command exception"}
     { name: "csrng_cs_fatal_err"
       desc: "Asserted when a FIFO error or a fatal alert occurs. Check the !!ERR_CODE register to get more information."}
+    { name: "otbn_done"
+      desc: "OTBN has completed the operation."
+    }
   ],
   alert_list: [
     { name: "fatal_fault_hmac",
@@ -129,6 +132,33 @@
             which includes FIFO errors, COUNTER errors, FSM state errors,
             and also when integrity failures are detected on the TL-UL bus.
             ''',
+    }
+    { name: "recov_ctrl_update_err",
+      desc: '''
+        This recoverable alert is triggered upon detecting an update error in the shadowed Control Register.
+        The content of the Control Register is not modified (See Control Register).
+        The AES unit can be recovered from such a condition by restarting the AES operation, i.e., by re-writing the Control Register.
+        This should be monitored by the system.
+      '''
+    }
+    { name: "fatal_fault_aes",
+      desc: '''
+        This fatal alert is triggered upon detecting a fatal fault inside the AES unit.
+        Examples for such faults include
+        i) storage errors in the shadowed Control Register,
+        ii) any internal FSM entering an invalid state,
+        iii) any sparsely encoded signal taking on an invalid value,
+        iv) errors in the internal round counter,
+        v) escalations triggered by the life cycle controller, and
+        vi) fatal integrity failures on the TL-UL bus.
+        The AES unit cannot recover from such an error and needs to be reset.
+      '''
+    }
+    { name: "fatal_otbn"
+      desc: "A fatal error. Fatal alerts are non-recoverable and will be asserted until a hard reset."
+    }
+    { name: "recov_otbn"
+      desc: "A recoverable error. Just sent once (as the processor stops)."
     }
 
   ],

@@ -20,10 +20,10 @@ filesets:
       - lowrisc:ip:rom_ctrl
       - lowrisc:prim:all
       - lowrisc:prim:mubi
+      - lowrisc:ip:xbar_main_rot:0.1
     files:
       - rtl/top_earlgrey_rnd_cnst_rot_pkg.sv
       - rtl/rot_top.sv
-      - rtl/xbar_main_rot.sv
       - rtl/otbn_otp_ctrl.sv
     file_type: systemVerilogSource
 

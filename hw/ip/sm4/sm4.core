@@ -2,7 +2,7 @@ CAPI=2:
 # Copyright lowRISC contributors.
 # Licensed under the Apache License, Version 2.0, see LICENSE for details.
 # SPDX-License-Identifier: Apache-2.0
-name: "lowrisc:ip:sm4:1.0"
+name: "zgc:ip:sm4:1.0"
 description: "sm4 unit"
 filesets:
   files_rtl:

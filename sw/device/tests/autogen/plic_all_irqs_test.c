@@ -2205,7 +2205,7 @@ static void peripheral_irqs_trigger(void) {
 #if TEST_MIN_IRQ_PERIPHERAL <= 16 && 16 < TEST_MAX_IRQ_PERIPHERAL
   peripheral_expected = kTopEarlgreyPlicPeripheralRotTop;
   for (dif_rot_top_irq_t irq = kDifRotTopIrqKmacKmacDone;
-       irq <= kDifRotTopIrqCsrngCsFatalErr; ++irq) {
+       irq <= kDifRotTopIrqOtbnDone; ++irq) {
 
     rot_top_irq_expected = irq;
     LOG_INFO("Triggering rot_top IRQ %d.", irq);

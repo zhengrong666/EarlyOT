@@ -1,5 +1,5 @@
 CAPI=2:
-name: "lowrisc:ip:pcr:1.0"
+name: "zgc:ip:pcr:1.0"
 description: "Platform Configuration Register (PCR)"
 
 filesets:

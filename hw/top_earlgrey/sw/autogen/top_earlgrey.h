@@ -1369,19 +1369,20 @@ typedef enum top_earlgrey_plic_irq_id {
   kTopEarlgreyPlicIrqIdRotTopCsrngCsEntropyReq = 188, /**< rot_top_csrng_cs_entropy_req */
   kTopEarlgreyPlicIrqIdRotTopCsrngCsHwInstExc = 189, /**< rot_top_csrng_cs_hw_inst_exc */
   kTopEarlgreyPlicIrqIdRotTopCsrngCsFatalErr = 190, /**< rot_top_csrng_cs_fatal_err */
-  kTopEarlgreyPlicIrqIdCsrngCsCmdReqDone = 191, /**< csrng_cs_cmd_req_done */
-  kTopEarlgreyPlicIrqIdCsrngCsEntropyReq = 192, /**< csrng_cs_entropy_req */
-  kTopEarlgreyPlicIrqIdCsrngCsHwInstExc = 193, /**< csrng_cs_hw_inst_exc */
-  kTopEarlgreyPlicIrqIdCsrngCsFatalErr = 194, /**< csrng_cs_fatal_err */
-  kTopEarlgreyPlicIrqIdEntropySrcEsEntropyValid = 195, /**< entropy_src_es_entropy_valid */
-  kTopEarlgreyPlicIrqIdEntropySrcEsHealthTestFailed = 196, /**< entropy_src_es_health_test_failed */
-  kTopEarlgreyPlicIrqIdEntropySrcEsObserveFifoReady = 197, /**< entropy_src_es_observe_fifo_ready */
-  kTopEarlgreyPlicIrqIdEntropySrcEsFatalErr = 198, /**< entropy_src_es_fatal_err */
-  kTopEarlgreyPlicIrqIdEdn0EdnCmdReqDone = 199, /**< edn0_edn_cmd_req_done */
-  kTopEarlgreyPlicIrqIdEdn0EdnFatalErr = 200, /**< edn0_edn_fatal_err */
-  kTopEarlgreyPlicIrqIdEdn1EdnCmdReqDone = 201, /**< edn1_edn_cmd_req_done */
-  kTopEarlgreyPlicIrqIdEdn1EdnFatalErr = 202, /**< edn1_edn_fatal_err */
-  kTopEarlgreyPlicIrqIdLast = 202, /**< \internal The Last Valid Interrupt ID. */
+  kTopEarlgreyPlicIrqIdRotTopOtbnDone = 191, /**< rot_top_otbn_done */
+  kTopEarlgreyPlicIrqIdCsrngCsCmdReqDone = 192, /**< csrng_cs_cmd_req_done */
+  kTopEarlgreyPlicIrqIdCsrngCsEntropyReq = 193, /**< csrng_cs_entropy_req */
+  kTopEarlgreyPlicIrqIdCsrngCsHwInstExc = 194, /**< csrng_cs_hw_inst_exc */
+  kTopEarlgreyPlicIrqIdCsrngCsFatalErr = 195, /**< csrng_cs_fatal_err */
+  kTopEarlgreyPlicIrqIdEntropySrcEsEntropyValid = 196, /**< entropy_src_es_entropy_valid */
+  kTopEarlgreyPlicIrqIdEntropySrcEsHealthTestFailed = 197, /**< entropy_src_es_health_test_failed */
+  kTopEarlgreyPlicIrqIdEntropySrcEsObserveFifoReady = 198, /**< entropy_src_es_observe_fifo_ready */
+  kTopEarlgreyPlicIrqIdEntropySrcEsFatalErr = 199, /**< entropy_src_es_fatal_err */
+  kTopEarlgreyPlicIrqIdEdn0EdnCmdReqDone = 200, /**< edn0_edn_cmd_req_done */
+  kTopEarlgreyPlicIrqIdEdn0EdnFatalErr = 201, /**< edn0_edn_fatal_err */
+  kTopEarlgreyPlicIrqIdEdn1EdnCmdReqDone = 202, /**< edn1_edn_cmd_req_done */
+  kTopEarlgreyPlicIrqIdEdn1EdnFatalErr = 203, /**< edn1_edn_fatal_err */
+  kTopEarlgreyPlicIrqIdLast = 203, /**< \internal The Last Valid Interrupt ID. */
 } top_earlgrey_plic_irq_id_t;
 
 /**
@@ -1391,7 +1392,7 @@ typedef enum top_earlgrey_plic_irq_id {
  * `top_earlgrey_plic_peripheral_t`.
  */
 extern const top_earlgrey_plic_peripheral_t
-    top_earlgrey_plic_interrupt_for_peripheral[203];
+    top_earlgrey_plic_interrupt_for_peripheral[204];
 
 /**
  * PLIC Interrupt Target.
@@ -1526,21 +1527,25 @@ typedef enum top_earlgrey_alert_id {
   kTopEarlgreyAlertIdRotTopFatalAlertCsrng = 60, /**< rot_top_fatal_alert_csrng */
   kTopEarlgreyAlertIdRotTopRecovAlertEntropySrc = 61, /**< rot_top_recov_alert_entropy_src */
   kTopEarlgreyAlertIdRotTopFatalAlertEntropyEntropySrc = 62, /**< rot_top_fatal_alert_entropy_entropy_src */
-  kTopEarlgreyAlertIdCsrngRecovAlert = 63, /**< csrng_recov_alert */
-  kTopEarlgreyAlertIdCsrngFatalAlert = 64, /**< csrng_fatal_alert */
-  kTopEarlgreyAlertIdEntropySrcRecovAlert = 65, /**< entropy_src_recov_alert */
-  kTopEarlgreyAlertIdEntropySrcFatalAlert = 66, /**< entropy_src_fatal_alert */
-  kTopEarlgreyAlertIdEdn0RecovAlert = 67, /**< edn0_recov_alert */
-  kTopEarlgreyAlertIdEdn0FatalAlert = 68, /**< edn0_fatal_alert */
-  kTopEarlgreyAlertIdEdn1RecovAlert = 69, /**< edn1_recov_alert */
-  kTopEarlgreyAlertIdEdn1FatalAlert = 70, /**< edn1_fatal_alert */
-  kTopEarlgreyAlertIdSramCtrlMainFatalError = 71, /**< sram_ctrl_main_fatal_error */
-  kTopEarlgreyAlertIdRomCtrlFatal = 72, /**< rom_ctrl_fatal */
-  kTopEarlgreyAlertIdRvCoreIbexFatalSwErr = 73, /**< rv_core_ibex_fatal_sw_err */
-  kTopEarlgreyAlertIdRvCoreIbexRecovSwErr = 74, /**< rv_core_ibex_recov_sw_err */
-  kTopEarlgreyAlertIdRvCoreIbexFatalHwErr = 75, /**< rv_core_ibex_fatal_hw_err */
-  kTopEarlgreyAlertIdRvCoreIbexRecovHwErr = 76, /**< rv_core_ibex_recov_hw_err */
-  kTopEarlgreyAlertIdLast = 76, /**< \internal The Last Valid Alert ID. */
+  kTopEarlgreyAlertIdRotTopRecovCtrlUpdateErr = 63, /**< rot_top_recov_ctrl_update_err */
+  kTopEarlgreyAlertIdRotTopFatalFaultAes = 64, /**< rot_top_fatal_fault_aes */
+  kTopEarlgreyAlertIdRotTopFatalOtbn = 65, /**< rot_top_fatal_otbn */
+  kTopEarlgreyAlertIdRotTopRecovOtbn = 66, /**< rot_top_recov_otbn */
+  kTopEarlgreyAlertIdCsrngRecovAlert = 67, /**< csrng_recov_alert */
+  kTopEarlgreyAlertIdCsrngFatalAlert = 68, /**< csrng_fatal_alert */
+  kTopEarlgreyAlertIdEntropySrcRecovAlert = 69, /**< entropy_src_recov_alert */
+  kTopEarlgreyAlertIdEntropySrcFatalAlert = 70, /**< entropy_src_fatal_alert */
+  kTopEarlgreyAlertIdEdn0RecovAlert = 71, /**< edn0_recov_alert */
+  kTopEarlgreyAlertIdEdn0FatalAlert = 72, /**< edn0_fatal_alert */
+  kTopEarlgreyAlertIdEdn1RecovAlert = 73, /**< edn1_recov_alert */
+  kTopEarlgreyAlertIdEdn1FatalAlert = 74, /**< edn1_fatal_alert */
+  kTopEarlgreyAlertIdSramCtrlMainFatalError = 75, /**< sram_ctrl_main_fatal_error */
+  kTopEarlgreyAlertIdRomCtrlFatal = 76, /**< rom_ctrl_fatal */
+  kTopEarlgreyAlertIdRvCoreIbexFatalSwErr = 77, /**< rv_core_ibex_fatal_sw_err */
+  kTopEarlgreyAlertIdRvCoreIbexRecovSwErr = 78, /**< rv_core_ibex_recov_sw_err */
+  kTopEarlgreyAlertIdRvCoreIbexFatalHwErr = 79, /**< rv_core_ibex_fatal_hw_err */
+  kTopEarlgreyAlertIdRvCoreIbexRecovHwErr = 80, /**< rv_core_ibex_recov_hw_err */
+  kTopEarlgreyAlertIdLast = 80, /**< \internal The Last Valid Alert ID. */
 } top_earlgrey_alert_id_t;
 
 /**
@@ -1550,7 +1555,7 @@ typedef enum top_earlgrey_alert_id {
  * `top_earlgrey_alert_peripheral_t`.
  */
 extern const top_earlgrey_alert_peripheral_t
-    top_earlgrey_alert_for_peripheral[77];
+    top_earlgrey_alert_for_peripheral[81];
 
 #define PINMUX_MIO_PERIPH_INSEL_IDX_OFFSET 2
 

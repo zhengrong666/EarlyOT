@@ -650,7 +650,7 @@ static void trigger_alert_test(void) {
   }
 
   // Write rot_top's alert_test reg and check alert_cause.
-  for (dif_rot_top_alert_t i = 0; i < 12; ++i) {
+  for (dif_rot_top_alert_t i = 0; i < 16; ++i) {
     CHECK_DIF_OK(dif_rot_top_alert_force(&rot_top, kDifRotTopAlertFatalFaultHmac + i));
 
     // Verify that alert handler received it.

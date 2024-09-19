@@ -11,7 +11,7 @@
  * `top_earlgrey_plic_peripheral_t`.
  */
 const top_earlgrey_plic_peripheral_t
-    top_earlgrey_plic_interrupt_for_peripheral[203] = {
+    top_earlgrey_plic_interrupt_for_peripheral[204] = {
   [kTopEarlgreyPlicIrqIdNone] = kTopEarlgreyPlicPeripheralUnknown,
   [kTopEarlgreyPlicIrqIdUart0TxWatermark] = kTopEarlgreyPlicPeripheralUart0,
   [kTopEarlgreyPlicIrqIdUart0RxWatermark] = kTopEarlgreyPlicPeripheralUart0,
@@ -203,6 +203,7 @@ const top_earlgrey_plic_peripheral_t
   [kTopEarlgreyPlicIrqIdRotTopCsrngCsEntropyReq] = kTopEarlgreyPlicPeripheralRotTop,
   [kTopEarlgreyPlicIrqIdRotTopCsrngCsHwInstExc] = kTopEarlgreyPlicPeripheralRotTop,
   [kTopEarlgreyPlicIrqIdRotTopCsrngCsFatalErr] = kTopEarlgreyPlicPeripheralRotTop,
+  [kTopEarlgreyPlicIrqIdRotTopOtbnDone] = kTopEarlgreyPlicPeripheralRotTop,
   [kTopEarlgreyPlicIrqIdCsrngCsCmdReqDone] = kTopEarlgreyPlicPeripheralCsrng,
   [kTopEarlgreyPlicIrqIdCsrngCsEntropyReq] = kTopEarlgreyPlicPeripheralCsrng,
   [kTopEarlgreyPlicIrqIdCsrngCsHwInstExc] = kTopEarlgreyPlicPeripheralCsrng,
@@ -225,7 +226,7 @@ const top_earlgrey_plic_peripheral_t
  * `top_earlgrey_alert_peripheral_t`.
  */
 const top_earlgrey_alert_peripheral_t
-    top_earlgrey_alert_for_peripheral[77] = {
+    top_earlgrey_alert_for_peripheral[81] = {
   [kTopEarlgreyAlertIdUart0FatalFault] = kTopEarlgreyAlertPeripheralUart0,
   [kTopEarlgreyAlertIdUart1FatalFault] = kTopEarlgreyAlertPeripheralUart1,
   [kTopEarlgreyAlertIdUart2FatalFault] = kTopEarlgreyAlertPeripheralUart2,
@@ -289,6 +290,10 @@ const top_earlgrey_alert_peripheral_t
   [kTopEarlgreyAlertIdRotTopFatalAlertCsrng] = kTopEarlgreyAlertPeripheralRotTop,
   [kTopEarlgreyAlertIdRotTopRecovAlertEntropySrc] = kTopEarlgreyAlertPeripheralRotTop,
   [kTopEarlgreyAlertIdRotTopFatalAlertEntropyEntropySrc] = kTopEarlgreyAlertPeripheralRotTop,
+  [kTopEarlgreyAlertIdRotTopRecovCtrlUpdateErr] = kTopEarlgreyAlertPeripheralRotTop,
+  [kTopEarlgreyAlertIdRotTopFatalFaultAes] = kTopEarlgreyAlertPeripheralRotTop,
+  [kTopEarlgreyAlertIdRotTopFatalOtbn] = kTopEarlgreyAlertPeripheralRotTop,
+  [kTopEarlgreyAlertIdRotTopRecovOtbn] = kTopEarlgreyAlertPeripheralRotTop,
   [kTopEarlgreyAlertIdCsrngRecovAlert] = kTopEarlgreyAlertPeripheralCsrng,
   [kTopEarlgreyAlertIdCsrngFatalAlert] = kTopEarlgreyAlertPeripheralCsrng,
   [kTopEarlgreyAlertIdEntropySrcRecovAlert] = kTopEarlgreyAlertPeripheralEntropySrc,

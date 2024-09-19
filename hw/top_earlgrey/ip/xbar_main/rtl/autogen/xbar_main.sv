@@ -899,11 +899,11 @@ end
     dev_sel_s1n_41 = 6'd33;
     if ((tl_s1n_41_us_h2d.a_address &
          ~(ADDR_MASK_ROM_CTRL__ROM)) == ADDR_SPACE_ROM_CTRL__ROM) begin
-      dev_sel_s1n_41 = 6'd0;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_ROM_CTRL__REGS)) == ADDR_SPACE_ROM_CTRL__REGS) begin
-      dev_sel_s1n_41 = 6'd1;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_RV_DM__MEM)) == ADDR_SPACE_RV_DM__MEM) begin
@@ -949,19 +949,19 @@ end
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_AES)) == ADDR_SPACE_AES) begin
-      dev_sel_s1n_41 = 6'd12;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_ENTROPY_SRC)) == ADDR_SPACE_ENTROPY_SRC) begin
-      dev_sel_s1n_41 = 6'd13;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_CSRNG)) == ADDR_SPACE_CSRNG) begin
-      dev_sel_s1n_41 = 6'd14;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_EDN0)) == ADDR_SPACE_EDN0) begin
-      dev_sel_s1n_41 = 6'd15;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_EDN1)) == ADDR_SPACE_EDN1) begin
@@ -969,7 +969,7 @@ end
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_HMAC)) == ADDR_SPACE_HMAC) begin
-      dev_sel_s1n_41 = 6'd17;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_RV_PLIC)) == ADDR_SPACE_RV_PLIC) begin
@@ -977,15 +977,15 @@ end
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_OTBN)) == ADDR_SPACE_OTBN) begin
-      dev_sel_s1n_41 = 6'd19;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_KEYMGR)) == ADDR_SPACE_KEYMGR) begin
-      dev_sel_s1n_41 = 6'd20;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_KMAC)) == ADDR_SPACE_KMAC) begin
-      dev_sel_s1n_41 = 6'd21;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_SRAM_CTRL_MAIN__REGS)) == ADDR_SPACE_SRAM_CTRL_MAIN__REGS) begin
@@ -997,35 +997,35 @@ end
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_SM3)) == ADDR_SPACE_SM3) begin
-      dev_sel_s1n_41 = 6'd24;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_SM4)) == ADDR_SPACE_SM4) begin
-      dev_sel_s1n_41 = 6'd25;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_RS_ENCODE)) == ADDR_SPACE_RS_ENCODE) begin
-      dev_sel_s1n_41 = 6'd26;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_RS_DECODE)) == ADDR_SPACE_RS_DECODE) begin
-      dev_sel_s1n_41 = 6'd27;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_PUF1)) == ADDR_SPACE_PUF1) begin
-      dev_sel_s1n_41 = 6'd28;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_PUF2)) == ADDR_SPACE_PUF2) begin
-      dev_sel_s1n_41 = 6'd29;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_PUF_REG)) == ADDR_SPACE_PUF_REG) begin
-      dev_sel_s1n_41 = 6'd30;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_PCR)) == ADDR_SPACE_PCR) begin
-      dev_sel_s1n_41 = 6'd31;
+      dev_sel_s1n_41 = 6'd23;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_RV_CORE_IBEX__CFG)) == ADDR_SPACE_RV_CORE_IBEX__CFG) begin
@@ -1038,11 +1038,11 @@ end
     dev_sel_s1n_75 = 6'd33;
     if ((tl_s1n_75_us_h2d.a_address &
          ~(ADDR_MASK_ROM_CTRL__ROM)) == ADDR_SPACE_ROM_CTRL__ROM) begin
-      dev_sel_s1n_75 = 6'd0;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_ROM_CTRL__REGS)) == ADDR_SPACE_ROM_CTRL__REGS) begin
-      dev_sel_s1n_75 = 6'd1;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_RV_DM__MEM)) == ADDR_SPACE_RV_DM__MEM) begin
@@ -1088,19 +1088,19 @@ end
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_AES)) == ADDR_SPACE_AES) begin
-      dev_sel_s1n_75 = 6'd12;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_ENTROPY_SRC)) == ADDR_SPACE_ENTROPY_SRC) begin
-      dev_sel_s1n_75 = 6'd13;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_CSRNG)) == ADDR_SPACE_CSRNG) begin
-      dev_sel_s1n_75 = 6'd14;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_EDN0)) == ADDR_SPACE_EDN0) begin
-      dev_sel_s1n_75 = 6'd15;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_EDN1)) == ADDR_SPACE_EDN1) begin
@@ -1108,7 +1108,7 @@ end
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_HMAC)) == ADDR_SPACE_HMAC) begin
-      dev_sel_s1n_75 = 6'd17;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_RV_PLIC)) == ADDR_SPACE_RV_PLIC) begin
@@ -1116,15 +1116,15 @@ end
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_OTBN)) == ADDR_SPACE_OTBN) begin
-      dev_sel_s1n_75 = 6'd19;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_KEYMGR)) == ADDR_SPACE_KEYMGR) begin
-      dev_sel_s1n_75 = 6'd20;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_KMAC)) == ADDR_SPACE_KMAC) begin
-      dev_sel_s1n_75 = 6'd21;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_SRAM_CTRL_MAIN__REGS)) == ADDR_SPACE_SRAM_CTRL_MAIN__REGS) begin
@@ -1136,35 +1136,35 @@ end
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_SM3)) == ADDR_SPACE_SM3) begin
-      dev_sel_s1n_75 = 6'd24;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_SM4)) == ADDR_SPACE_SM4) begin
-      dev_sel_s1n_75 = 6'd25;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_RS_ENCODE)) == ADDR_SPACE_RS_ENCODE) begin
-      dev_sel_s1n_75 = 6'd26;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_RS_DECODE)) == ADDR_SPACE_RS_DECODE) begin
-      dev_sel_s1n_75 = 6'd27;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_PUF1)) == ADDR_SPACE_PUF1) begin
-      dev_sel_s1n_75 = 6'd28;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_PUF2)) == ADDR_SPACE_PUF2) begin
-      dev_sel_s1n_75 = 6'd29;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_PUF_REG)) == ADDR_SPACE_PUF_REG) begin
-      dev_sel_s1n_75 = 6'd30;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_PCR)) == ADDR_SPACE_PCR) begin
-      dev_sel_s1n_75 = 6'd31;
+      dev_sel_s1n_75 = 6'd23;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_RV_CORE_IBEX__CFG)) == ADDR_SPACE_RV_CORE_IBEX__CFG) begin

@@ -15560,6 +15560,14 @@
       default_val: false
     }
     {
+      name: rot_top_otbn_done
+      width: 1
+      type: interrupt
+      module_name: rot_top
+      intr_type: IntrType.Event
+      default_val: false
+    }
+    {
       name: csrng_cs_cmd_req_done
       width: 1
       type: interrupt
@@ -16263,6 +16271,42 @@
     }
     {
       name: rot_top_fatal_alert_entropy_entropy_src
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_recov_ctrl_update_err
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_fatal_fault_aes
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_fatal_otbn
+      width: 1
+      type: alert
+      async: "1"
+      module_name: rot_top
+      lpg_name: secure_lc_0
+      lpg_idx: 19
+    }
+    {
+      name: rot_top_recov_otbn
       width: 1
       type: alert
       async: "1"

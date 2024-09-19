@@ -1,5 +1,5 @@
 CAPI=2:
-name: "lowrisc:ip:puf_reg:1.0"
+name: "zgc:ip:puf_reg:1.0"
 description: "Platform Configuration Register (puf_reg)"
 
 filesets:

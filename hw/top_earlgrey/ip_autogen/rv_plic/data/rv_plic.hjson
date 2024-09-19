@@ -44,7 +44,7 @@
     { name: "NumSrc",
       desc: "Number of interrupt sources",
       type: "int",
-      default: "203",
+      default: "204",
       local: "true"
     },
     { name: "NumTarget",
@@ -1734,6 +1734,14 @@
     }
     { name: "PRIO202",
       desc: "Interrupt Source 202 Priority",
+      swaccess: "rw",
+      hwaccess: "hro",
+      fields: [
+        { bits: "1:0" }
+      ],
+    }
+    { name: "PRIO203",
+      desc: "Interrupt Source 203 Priority",
       swaccess: "rw",
       hwaccess: "hro",
       fields: [

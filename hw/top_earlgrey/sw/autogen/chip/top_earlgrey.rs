@@ -1374,30 +1374,32 @@ pub enum PlicIrqId {
     RotTopCsrngCsHwInstExc = 189,
     /// rot_top_csrng_cs_fatal_err
     RotTopCsrngCsFatalErr = 190,
+    /// rot_top_otbn_done
+    RotTopOtbnDone = 191,
     /// csrng_cs_cmd_req_done
-    CsrngCsCmdReqDone = 191,
+    CsrngCsCmdReqDone = 192,
     /// csrng_cs_entropy_req
-    CsrngCsEntropyReq = 192,
+    CsrngCsEntropyReq = 193,
     /// csrng_cs_hw_inst_exc
-    CsrngCsHwInstExc = 193,
+    CsrngCsHwInstExc = 194,
     /// csrng_cs_fatal_err
-    CsrngCsFatalErr = 194,
+    CsrngCsFatalErr = 195,
     /// entropy_src_es_entropy_valid
-    EntropySrcEsEntropyValid = 195,
+    EntropySrcEsEntropyValid = 196,
     /// entropy_src_es_health_test_failed
-    EntropySrcEsHealthTestFailed = 196,
+    EntropySrcEsHealthTestFailed = 197,
     /// entropy_src_es_observe_fifo_ready
-    EntropySrcEsObserveFifoReady = 197,
+    EntropySrcEsObserveFifoReady = 198,
     /// entropy_src_es_fatal_err
-    EntropySrcEsFatalErr = 198,
+    EntropySrcEsFatalErr = 199,
     /// edn0_edn_cmd_req_done
-    Edn0EdnCmdReqDone = 199,
+    Edn0EdnCmdReqDone = 200,
     /// edn0_edn_fatal_err
-    Edn0EdnFatalErr = 200,
+    Edn0EdnFatalErr = 201,
     /// edn1_edn_cmd_req_done
-    Edn1EdnCmdReqDone = 201,
+    Edn1EdnCmdReqDone = 202,
     /// edn1_edn_fatal_err
-    Edn1EdnFatalErr = 202,
+    Edn1EdnFatalErr = 203,
 }
 
 impl TryFrom<u32> for PlicIrqId {
@@ -1595,18 +1597,19 @@ impl TryFrom<u32> for PlicIrqId {
             188 => Ok(Self::RotTopCsrngCsEntropyReq),
             189 => Ok(Self::RotTopCsrngCsHwInstExc),
             190 => Ok(Self::RotTopCsrngCsFatalErr),
-            191 => Ok(Self::CsrngCsCmdReqDone),
-            192 => Ok(Self::CsrngCsEntropyReq),
-            193 => Ok(Self::CsrngCsHwInstExc),
-            194 => Ok(Self::CsrngCsFatalErr),
-            195 => Ok(Self::EntropySrcEsEntropyValid),
-            196 => Ok(Self::EntropySrcEsHealthTestFailed),
-            197 => Ok(Self::EntropySrcEsObserveFifoReady),
-            198 => Ok(Self::EntropySrcEsFatalErr),
-            199 => Ok(Self::Edn0EdnCmdReqDone),
-            200 => Ok(Self::Edn0EdnFatalErr),
-            201 => Ok(Self::Edn1EdnCmdReqDone),
-            202 => Ok(Self::Edn1EdnFatalErr),
+            191 => Ok(Self::RotTopOtbnDone),
+            192 => Ok(Self::CsrngCsCmdReqDone),
+            193 => Ok(Self::CsrngCsEntropyReq),
+            194 => Ok(Self::CsrngCsHwInstExc),
+            195 => Ok(Self::CsrngCsFatalErr),
+            196 => Ok(Self::EntropySrcEsEntropyValid),
+            197 => Ok(Self::EntropySrcEsHealthTestFailed),
+            198 => Ok(Self::EntropySrcEsObserveFifoReady),
+            199 => Ok(Self::EntropySrcEsFatalErr),
+            200 => Ok(Self::Edn0EdnCmdReqDone),
+            201 => Ok(Self::Edn0EdnFatalErr),
+            202 => Ok(Self::Edn1EdnCmdReqDone),
+            203 => Ok(Self::Edn1EdnFatalErr),
             _ => Err(val),
         }
     }
@@ -1849,34 +1852,42 @@ pub enum AlertId {
     RotTopRecovAlertEntropySrc = 61,
     /// rot_top_fatal_alert_entropy_entropy_src
     RotTopFatalAlertEntropyEntropySrc = 62,
+    /// rot_top_recov_ctrl_update_err
+    RotTopRecovCtrlUpdateErr = 63,
+    /// rot_top_fatal_fault_aes
+    RotTopFatalFaultAes = 64,
+    /// rot_top_fatal_otbn
+    RotTopFatalOtbn = 65,
+    /// rot_top_recov_otbn
+    RotTopRecovOtbn = 66,
     /// csrng_recov_alert
-    CsrngRecovAlert = 63,
+    CsrngRecovAlert = 67,
     /// csrng_fatal_alert
-    CsrngFatalAlert = 64,
+    CsrngFatalAlert = 68,
     /// entropy_src_recov_alert
-    EntropySrcRecovAlert = 65,
+    EntropySrcRecovAlert = 69,
     /// entropy_src_fatal_alert
-    EntropySrcFatalAlert = 66,
+    EntropySrcFatalAlert = 70,
     /// edn0_recov_alert
-    Edn0RecovAlert = 67,
+    Edn0RecovAlert = 71,
     /// edn0_fatal_alert
-    Edn0FatalAlert = 68,
+    Edn0FatalAlert = 72,
     /// edn1_recov_alert
-    Edn1RecovAlert = 69,
+    Edn1RecovAlert = 73,
     /// edn1_fatal_alert
-    Edn1FatalAlert = 70,
+    Edn1FatalAlert = 74,
     /// sram_ctrl_main_fatal_error
-    SramCtrlMainFatalError = 71,
+    SramCtrlMainFatalError = 75,
     /// rom_ctrl_fatal
-    RomCtrlFatal = 72,
+    RomCtrlFatal = 76,
     /// rv_core_ibex_fatal_sw_err
-    RvCoreIbexFatalSwErr = 73,
+    RvCoreIbexFatalSwErr = 77,
     /// rv_core_ibex_recov_sw_err
-    RvCoreIbexRecovSwErr = 74,
+    RvCoreIbexRecovSwErr = 78,
     /// rv_core_ibex_fatal_hw_err
-    RvCoreIbexFatalHwErr = 75,
+    RvCoreIbexFatalHwErr = 79,
     /// rv_core_ibex_recov_hw_err
-    RvCoreIbexRecovHwErr = 76,
+    RvCoreIbexRecovHwErr = 80,
 }
 
 impl TryFrom<u32> for AlertId {
@@ -1946,20 +1957,24 @@ impl TryFrom<u32> for AlertId {
             60 => Ok(Self::RotTopFatalAlertCsrng),
             61 => Ok(Self::RotTopRecovAlertEntropySrc),
             62 => Ok(Self::RotTopFatalAlertEntropyEntropySrc),
-            63 => Ok(Self::CsrngRecovAlert),
-            64 => Ok(Self::CsrngFatalAlert),
-            65 => Ok(Self::EntropySrcRecovAlert),
-            66 => Ok(Self::EntropySrcFatalAlert),
-            67 => Ok(Self::Edn0RecovAlert),
-            68 => Ok(Self::Edn0FatalAlert),
-            69 => Ok(Self::Edn1RecovAlert),
-            70 => Ok(Self::Edn1FatalAlert),
-            71 => Ok(Self::SramCtrlMainFatalError),
-            72 => Ok(Self::RomCtrlFatal),
-            73 => Ok(Self::RvCoreIbexFatalSwErr),
-            74 => Ok(Self::RvCoreIbexRecovSwErr),
-            75 => Ok(Self::RvCoreIbexFatalHwErr),
-            76 => Ok(Self::RvCoreIbexRecovHwErr),
+            63 => Ok(Self::RotTopRecovCtrlUpdateErr),
+            64 => Ok(Self::RotTopFatalFaultAes),
+            65 => Ok(Self::RotTopFatalOtbn),
+            66 => Ok(Self::RotTopRecovOtbn),
+            67 => Ok(Self::CsrngRecovAlert),
+            68 => Ok(Self::CsrngFatalAlert),
+            69 => Ok(Self::EntropySrcRecovAlert),
+            70 => Ok(Self::EntropySrcFatalAlert),
+            71 => Ok(Self::Edn0RecovAlert),
+            72 => Ok(Self::Edn0FatalAlert),
+            73 => Ok(Self::Edn1RecovAlert),
+            74 => Ok(Self::Edn1FatalAlert),
+            75 => Ok(Self::SramCtrlMainFatalError),
+            76 => Ok(Self::RomCtrlFatal),
+            77 => Ok(Self::RvCoreIbexFatalSwErr),
+            78 => Ok(Self::RvCoreIbexRecovSwErr),
+            79 => Ok(Self::RvCoreIbexFatalHwErr),
+            80 => Ok(Self::RvCoreIbexRecovHwErr),
             _ => Err(val),
         }
     }
@@ -1969,7 +1984,7 @@ impl TryFrom<u32> for AlertId {
 ///
 /// This array is a mapping from `PlicIrqId` to
 /// `PlicPeripheral`.
-pub const PLIC_INTERRUPT_FOR_PERIPHERAL: [PlicPeripheral; 203] = [
+pub const PLIC_INTERRUPT_FOR_PERIPHERAL: [PlicPeripheral; 204] = [
     // None -> PlicPeripheral::Unknown
     PlicPeripheral::Unknown,
     // Uart0TxWatermark -> PlicPeripheral::Uart0
@@ -2352,6 +2367,8 @@ pub const PLIC_INTERRUPT_FOR_PERIPHERAL: [PlicPeripheral; 203] = [
     PlicPeripheral::RotTop,
     // RotTopCsrngCsFatalErr -> PlicPeripheral::RotTop
     PlicPeripheral::RotTop,
+    // RotTopOtbnDone -> PlicPeripheral::RotTop
+    PlicPeripheral::RotTop,
     // CsrngCsCmdReqDone -> PlicPeripheral::Csrng
     PlicPeripheral::Csrng,
     // CsrngCsEntropyReq -> PlicPeripheral::Csrng
@@ -2382,7 +2399,7 @@ pub const PLIC_INTERRUPT_FOR_PERIPHERAL: [PlicPeripheral; 203] = [
 ///
 /// This array is a mapping from `AlertId` to
 /// `AlertPeripheral`.
-pub const ALERT_FOR_PERIPHERAL: [AlertPeripheral; 77] = [
+pub const ALERT_FOR_PERIPHERAL: [AlertPeripheral; 81] = [
     // Uart0FatalFault -> AlertPeripheral::Uart0
     AlertPeripheral::Uart0,
     // Uart1FatalFault -> AlertPeripheral::Uart1
@@ -2508,6 +2525,14 @@ pub const ALERT_FOR_PERIPHERAL: [AlertPeripheral; 77] = [
     // RotTopRecovAlertEntropySrc -> AlertPeripheral::RotTop
     AlertPeripheral::RotTop,
     // RotTopFatalAlertEntropyEntropySrc -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopRecovCtrlUpdateErr -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopFatalFaultAes -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopFatalOtbn -> AlertPeripheral::RotTop
+    AlertPeripheral::RotTop,
+    // RotTopRecovOtbn -> AlertPeripheral::RotTop
     AlertPeripheral::RotTop,
     // CsrngRecovAlert -> AlertPeripheral::Csrng
     AlertPeripheral::Csrng,
