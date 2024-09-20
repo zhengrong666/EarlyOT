@@ -2,7 +2,7 @@
 `include "sm3_cfg.sv"
 //////////////////////////////////////////////////////////////////////////////////
 // Author:        ljgibbs / lf_gibbs@163.com
-// Create Date: 2020/07/27
+// Create Date: 2020/07/27 
 // Design Name: sm3
 // Module Name: sm3_cmprss_core
 // Description:
@@ -10,7 +10,7 @@
 //      输入位宽：INPT_DW1 定义，支持32/64bit
 //      输出位宽：与输入位宽对应
 //      特性：在 64bit 位宽下，采用二度展开结构（暂未）
-// Dependencies:
+// Dependencies: 
 //      inc/sm3_cfg.v
 // Revision:
 // Revision 0.01 - File Created
@@ -19,10 +19,10 @@ module sm3_cmprss_core (
     input                       clk,
     input                       rst_n,
 
-    input  [`INPT_DW1:0]        expnd_inpt_wj_i,
-    input  [`INPT_DW1:0]        expnd_inpt_wjj_i,
-    input                       expnd_inpt_lst_i,
-    input                       expnd_inpt_vld_i,
+    input  [`INPT_DW1:0]        expnd_inpt_wj_i,                    
+    input  [`INPT_DW1:0]        expnd_inpt_wjj_i,                    
+    input                       expnd_inpt_lst_i,                  
+    input                       expnd_inpt_vld_i,    
 
     output [255:0]              cmprss_otpt_res_o,
     output                      cmprss_otpt_vld_o
@@ -85,8 +85,8 @@ wire	[31 : 0]	reg_h_new;
 
 //块迭代标志
 wire                cmprss_new_round_valid;
-wire                cmprss_blk_start;
-wire                cmprss_blk_finish;
+wire                cmprss_blk_start;  
+wire                cmprss_blk_finish; 
 
 //对输入的 wj 值打拍或者分离
 reg                 sm3_wj_wjj_vld_r;
@@ -109,13 +109,15 @@ wire                inpt_wrd_of_blk_cntr_clr;
 
 //管理tj寄存器
 always @(posedge clk or negedge rst_n) begin
-    if(~rst_n |cmprss_blk_res_finish) begin
+    if(~rst_n) begin
+        reg_tj          <=  32'h79cc4519;
+    end else if (cmprss_blk_res_finish) begin
         reg_tj          <=  32'h79cc4519;
     end
     else if(sm3_wj_wjj_vld_r)begin
         if(reg_cmprss_round == 6'd16 - INPT_WORD_NUM)
             reg_tj          <=  32'h9d8a7a87;
-
+        
         else begin
             `ifdef SM3_INPT_DW_32
                 reg_tj          <=  {reg_tj[30:0],reg_tj[31]};
@@ -136,11 +138,11 @@ end
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         sm3_wj_wjj_vld_r    <=   1'b0;
-        sm3_wj_wjj_lst_r    <=   1'b0;
+        sm3_wj_wjj_lst_r    <=   1'b0;        
     end
     else begin
         sm3_wj_wjj_vld_r    <=   expnd_inpt_vld_i;
-        sm3_wj_wjj_lst_r    <=   expnd_inpt_lst_i;
+        sm3_wj_wjj_lst_r    <=   expnd_inpt_lst_i;       
     end
 end
 
@@ -148,35 +150,35 @@ end
     always @(posedge clk or negedge rst_n) begin
         if(~rst_n) begin
             wj_rnd_r        <=   32'd0;
-            wjj_rnd_r       <=   32'd0;
+            wjj_rnd_r       <=   32'd0;       
         end
         else begin
             wj_rnd_r        <=   expnd_inpt_wj_i;
-            wjj_rnd_r       <=   expnd_inpt_wjj_i;
+            wjj_rnd_r       <=   expnd_inpt_wjj_i;     
         end
     end
-
+    
 `elsif SM3_INPT_DW_64
     always @(posedge clk or negedge rst_n) begin
         if(~rst_n) begin
             wj_rnd_odd_r    <=   32'd0;
-            wjj_rnd_odd_r   <=   32'd0;
-            wj_rnd_even_r   <=   32'd0;
-            wjj_rnd_even_r  <=   32'd0;
+            wjj_rnd_odd_r   <=   32'd0;       
+            wj_rnd_even_r   <=   32'd0;       
+            wjj_rnd_even_r  <=   32'd0;       
         end
         else begin
             {wj_rnd_even_r,wj_rnd_odd_r}    <=   expnd_inpt_wj_i;
-            {wjj_rnd_even_r,wjj_rnd_odd_r}  <=   expnd_inpt_wjj_i;
+            {wjj_rnd_even_r,wjj_rnd_odd_r}  <=   expnd_inpt_wjj_i;    
         end
     end
-
+    
 `endif
 
 //标记最后一块
-assign              cmprss_new_round_valid  =   sm3_wj_wjj_vld_r;
-assign              cmprss_blk_finish       =   inpt_wrd_of_blk_cntr_clr;
+assign              cmprss_new_round_valid  =   sm3_wj_wjj_vld_r;  
+assign              cmprss_blk_finish       =   inpt_wrd_of_blk_cntr_clr;  
 
-//块运算完成信号
+//块运算完成信号 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         cmprss_blk_res_finish   <=  1'b0;
@@ -197,7 +199,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 assign                  inpt_wrd_of_blk_cntr_add  = sm3_wj_wjj_vld_r;
-assign                  inpt_wrd_of_blk_cntr_clr  = sm3_wj_wjj_vld_r
+assign                  inpt_wrd_of_blk_cntr_clr  = sm3_wj_wjj_vld_r 
                                                 && inpt_wrd_of_blk_cntr == (CMPRSS_RND_NUM - INPT_WORD_NUM);
 
 //压缩迭代轮计数
@@ -224,7 +226,16 @@ end
 
 //寄存器组初值装填与迭代
 always @(posedge clk or negedge rst_n) begin
-    if((~rst_n) || sm3_res_valid_r1) begin
+    if(~rst_n) begin
+        reg_a	<=	32'h7380166f;//0;
+		reg_b	<=	32'h4914b2b9;//0;
+		reg_c	<=	32'h172442d7;//0;
+		reg_d	<=	32'hda8a0600;//0;
+		reg_e	<=	32'ha96f30bc;//0;
+		reg_f	<=	32'h163138aa;//0;
+		reg_g	<=	32'he38dee4d;//0;
+		reg_h	<=	32'hb0fb0e4e;//0;
+    end else if (sm3_res_valid_r1) begin
         reg_a	<=	32'h7380166f;//0;
 		reg_b	<=	32'h4914b2b9;//0;
 		reg_c	<=	32'h172442d7;//0;
@@ -269,8 +280,10 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 always @(posedge clk or negedge rst_n) begin
-    if((~rst_n) || sm3_res_valid_r1) begin
+    if(~rst_n) begin
         sm3_res                 <=  {32'h7380166f, 32'h4914b2b9, 32'h172442d7, 32'hda8a0600, 32'ha96f30bc, 32'h163138aa, 32'he38dee4d, 32'hb0fb0e4e};
+    end else if (sm3_res_valid_r1) begin
+        sm3_res                 <=  {32'h7380166f, 32'h4914b2b9, 32'h172442d7, 32'hda8a0600, 32'ha96f30bc, 32'h163138aa, 32'he38dee4d, 32'hb0fb0e4e};        
     end
     else if(cmprss_blk_res_finish)begin
         sm3_res                 <=  {reg_a,reg_b,reg_c,reg_d,reg_e,reg_f,reg_g,reg_h} ^ sm3_res;
@@ -360,14 +373,14 @@ assign                      cmprss_otpt_res_o     =   sm3_res;
     `ifdef SM3_CMPRS_SIM_FILE_LOG
         integer file;
         initial begin:inital_file
-
+            
             file = $fopen("wj.txt","w");
         end
     `endif
 
     generate
         if(1) begin
-            always@(*) begin
+            always@(*) begin		
                 if(cmprss_otpt_vld_o)
                 begin
                     `ifdef SM3_CMPRS_SIM_FILE_LOG
@@ -375,7 +388,7 @@ assign                      cmprss_otpt_res_o     =   sm3_res;
                     `else
                         $display("LOG: res : %64h",cmprss_otpt_res_o);
                     `endif
-
+                    
                 end
             end
         end

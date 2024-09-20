@@ -1,22 +1,22 @@
 // `timescale 1ns / 100ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company:
+// Company: 
 // Engineer: Raymond Rui Chen, raymond.rui.chen@qq.com
-//
+// 
 // Create Date: 2018/03/10 12:06:49
-// Design Name:
+// Design Name: 
 // Module Name: sm4_top
-// Project Name:
-// Target Devices:
-// Tool Versions:
-// Description:
-//
-// Dependencies:
-//
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
-//
+// 
 //////////////////////////////////////////////////////////////////////////////////
 module sm4_top(
     clk		            ,
@@ -30,12 +30,13 @@ module sm4_top(
     user_key_valid_in   ,
     user_key_in         ,
     key_exp_ready_out   ,
+    key_exp_ready_out_de ,
     result_out          ,
     valid_out           ,
     ready_out_de        ,
     valid_out_de
 );
-
+    
     input			 clk		        ;
     input			 reset_n	        ;
     input            sm4_enable_in      ;
@@ -49,9 +50,10 @@ module sm4_top(
     output  [3: 0] ready_out_de       ;
     output           valid_out_de       ;
     output  [127: 0] result_out         ;
-
+    
     output           valid_out          ;
     output           key_exp_ready_out  ;
+    output           key_exp_ready_out_de;
     wire             ready_out          ;
     wire    [31 : 0] rk_00              ;
     wire    [31 : 0] rk_01              ;
@@ -85,14 +87,14 @@ module sm4_top(
     wire    [31 : 0] rk_29              ;
     wire    [31 : 0] rk_30              ;
     wire    [31 : 0] rk_31              ;
-
+    
     ready_valid u_ready_valid(
       .clk              (clk              ),
       .ready_out        (ready_out        ),
       .encdec_enable_in (encdec_enable_in ),
       .valid_out        (valid_out        )
     );
-
+  
     sm4_encdec u_encdec (
         .clk                    (clk                 ),
         .reset_n                (reset_n             ),
@@ -136,9 +138,10 @@ module sm4_top(
         .ready_out              (ready_out           ),
         .result_out             (result_out          )
     );
-
+    
     assign ready_out_de = {4{ready_out}};
     assign valid_out_de=valid_out;
+    assign key_exp_ready_out_de = key_exp_ready_out;
 
     key_expansion u_key
 	(
@@ -183,6 +186,5 @@ module sm4_top(
         .rk30_out			    (rk_30    			    ),
         .rk31_out			    (rk_31    			    )
     );
-
+    
 endmodule
-

@@ -8,7 +8,14 @@ module rot_top #(
   parameter bit KmacSwKeyMasked = 0,
   parameter int SecKmacCmdDelay = 0,
   parameter bit SecKmacIdleAcceptSwMsg = 0,
+  // parameters for aes
+  parameter bit SecAesMasking = 1,
+  parameter aes_pkg::sbox_impl_e SecAesSBoxImpl = aes_pkg::SBoxImplDom,
+  parameter int unsigned SecAesStartTriggerDelay = 0,
+  parameter bit SecAesAllowForcingMasks = 1'b0,
+  parameter bit SecAesSkipPRNGReseeding = 1'b0,
   // parameters for keymgr
+  parameter bit KeymgrUseOtpSeedsInsteadOfFlash = 0,
   parameter bit KeymgrKmacEnMasking = 1,
   // parameters for rom_ctrl
   parameter RomCtrlBootRomInitFile = "",
@@ -16,7 +23,8 @@ module rot_top #(
   // parameters for csrng
   parameter aes_pkg::sbox_impl_e CsrngSBoxImpl = aes_pkg::SBoxImplCanright,
   // parameters for entropy_src
-  parameter int EntropySrcEsFifoDepth = 4,
+  parameter int EntropySrcEsFifoDepth = 3,
+  parameter int unsigned EntropySrcDistrFifoDepth = 2,
   parameter bit EntropySrcStub = 0,
   // parameters for edn0
   // parameters for otbn
@@ -77,8 +85,8 @@ module rot_top #(
     // output kmac_pkg::app_req_t kmac_app_req_rom,
     output rom_ctrl_pkg::pwrmgr_data_t       rom_ctrl_pwrmgr_data,
     // input prim_rom_pkg::rom_cfg_t       ast_rom_cfg,
-    // input tlul_pkg::tl_h2d_t rom_ctrl_rom_tl_req,
-    // output tlul_pkg::tl_d2h_t rom_ctrl_rom_tl_rsp,
+    input tlul_pkg::tl_h2d_t rom_ctrl_rom_tl_req,
+    output tlul_pkg::tl_d2h_t rom_ctrl_rom_tl_rsp,
 
     // kmac
     // output kmac_pkg::app_rsp_t kmac_app_rsp_lc,
@@ -99,7 +107,7 @@ module rot_top #(
     // output edn_pkg::edn_req_t edn0_edn_req_rot,
     // input edn_pkg::edn_rsp_t edn0_edn_rsp_rot,
     input edn_pkg::edn_req_t [7:0] edn0_edn_req,
-    output edn_pkg::edn_rsp_t [7:0] edn0_edn_rsp,
+    output edn_pkg::edn_rsp_t [7:0] edn0_edn_rsp
     // input tlul_pkg::tl_h2d_t       edn0_tl_req,
     // output tlul_pkg::tl_d2h_t       edn0_tl_rsp,
 
@@ -111,8 +119,8 @@ module rot_top #(
     // output lc_ctrl_pkg::lc_tx_t       otbn_lc_rma_ack,
 
     // alerts NAlerts = 16
-    input  prim_alert_pkg::alert_rx_t [16-1:0] alert_rx_i,
-    output prim_alert_pkg::alert_tx_t [16-1:0] alert_tx_o
+    // input  prim_alert_pkg::alert_rx_t [16-1:0] alert_rx_i,
+    // output prim_alert_pkg::alert_tx_t [16-1:0] alert_tx_o
 );
 
   import tlul_pkg::*;
@@ -139,8 +147,8 @@ module rot_top #(
   tlul_pkg::tl_d2h_t       edn0_tl_rsp;
   tlul_pkg::tl_h2d_t       keymgr_tl_req;
   tlul_pkg::tl_d2h_t       keymgr_tl_rsp;
-  tlul_pkg::tl_h2d_t       rom_ctrl_rom_tl_req;
-  tlul_pkg::tl_d2h_t       rom_ctrl_rom_tl_rsp;
+  // tlul_pkg::tl_h2d_t       rom_ctrl_rom_tl_req;
+  // tlul_pkg::tl_d2h_t       rom_ctrl_rom_tl_rsp;
   tlul_pkg::tl_h2d_t       rom_ctrl_regs_tl_req;
   tlul_pkg::tl_d2h_t       rom_ctrl_regs_tl_rsp;
   tlul_pkg::tl_h2d_t       otbn_tl_req;
@@ -332,8 +340,8 @@ module rot_top #(
   ) u_aes (
       // [15]: recov_ctrl_update_err
       // [14]: fatal_fault
-      .alert_tx_o  ( alert_tx[15:14] ),
-      .alert_rx_i  ( alert_rx[15:14] ),
+      .alert_tx_o  ( alert_tx_o[15:14] ),
+      .alert_rx_i  ( alert_rx_i[15:14] ),
 
       // Inter-module signals
       .idle_o(clkmgr_aon_idle[0]),
@@ -705,8 +713,8 @@ module rot_top #(
   puf u_puf1 (
 
       // Inter-module signals
-      .tl_i(puf_tl_req),
-      .tl_o(puf_tl_rsp),
+      .tl_i(puf1_tl_req),
+      .tl_o(puf1_tl_rsp),
 
       .rng4bit                 ( rng4bit ),
       .rng4bit_done            ( rng4bit_done ),
@@ -741,7 +749,7 @@ module rot_top #(
 
       // Clock and reset connections
       .clk_i (clk_i),
-      .rst_ni (rst_ni])
+      .rst_ni (rst_ni)
   );
   puf u_pcr (
 
@@ -763,8 +771,8 @@ module rot_top #(
     .tl_rot_o(tl_o),
 
     // // port: tl_rom_ctrl__rom
-    .tl_rom_ctrl__rom_o(rom_ctrl_rom_tl_req),
-    .tl_rom_ctrl__rom_i(rom_ctrl_rom_tl_rsp),
+    // .tl_rom_ctrl__rom_o(rom_ctrl_rom_tl_req),
+    // .tl_rom_ctrl__rom_i(rom_ctrl_rom_tl_rsp),
 
     // port: tl_rom_ctrl__regs
     .tl_rom_ctrl__regs_o(rom_ctrl_regs_tl_req),

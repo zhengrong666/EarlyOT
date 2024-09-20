@@ -16,7 +16,7 @@ filesets:
       - lowrisc:ip:hmac
       - lowrisc:ip:kmac
       - lowrisc:ip:keymgr
-      - lowrisc:constants:rot_top_pkg
+      #- lowrisc:constants:rot_top_pkg
       - lowrisc:ip:rom_ctrl
       - lowrisc:prim:all
       - lowrisc:prim:mubi

@@ -2465,7 +2465,8 @@ module top_earlgrey #(
       .rst_edn_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
   );
   rot_top #(
-    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[66:51])
+    .AlertAsyncOn(alert_handler_reg_pkg::AsyncOn[66:51]),
+    .RomCtrlBootRomInitFile(RomCtrlBootRomInitFile)
   ) u_rot_top (
 
       // Interrupt
@@ -2503,8 +2504,8 @@ module top_earlgrey #(
       // [64]: fatal_fault_aes
       // [65]: fatal_otbn
       // [66]: recov_otbn
-      .alert_tx_o  ( alert_tx[66:51] ),
-      .alert_rx_i  ( alert_rx[66:51] ),
+      // .alert_tx_o  ( alert_tx[66:51] ),
+      // .alert_rx_i  ( alert_rx[66:51] ),
 
       // Inter-module signals
       .tl_i(rot_top_tl_req),
@@ -2512,6 +2513,8 @@ module top_earlgrey #(
 
       // ROM
       .rom_ctrl_pwrmgr_data(rom_ctrl_pwrmgr_data),
+      .rom_ctrl_rom_tl_req(rom_ctrl_rom_tl_req),
+      .rom_ctrl_rom_tl_rsp(rom_ctrl_rom_tl_rsp),
 
       // entropy src
       .es_rng_req_o(es_rng_req_o),
@@ -2526,6 +2529,7 @@ module top_earlgrey #(
       // Clock and reset connections
       .clk_i (clkmgr_aon_clocks.clk_main_secure),
       .clk_edn_i (clkmgr_aon_clocks.clk_main_secure),
+      .rst_shadowed_ni (rstmgr_aon_resets.rst_lc_shadowed_n[rstmgr_pkg::Domain0Sel]),
       .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel]),
       .rst_edn_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
   );

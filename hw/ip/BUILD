@@ -40,5 +40,13 @@ filegroup(
         "//hw/ip/trial1:all_files",
         "//hw/ip/uart:all_files",
         "//hw/ip/usbdev:all_files",
+        "//hw/ip/sm3:all_files",
+        "//hw/ip/sm4:all_files",
+        "//hw/ip/puf:all_files",
+        "//hw/ip/puf_reg:all_files",
+        "//hw/ip/rs_decode:all_files",
+        "//hw/ip/rs_encode:all_files",
+        "//hw/ip/pcr:all_files",
+        "//hw/ip/rot_top:all_files",
     ],
 )

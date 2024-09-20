@@ -3,6 +3,7 @@ module rs_decode_wrapper(
     input rst_n, // Active low reset
     input decode_en,
     input clrn,
+    input scan_mode,
     input [200*8-1:0] encoded_data,
     output reg [200*8-1:0] error_pos,
     output reg output_valid,
@@ -47,13 +48,23 @@ rsdec x2 (
     .valid(valid),
     .k(k),
     .clk(clk),
-    .clrn(rst_n & clrn)
+    .clrn(rst_n & (clrn | scan_mode))
     // Other connections to rsdec if needed
 );
 
 // State machine transition and output logic
 always @(posedge clk or negedge rst_n) begin
-    if (!rst_n | !clrn) begin
+    if (!rst_n) begin
+        received <= 8'b0;
+        state <= IDLE;
+        bit_count <= 0;
+        error_pos <= 0;
+        output_valid <= 0;
+        decode_counter <= 0;
+        dec_ena <= 0;
+        ready <= 1;
+    end else if (!clrn) begin
+        received <= 8'b0;
         state <= IDLE;
         bit_count <= 0;
         error_pos <= 0;

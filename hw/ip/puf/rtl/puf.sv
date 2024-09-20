@@ -35,8 +35,8 @@ puf_reg_top  u_puf_reg_top (
 PUF_core  u_PUF_core (
     .clk                     ( clk_i  ),
     .rst_n                   ( rst_ni ),
-    // .enable                  ( reg2hw.ctrl_signals.enable_puf.q ),
-    .enable                  ( 1),
+    .enable                  ( reg2hw.ctrl_signals.enable_puf.q ),
+    // .enable                  ( 1),
     .mode                    ( reg2hw.ctrl_signals.mode_puf.q ),
     .ready_challenge         ( reg2hw.ctrl_signals.ready_cha.q ),
     .challenge               ( {reg2hw.challenge[3].q,reg2hw.challenge[2].q,reg2hw.challenge[1].q,reg2hw.challenge[0].q} ),

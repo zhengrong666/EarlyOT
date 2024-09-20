@@ -19,11 +19,15 @@ def get_files_by_name(directory, extensions=None):
 
 def compare_files(file_a, file_b):
     """
-    比较两个文件的内容是否完全相同。
+    比较两个文件的内容，忽略空行或只包含空格的行。
     返回 True 如果相同，False 如果不同。
     """
     try:
-        return filecmp.cmp(file_a, file_b, shallow=False)
+        with open(file_a, 'r', encoding='utf-8') as fa, open(file_b, 'r', encoding='utf-8') as fb:
+            lines_a = [line.strip() for line in fa.readlines() if line.strip() != '']
+            lines_b = [line.strip() for line in fb.readlines() if line.strip() != '']
+
+            return lines_a == lines_b
     except Exception as e:
         print(f"无法比较文件 {file_a} 和 {file_b}：{e}")
         return False
@@ -31,6 +35,7 @@ def compare_files(file_a, file_b):
 def differences_are_only_first_line_and_trailing_spaces_diff(file_a, file_b):
     """
     检查两个文件是否只有第一行不同，且其他行只在行末尾有空格差异。
+    忽略空行差异。
     返回 True 如果满足上述条件，False 否则。
     """
     try:
@@ -43,7 +48,7 @@ def differences_are_only_first_line_and_trailing_spaces_diff(file_a, file_b):
                 return False
 
             for idx, (line_a, line_b) in enumerate(zip(lines_a, lines_b)):
-                if line_a == line_b:
+                if line_a.strip() == line_b.strip():
                     continue  # 行完全相同，继续
 
                 if idx == 0:

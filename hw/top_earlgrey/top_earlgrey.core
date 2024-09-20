@@ -63,6 +63,7 @@ filesets:
       - zgc:ip:puf
       - zgc:ip:puf_reg
       - zgc:ip:pcr
+      - lowrisc:systems:rot_top
       - "fileset_partner  ? (partner:systems:ast_pkg)"
       - "!fileset_partner ? (lowrisc:systems:ast_pkg)"
     files:
