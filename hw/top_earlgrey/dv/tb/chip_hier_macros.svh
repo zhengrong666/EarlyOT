@@ -19,7 +19,7 @@
 `define OTP_CTRL_HIER         `CHIP_HIER.u_otp_ctrl
 `define RAM_MAIN_HIER         `CHIP_HIER.u_sram_ctrl_main.u_prim_ram_1p_scr
 `define RAM_RET_HIER          `CHIP_HIER.u_sram_ctrl_ret_aon.u_prim_ram_1p_scr
-`define ROM_CTRL_HIER         `CHIP_HIER.u_rom_ctrl
+`define ROM_CTRL_HIER         `CHIP_HIER.u_rot_top.u_rom_ctrl
 `define RSTMGR_HIER           `CHIP_HIER.u_rstmgr_aon
 `define SPI_DEVICE_HIER       `CHIP_HIER.u_spi_device
 `define UART_HIER             `CHIP_HIER.u_uart

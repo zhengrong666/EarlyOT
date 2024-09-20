@@ -899,7 +899,7 @@ end
     dev_sel_s1n_41 = 6'd33;
     if ((tl_s1n_41_us_h2d.a_address &
          ~(ADDR_MASK_ROM_CTRL__ROM)) == ADDR_SPACE_ROM_CTRL__ROM) begin
-      dev_sel_s1n_41 = 6'd23;
+      dev_sel_s1n_41 = 6'd0;
 
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_ROM_CTRL__REGS)) == ADDR_SPACE_ROM_CTRL__REGS) begin
@@ -1030,7 +1030,8 @@ end
     end else if ((tl_s1n_41_us_h2d.a_address &
                   ~(ADDR_MASK_RV_CORE_IBEX__CFG)) == ADDR_SPACE_RV_CORE_IBEX__CFG) begin
       dev_sel_s1n_41 = 6'd32;
-end
+                  end else
+      dev_sel_s1n_41 = 6'd17;
   end
 
   always_comb begin
@@ -1038,7 +1039,7 @@ end
     dev_sel_s1n_75 = 6'd33;
     if ((tl_s1n_75_us_h2d.a_address &
          ~(ADDR_MASK_ROM_CTRL__ROM)) == ADDR_SPACE_ROM_CTRL__ROM) begin
-      dev_sel_s1n_75 = 6'd23;
+      dev_sel_s1n_75 = 6'd0;
 
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_ROM_CTRL__REGS)) == ADDR_SPACE_ROM_CTRL__REGS) begin
@@ -1169,7 +1170,8 @@ end
     end else if ((tl_s1n_75_us_h2d.a_address &
                   ~(ADDR_MASK_RV_CORE_IBEX__CFG)) == ADDR_SPACE_RV_CORE_IBEX__CFG) begin
       dev_sel_s1n_75 = 6'd32;
-end
+end  else
+      dev_sel_s1n_75 = 6'd17;
   end
 
 

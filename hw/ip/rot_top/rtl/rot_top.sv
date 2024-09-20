@@ -310,14 +310,14 @@ module rot_top #(
   // assign csrng_csrng_cmd_req[1] = rot_top_csrng_csrng_cmd_req;
   // assign rot_top_csrng_csrng_cmd_rsp = csrng_csrng_cmd_rsp[1];
 
-  // assign edn0_edn_req_intr[1] = edn0_edn_req[1];
+  assign edn0_edn_req_intr[1] = edn0_edn_req[1];
   assign edn0_edn_req_intr[2] = edn0_edn_req[2];
   assign edn0_edn_req_intr[4] = edn0_edn_req[4];
   // assign edn0_edn_req_intr[5] = edn0_edn_req[5];
   // assign edn0_edn_req_intr[6] = edn0_edn_req[6];
   assign edn0_edn_req_intr[7] = edn0_edn_req[7];
 
-  // assign edn0_edn_rsp[1] = edn0_edn_rsp_intr[1];
+  assign edn0_edn_rsp[1] = edn0_edn_rsp_intr[1];
   assign edn0_edn_rsp[2] = edn0_edn_rsp_intr[2];
   assign edn0_edn_rsp[4] = edn0_edn_rsp_intr[4];
   // assign edn0_edn_rsp[5] = edn0_edn_rsp_intr[5];
@@ -346,8 +346,8 @@ module rot_top #(
       // Inter-module signals
       .idle_o(clkmgr_aon_idle[0]),
       .lc_escalate_en_i(lc_ctrl_lc_escalate_en),
-      .edn_o(edn0_edn_req_intr[1]),
-      .edn_i(edn0_edn_rsp_intr[1]),
+      // .edn_o(edn0_edn_req_intr[1]),
+      // .edn_i(edn0_edn_rsp_intr[1]),
       .keymgr_key_i(keymgr_aes_key),
       .tl_i(aes_tl_req),
       .tl_o(aes_tl_rsp),
@@ -571,7 +571,7 @@ module rot_top #(
   );
 
   always_comb begin
-    if (!rng_mode) begin  // puf in rng mode
+    if (rng_mode) begin  // puf in rng mode
       es_rng_rsp_i_puf.rng_valid = rng4bit_done;
       es_rng_rsp_i_puf.rng_b = rng4bit; 
     end else begin
