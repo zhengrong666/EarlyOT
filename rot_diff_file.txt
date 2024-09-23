@@ -1,0 +1,225 @@
+内容不同的同名文件列表（排除只有第一行不同和只有行末尾空格差异的文件）：
+
+文件名: otbn.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_otbn_0.1/rtl/otbn.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/otbn/rtl/otbn.sv
+------------------------------------------------------------
+文件名: otbn_instruction_fetch.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_otbn_0.1/rtl/otbn_instruction_fetch.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/otbn/rtl/otbn_instruction_fetch.sv
+------------------------------------------------------------
+文件名: rot_top.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_systems_rot_top_0.1/rtl/rot_top.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rot_top/rtl/rot_top.sv
+------------------------------------------------------------
+文件名: tlul_pkg.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/tlul/rtl/tlul_pkg.sv
+------------------------------------------------------------
+文件名: berlekamp.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_rs_code_1.0/rtl/berlekamp.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rs_decode/rtl/berlekamp.sv
+------------------------------------------------------------
+文件名: berlekamp.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_rs_code_1.0/rtl/berlekamp.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rs_encode/rtl/berlekamp.sv
+------------------------------------------------------------
+文件名: tb_rot_top.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_dv_rot_top_verilator_sim_0.1/tb_rot_top.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rot_top/dv/verilator/tb_rot_top.sv
+------------------------------------------------------------
+文件名: rs_decode_wrapper.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_rs_decode_1.0/rtl/rs_decode_wrapper.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rs_decode/rtl/rs_decode_wrapper.sv
+------------------------------------------------------------
+文件名: csrng_core.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_csrng_0.1/rtl/csrng_core.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/csrng/rtl/csrng_core.sv
+------------------------------------------------------------
+文件名: prim_pkg.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/vendor/lowrisc_ibex/dv/uvm/core_ibex/common/prim/prim_pkg.sv
+------------------------------------------------------------
+文件名: sm3_cmprss_core.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_sm3_1.0/rtl/sm3_cmprss_core.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/sm3/rtl/sm3_cmprss_core.sv
+------------------------------------------------------------
+文件名: otbn_mac_bignum.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_otbn_0.1/rtl/otbn_mac_bignum.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/otbn/rtl/otbn_mac_bignum.sv
+------------------------------------------------------------
+文件名: rs_encode_wrapper.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_rs_encode_1.0/rtl/rs_encode_wrapper.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rs_encode/rtl/rs_encode_wrapper.sv
+------------------------------------------------------------
+文件名: PUF1bit.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_puf_1.0/rtl/PUF1bit.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/puf/rtl/PUF1bit.sv
+------------------------------------------------------------
+文件名: prim_assert.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_assert_0.1/rtl/prim_assert.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/prim/rtl/prim_assert.sv
+------------------------------------------------------------
+文件名: prim_clock_mux2.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_abstract_clock_mux2_0/prim_clock_mux2.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/vendor/lowrisc_ibex/dv/uvm/core_ibex/common/prim/prim_clock_mux2.sv
+------------------------------------------------------------
+文件名: prim_lfsr.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_lfsr_0.1/rtl/prim_lfsr.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/prim/rtl/prim_lfsr.sv
+------------------------------------------------------------
+文件名: rs_encode.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_rs_encode_1.0/rtl/rs_encode.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rs_encode/rtl/rs_encode.sv
+------------------------------------------------------------
+文件名: tlul_socket_m1.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_tlul_socket_m1_0.1/rtl/tlul_socket_m1.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/tlul/rtl/tlul_socket_m1.sv
+------------------------------------------------------------
+文件名: otbn_rf_bignum.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_otbn_0.1/rtl/otbn_rf_bignum.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/otbn/rtl/otbn_rf_bignum.sv
+------------------------------------------------------------
+文件名: Timer.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_puf_1.0/rtl/Timer.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/puf/rtl/Timer.sv
+------------------------------------------------------------
+文件名: prim_assert_sec_cm.svh
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_assert_0.1/rtl/prim_assert_sec_cm.svh
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/prim/rtl/prim_assert_sec_cm.svh
+------------------------------------------------------------
+文件名: sm3.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_sm3_1.0/rtl/sm3.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/sm3/rtl/sm3.sv
+------------------------------------------------------------
+文件名: prim_assert_dummy_macros.svh
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_assert_0.1/rtl/prim_assert_dummy_macros.svh
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/prim/rtl/prim_assert_dummy_macros.svh
+------------------------------------------------------------
+文件名: rom_ctrl_reg_pkg.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_rom_ctrl_pkg_0.1/rtl/rom_ctrl_reg_pkg.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rom_ctrl/rtl/rom_ctrl_reg_pkg.sv
+------------------------------------------------------------
+文件名: flash_ctrl_pkg.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_constants_flash_ctrl_0/rtl/flash_ctrl_pkg.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/top_earlgrey/ip/flash_ctrl/rtl/autogen/flash_ctrl_pkg.sv
+------------------------------------------------------------
+文件名: rom_ctrl.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_rom_ctrl_0.1/rtl/rom_ctrl.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rom_ctrl/rtl/rom_ctrl.sv
+------------------------------------------------------------
+文件名: prim_arbiter_ppc.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_arbiter_0/rtl/prim_arbiter_ppc.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/prim/rtl/prim_arbiter_ppc.sv
+------------------------------------------------------------
+文件名: prim_flop_macros.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_assert_0.1/rtl/prim_flop_macros.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/prim/rtl/prim_flop_macros.sv
+------------------------------------------------------------
+文件名: tl_main_rot_pkg.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_constants_rot_top_pkg_0/rtl/tl_main_rot_pkg.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rot_top/rtl/tl_main_rot_pkg.sv
+------------------------------------------------------------
+OK 文件名: prim_flop.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_abstract_flop_0/prim_flop.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/vendor/lowrisc_ibex/dv/uvm/core_ibex/common/prim/prim_flop.sv
+------------------------------------------------------------
+------------------------------------------------------------
+文件名: top_pkg.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_constants_package_0/rtl/top_pkg.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rot_top/rtl/top_pkg.sv
+------------------------------------------------------------
+文件名: top_pkg.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_constants_package_0/rtl/top_pkg.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/top_earlgrey/rtl/top_pkg.sv
+------------------------------------------------------------
+文件名: otbn_controller.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_otbn_0.1/rtl/otbn_controller.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/otbn/rtl/otbn_controller.sv
+------------------------------------------------------------
+文件名: rs_decode.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_rs_decode_1.0/rtl/rs_decode.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rs_decode/rtl/rs_decode.sv
+------------------------------------------------------------
+文件名: rom_ctrl_compare.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_rom_ctrl_0.1/rtl/rom_ctrl_compare.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rom_ctrl/rtl/rom_ctrl_compare.sv
+------------------------------------------------------------
+文件名: Vote.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_puf_1.0/rtl/Vote.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/puf/rtl/Vote.sv
+------------------------------------------------------------
+文件名: Counter.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_puf_1.0/rtl/Counter.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/puf/rtl/Counter.sv
+------------------------------------------------------------
+文件名: prim_prince.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_cipher_0/rtl/prim_prince.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/prim/rtl/prim_prince.sv
+------------------------------------------------------------
+文件名: puf.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_puf_1.0/rtl/puf.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/puf/rtl/puf.sv
+------------------------------------------------------------
+文件名: prim_generic_ram_1p.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_generic_ram_1p_0/rtl/prim_generic_ram_1p.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/prim_generic/rtl/prim_generic_ram_1p.sv
+------------------------------------------------------------
+文件名: otbn_loop_controller.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_otbn_0.1/rtl/otbn_loop_controller.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/otbn/rtl/otbn_loop_controller.sv
+------------------------------------------------------------
+文件名: xbar_main_rot.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_systems_rot_top_0.1/rtl/xbar_main_rot.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rot_top/rtl/xbar_main_rot.sv
+------------------------------------------------------------
+文件名: rom_ctrl_rom_reg_top.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_rom_ctrl_0.1/rtl/rom_ctrl_rom_reg_top.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rom_ctrl/rtl/rom_ctrl_rom_reg_top.sv
+------------------------------------------------------------
+文件名: otbn_alu_bignum.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_otbn_0.1/rtl/otbn_alu_bignum.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/otbn/rtl/otbn_alu_bignum.sv
+------------------------------------------------------------
+文件名: hmac_pkg.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_hmac_0.1/rtl/hmac_pkg.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/hmac/rtl/hmac_pkg.sv
+------------------------------------------------------------
+ok 文件名: inverse.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_rs_code_1.0/rtl/inverse.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rs_decode/rtl/inverse.sv
+------------------------------------------------------------
+ok 文件名: inverse.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/zgc_ip_rs_code_1.0/rtl/inverse.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rs_encode/rtl/inverse.sv
+------------------------------------------------------------
+文件名: rom_ctrl_fsm.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_rom_ctrl_0.1/rtl/rom_ctrl_fsm.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/rom_ctrl/rtl/rom_ctrl_fsm.sv
+------------------------------------------------------------
+文件名: sm4.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_sm4_1.0/rtl/sm4.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/sm4/rtl/sm4.sv
+------------------------------------------------------------
+文件名: otbn_rf_base.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_otbn_0.1/rtl/otbn_rf_base.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/otbn/rtl/otbn_rf_base.sv
+------------------------------------------------------------
+文件名: prim_ram_1p.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_abstract_ram_1p_0/prim_ram_1p.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/vendor/lowrisc_ibex/dv/uvm/core_ibex/common/prim/prim_ram_1p.sv
+------------------------------------------------------------
+文件名: sbox_replace.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_sm4_1.0/rtl/sbox_replace.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/sm4/rtl/sbox_replace.sv
+------------------------------------------------------------
+文件名: prim_buf.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_prim_abstract_buf_0/prim_buf.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/vendor/lowrisc_ibex/dv/uvm/core_ibex/common/prim/prim_buf.sv
+------------------------------------------------------------
+文件名: sm4_top.sv
+  A: /nfs/home/zhangdongrong/Desktop/Nanhu/src/main/resources/TLROT/src/lowrisc_ip_sm4_1.0/rtl/sm4_top.sv
+  B: /nfs/home/zhangdongrong/thinclient_drives/tmp/test_sm/opentitan_ROT/hw/ip/sm4/rtl/sm4_top.sv
+------------------------------------------------------------
+
+总共有 56 对文件内容不同。

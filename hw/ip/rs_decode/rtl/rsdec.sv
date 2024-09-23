@@ -144,3 +144,4 @@ module rsdec(x, error, with_error, enable, valid, k, clk, clrn);
 		else with_error = 0;
 
 endmodule
+

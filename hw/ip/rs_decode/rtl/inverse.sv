@@ -282,3 +282,4 @@ module inverse(y, x);
 		195: y = 2; // 254 -> 1
 	endcase
 endmodule
+

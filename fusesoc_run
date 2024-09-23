@@ -1,0 +1,1 @@
+fusesoc --cores-root=. run --target=lint --setup --build --run lowrisc:systems:rot_top

@@ -7,11 +7,81 @@ description: "rs_code unit"
 filesets:
   files_rtl:
     files:
-      - rtl/berlekamp.sv
-      - rtl/chien-search.sv
-      - rtl/data-rom.sv
+      #- rtl/berlekamp.sv
+      - rtl/rsdec_berl.sv
+      - rtl/rsdec_berl_multiply.sv
+      - rtl/multiply.sv
+      #- rtl/chien-search.sv
+      - rtl/rsdec_chien_scale0.sv
+      - rtl/rsdec_chien_scale1.sv
+      - rtl/rsdec_chien_scale2.sv
+      - rtl/rsdec_chien_scale3.sv
+      - rtl/rsdec_chien_scale4.sv
+      - rtl/rsdec_chien_scale5.sv
+      - rtl/rsdec_chien_scale6.sv
+      - rtl/rsdec_chien_scale7.sv
+      - rtl/rsdec_chien_scale8.sv
+      - rtl/rsdec_chien_scale9.sv
+      - rtl/rsdec_chien_scale10.sv
+      - rtl/rsdec_chien_scale11.sv
+      - rtl/rsdec_chien_scale12.sv
+      - rtl/rsdec_chien_scale13.sv
+      - rtl/rsdec_chien_scale14.sv
+      - rtl/rsdec_chien_scale15.sv
+      - rtl/rsdec_chien_scale16.sv
+      - rtl/rsdec_chien_scale17.sv
+      - rtl/rsdec_chien_scale18.sv
+      - rtl/rsdec_chien_scale19.sv
+      - rtl/rsdec_chien_scale20.sv
+      - rtl/rsdec_chien_scale21.sv
+      - rtl/rsdec_chien_scale22.sv
+      - rtl/rsdec_chien_scale23.sv
+      - rtl/rsdec_chien_scale24.sv
+      - rtl/rsdec_chien_scale25.sv
+      - rtl/rsdec_chien_scale26.sv
+      - rtl/rsdec_chien_scale27.sv
+      - rtl/rsdec_chien_scale28.sv
+      - rtl/rsdec_chien_scale29.sv
+      - rtl/rsdec_chien_scale30.sv
+      - rtl/rsdec_chien_scale31.sv
+      - rtl/rsdec_chien.sv
+      #- rtl/data-rom.sv
+      - rtl/sigin.sv
       - rtl/inverse.sv
-      - rtl/syndrome.sv
+      #- rtl/syndrome.sv
+      - rtl/rsdec_syn_m0.sv
+      - rtl/rsdec_syn_m1.sv
+      - rtl/rsdec_syn_m2.sv
+      - rtl/rsdec_syn_m3.sv
+      - rtl/rsdec_syn_m4.sv
+      - rtl/rsdec_syn_m5.sv
+      - rtl/rsdec_syn_m6.sv
+      - rtl/rsdec_syn_m7.sv
+      - rtl/rsdec_syn_m8.sv
+      - rtl/rsdec_syn_m9.sv
+      - rtl/rsdec_syn_m10.sv
+      - rtl/rsdec_syn_m11.sv
+      - rtl/rsdec_syn_m12.sv
+      - rtl/rsdec_syn_m13.sv
+      - rtl/rsdec_syn_m14.sv
+      - rtl/rsdec_syn_m15.sv
+      - rtl/rsdec_syn_m16.sv
+      - rtl/rsdec_syn_m17.sv
+      - rtl/rsdec_syn_m18.sv
+      - rtl/rsdec_syn_m19.sv
+      - rtl/rsdec_syn_m20.sv
+      - rtl/rsdec_syn_m21.sv
+      - rtl/rsdec_syn_m22.sv
+      - rtl/rsdec_syn_m23.sv
+      - rtl/rsdec_syn_m24.sv
+      - rtl/rsdec_syn_m25.sv
+      - rtl/rsdec_syn_m26.sv
+      - rtl/rsdec_syn_m27.sv
+      - rtl/rsdec_syn_m28.sv
+      - rtl/rsdec_syn_m29.sv
+      - rtl/rsdec_syn_m30.sv
+      - rtl/rsdec_syn_m31.sv
+      - rtl/rsdec_syn.sv
     file_type: systemVerilogSource
 
 targets:

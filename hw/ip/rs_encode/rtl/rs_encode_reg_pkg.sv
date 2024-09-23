@@ -369,3 +369,4 @@ package rs_encode_reg_pkg;
   };
 
 endpackage
+

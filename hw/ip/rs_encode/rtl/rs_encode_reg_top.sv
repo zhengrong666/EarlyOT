@@ -4453,3 +4453,4 @@ module rs_encode_reg_top (
   //`ASSUME(reqParity, tl_reg_h2d.a_valid |-> tl_reg_h2d.a_user.chk_en == tlul_pkg::CheckDis)
 
 endmodule
+

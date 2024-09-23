@@ -8,9 +8,12 @@ filesets:
   files_rtl_generic:
     depend:
       #- lowrisc:opentitan:top_earlgrey_alert_handler
+      - lowrisc:ip_interfaces:alert_handler_reg
       - lowrisc:ip:tlul
       #- lowrisc:ip:puf128_slave_tlul
+      - lowrisc:ip:aes
       - lowrisc:ip:entropy_src
+      - lowrisc:ip:otbn
       - lowrisc:ip:csrng
       - lowrisc:ip:edn
       - lowrisc:ip:hmac
@@ -18,13 +21,22 @@ filesets:
       - lowrisc:ip:keymgr
       #- lowrisc:constants:rot_top_pkg
       - lowrisc:ip:rom_ctrl
+      - zgc:ip:sm3
+      - zgc:ip:sm4
+      - zgc:ip:rs_encode
+      - zgc:ip:rs_decode
+      - zgc:ip:puf
+      - zgc:ip:puf_reg
+      - zgc:ip:pcr
       - lowrisc:prim:all
       - lowrisc:prim:mubi
       - lowrisc:ip:xbar_main_rot:0.1
+      - lowrisc:constants:top_pkg
     files:
+      - rtl/alert_pkg.sv
       - rtl/top_earlgrey_rnd_cnst_rot_pkg.sv
       - rtl/rot_top.sv
-      - rtl/otbn_otp_ctrl.sv
+      - rtl/otbn_otp_controller.sv
     file_type: systemVerilogSource
 
 

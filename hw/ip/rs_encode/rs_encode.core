@@ -12,7 +12,40 @@ filesets:
       - lowrisc:ip:tlul
       - zgc:ip:rs_code
     files:
-      - rtl/encode.sv
+      #- rtl/encode.sv
+      - rtl/rs_enc_m0.sv
+      - rtl/rs_enc_m1.sv
+      - rtl/rs_enc_m2.sv
+      - rtl/rs_enc_m3.sv
+      - rtl/rs_enc_m4.sv
+      - rtl/rs_enc_m5.sv
+      - rtl/rs_enc_m6.sv
+      - rtl/rs_enc_m7.sv
+      - rtl/rs_enc_m8.sv
+      - rtl/rs_enc_m9.sv
+      - rtl/rs_enc_m10.sv
+      - rtl/rs_enc_m11.sv
+      - rtl/rs_enc_m12.sv
+      - rtl/rs_enc_m13.sv
+      - rtl/rs_enc_m14.sv
+      - rtl/rs_enc_m15.sv
+      - rtl/rs_enc_m16.sv
+      - rtl/rs_enc_m17.sv
+      - rtl/rs_enc_m18.sv
+      - rtl/rs_enc_m19.sv
+      - rtl/rs_enc_m20.sv
+      - rtl/rs_enc_m21.sv
+      - rtl/rs_enc_m22.sv
+      - rtl/rs_enc_m23.sv
+      - rtl/rs_enc_m24.sv
+      - rtl/rs_enc_m25.sv
+      - rtl/rs_enc_m26.sv
+      - rtl/rs_enc_m27.sv
+      - rtl/rs_enc_m28.sv
+      - rtl/rs_enc_m29.sv
+      - rtl/rs_enc_m30.sv
+      - rtl/rs_enc_m31.sv
+      - rtl/rs_enc.sv
       - rtl/rs_encode_reg_pkg.sv
       - rtl/rs_encode_reg_top.sv
       - rtl/rs_encode.sv

@@ -83,10 +83,10 @@ module rot_top #(
     // rom
     // input kmac_pkg::app_rsp_t kmac_app_rsp_rom,
     // output kmac_pkg::app_req_t kmac_app_req_rom,
-    output rom_ctrl_pkg::pwrmgr_data_t       rom_ctrl_pwrmgr_data,
+    output rom_ctrl_pkg::pwrmgr_data_t       rom_ctrl_pwrmgr_data
     // input prim_rom_pkg::rom_cfg_t       ast_rom_cfg,
-    input tlul_pkg::tl_h2d_t rom_ctrl_rom_tl_req,
-    output tlul_pkg::tl_d2h_t rom_ctrl_rom_tl_rsp,
+    // input tlul_pkg::tl_h2d_t rom_ctrl_rom_tl_req,
+    // output tlul_pkg::tl_d2h_t rom_ctrl_rom_tl_rsp,
 
     // kmac
     // output kmac_pkg::app_rsp_t kmac_app_rsp_lc,
@@ -106,8 +106,8 @@ module rot_top #(
     //edn0
     // output edn_pkg::edn_req_t edn0_edn_req_rot,
     // input edn_pkg::edn_rsp_t edn0_edn_rsp_rot,
-    input edn_pkg::edn_req_t [7:0] edn0_edn_req,
-    output edn_pkg::edn_rsp_t [7:0] edn0_edn_rsp
+    // input edn_pkg::edn_req_t [7:0] edn0_edn_req,
+    // output edn_pkg::edn_rsp_t [7:0] edn0_edn_rsp
     // input tlul_pkg::tl_h2d_t       edn0_tl_req,
     // output tlul_pkg::tl_d2h_t       edn0_tl_rsp,
 
@@ -147,8 +147,8 @@ module rot_top #(
   tlul_pkg::tl_d2h_t       edn0_tl_rsp;
   tlul_pkg::tl_h2d_t       keymgr_tl_req;
   tlul_pkg::tl_d2h_t       keymgr_tl_rsp;
-  // tlul_pkg::tl_h2d_t       rom_ctrl_rom_tl_req;
-  // tlul_pkg::tl_d2h_t       rom_ctrl_rom_tl_rsp;
+  tlul_pkg::tl_h2d_t       rom_ctrl_rom_tl_req;
+  tlul_pkg::tl_d2h_t       rom_ctrl_rom_tl_rsp;
   tlul_pkg::tl_h2d_t       rom_ctrl_regs_tl_req;
   tlul_pkg::tl_d2h_t       rom_ctrl_regs_tl_rsp;
   tlul_pkg::tl_h2d_t       otbn_tl_req;
@@ -310,19 +310,23 @@ module rot_top #(
   // assign csrng_csrng_cmd_req[1] = rot_top_csrng_csrng_cmd_req;
   // assign rot_top_csrng_csrng_cmd_rsp = csrng_csrng_cmd_rsp[1];
 
-  assign edn0_edn_req_intr[1] = edn0_edn_req[1];
-  assign edn0_edn_req_intr[2] = edn0_edn_req[2];
-  assign edn0_edn_req_intr[4] = edn0_edn_req[4];
-  // assign edn0_edn_req_intr[5] = edn0_edn_req[5];
-  // assign edn0_edn_req_intr[6] = edn0_edn_req[6];
-  assign edn0_edn_req_intr[7] = edn0_edn_req[7];
+  assign edn0_edn_req_intr[7] = '0;
+  assign edn0_edn_req_intr[2] = '0;
+  assign edn0_edn_req_intr[4] = '0;
 
-  assign edn0_edn_rsp[1] = edn0_edn_rsp_intr[1];
-  assign edn0_edn_rsp[2] = edn0_edn_rsp_intr[2];
-  assign edn0_edn_rsp[4] = edn0_edn_rsp_intr[4];
-  // assign edn0_edn_rsp[5] = edn0_edn_rsp_intr[5];
-  // assign edn0_edn_rsp[6] = edn0_edn_rsp_intr[6];
-  assign edn0_edn_rsp[7] = edn0_edn_rsp_intr[7];
+  // // assign edn0_edn_req_intr[1] = edn0_edn_req[1];
+  // assign edn0_edn_req_intr[2] = edn0_edn_req[2];
+  // assign edn0_edn_req_intr[4] = edn0_edn_req[4];
+  // // assign edn0_edn_req_intr[5] = edn0_edn_req[5];
+  // // assign edn0_edn_req_intr[6] = edn0_edn_req[6];
+  // assign edn0_edn_req_intr[7] = edn0_edn_req[7];
+
+  // // assign edn0_edn_rsp[1] = edn0_edn_rsp_intr[1];
+  // assign edn0_edn_rsp[2] = edn0_edn_rsp_intr[2];
+  // assign edn0_edn_rsp[4] = edn0_edn_rsp_intr[4];
+  // // assign edn0_edn_rsp[5] = edn0_edn_rsp_intr[5];
+  // // assign edn0_edn_rsp[6] = edn0_edn_rsp_intr[6];
+  // assign edn0_edn_rsp[7] = edn0_edn_rsp_intr[7];
 
   aes #(
     .AlertAsyncOn(2'b11),
@@ -346,8 +350,8 @@ module rot_top #(
       // Inter-module signals
       .idle_o(clkmgr_aon_idle[0]),
       .lc_escalate_en_i(lc_ctrl_lc_escalate_en),
-      // .edn_o(edn0_edn_req_intr[1]),
-      // .edn_i(edn0_edn_rsp_intr[1]),
+      .edn_o(edn0_edn_req_intr[1]),
+      .edn_i(edn0_edn_rsp_intr[1]),
       .keymgr_key_i(keymgr_aes_key),
       .tl_i(aes_tl_req),
       .tl_o(aes_tl_rsp),
@@ -571,7 +575,7 @@ module rot_top #(
   );
 
   always_comb begin
-    if (rng_mode) begin  // puf in rng mode
+    if (!rng_mode) begin  // puf in rng mode
       es_rng_rsp_i_puf.rng_valid = rng4bit_done;
       es_rng_rsp_i_puf.rng_b = rng4bit; 
     end else begin
@@ -741,7 +745,7 @@ module rot_top #(
       .clk_i (clk_i),
       .rst_ni (rst_ni)
   );
-  puf u_puf_reg (
+  puf_reg u_puf_reg (
 
       // Inter-module signals
       .tl_i(puf_reg_tl_req),
@@ -751,7 +755,7 @@ module rot_top #(
       .clk_i (clk_i),
       .rst_ni (rst_ni)
   );
-  puf u_pcr (
+  pcr u_pcr (
 
       // Inter-module signals
       .tl_i(pcr_tl_req),
@@ -765,14 +769,15 @@ module rot_top #(
   xbar_main_rot u_xbar_main (
     .clk_i,
     .rst_ni,
+    .scanmode_i(scan_mode),
 
     // port: tl_rv_core_ibex__corei
     .tl_rot_i(tl_i),
     .tl_rot_o(tl_o),
 
     // // port: tl_rom_ctrl__rom
-    // .tl_rom_ctrl__rom_o(rom_ctrl_rom_tl_req),
-    // .tl_rom_ctrl__rom_i(rom_ctrl_rom_tl_rsp),
+    .tl_rom_ctrl__rom_o(rom_ctrl_rom_tl_req),
+    .tl_rom_ctrl__rom_i(rom_ctrl_rom_tl_rsp),
 
     // port: tl_rom_ctrl__regs
     .tl_rom_ctrl__regs_o(rom_ctrl_regs_tl_req),

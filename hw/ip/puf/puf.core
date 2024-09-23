@@ -25,7 +25,7 @@ filesets:
       - rtl/puf.sv
       - rtl/rng_puf.sv
       - rtl/Timer.sv
-      - rtl/Vote.sv
+      - rtl/Voter.sv
     file_type: systemVerilogSource
 
   files_verilator_waiver:

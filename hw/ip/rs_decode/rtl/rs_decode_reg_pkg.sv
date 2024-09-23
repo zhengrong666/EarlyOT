@@ -400,3 +400,4 @@ package rs_decode_reg_pkg;
   };
 
 endpackage
+

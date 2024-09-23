@@ -118,7 +118,7 @@ wire	[127 : 0]	data_for_round;
 wire	[127 : 0]	data_after_round;
 
 
-always@(posedge clk)
+always@(posedge clk or negedge reset_n)
 if(!reset_n)
 	reg_user_key_valid <= 1'b0;
 else

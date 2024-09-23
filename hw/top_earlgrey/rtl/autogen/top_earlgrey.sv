@@ -2593,7 +2593,7 @@ module top_earlgrey #(
   //     .clk_i (clkmgr_aon_clocks.clk_main_secure),
   //     .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
   // );
-  // puf u_puf_reg (
+  // puf_reg u_puf_reg (
 
   //     // Inter-module signals
   //     .tl_i(puf_reg_tl_req),
@@ -2603,7 +2603,7 @@ module top_earlgrey #(
   //     .clk_i (clkmgr_aon_clocks.clk_main_secure),
   //     .rst_ni (rstmgr_aon_resets.rst_lc_n[rstmgr_pkg::Domain0Sel])
   // );
-  // puf u_pcr (
+  // pcr u_pcr (
 
   //     // Inter-module signals
   //     .tl_i(pcr_tl_req),

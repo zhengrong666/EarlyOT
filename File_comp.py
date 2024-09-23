@@ -95,8 +95,8 @@ def main(dir_a, dir_b, extensions=None, output_path=None):
                 f.write("内容不同的同名文件列表（排除只有第一行不同和只有行末尾空格差异的文件）：\n\n")
                 for filename, path_a, path_b in differing_files:
                     f.write(f"文件名: {filename}\n")
-                    f.write(f"  A: {path_a}\n")
-                    f.write(f"  B: {path_b}\n")
+                    f.write(f"  code --diff {path_a}  ")
+                    f.write(f"    {path_b}\n")
                     f.write("-" * 60 + "\n")
                 f.write(f"\n总共有 {len(differing_files)} 对文件内容不同。\n")
                 print(f"内容不同的文件已记录在 {output_path} 中。")

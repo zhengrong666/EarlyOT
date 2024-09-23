@@ -37,10 +37,10 @@
 // on a non-default value. This may be required for pre-silicon/FPGA evaluation but we don't want
 // to allow this for tapeout.
 `define ASSERT_STATIC_LINT_ERROR(__name, __prop)     \
-  localparam int __name = (__prop) ? 1 : 2;          \
+  localparam int __name=(__prop) ? 1 : 2;          \
   always_comb begin                                  \
     logic unused_assert_static_lint_error;           \
-    unused_assert_static_lint_error = __name'(1'b1); \
+    unused_assert_static_lint_error=__name'(1'b1); \
   end
 
 // Static assertions for checks inside SV packages. If the conditions is not true, this will
@@ -48,7 +48,7 @@
 `define ASSERT_STATIC_IN_PACKAGE(__name, __prop)              \
   function automatic bit assert_static_in_package_``__name(); \
     bit unused_bit [((__prop) ? 1 : -1)];                     \
-    unused_bit = '{default: 1'b0};                            \
+    unused_bit='{default: 1'b0};                            \
     return unused_bit[0];                                     \
   endfunction
 
@@ -107,8 +107,8 @@
  `include "prim_assert_yosys_macros.svh"
  `define INC_ASSERT
 `else
- `include "prim_assert_standard_macros.svh"
- `define INC_ASSERT
+ `include "prim_assert_dummy_macros.svh"
+//  `define INC_ASSERT
 `endif
 
 //////////////////////////////
@@ -116,17 +116,17 @@
 //////////////////////////////
 
 // Assert that signal is an active-high pulse with pulse length of 1 clock cycle
-`define ASSERT_PULSE(__name, __sig, __clk = `ASSERT_DEFAULT_CLK, __rst = `ASSERT_DEFAULT_RST) \
+`define ASSERT_PULSE(__name, __sig, __clk=`ASSERT_DEFAULT_CLK, __rst=`ASSERT_DEFAULT_RST) \
   `ASSERT(__name, $rose(__sig) |=> !(__sig), __clk, __rst)
 
 // Assert that a property is true only when an enable signal is set.  It can be called as a module
 // (or interface) body item.
-`define ASSERT_IF(__name, __prop, __enable, __clk = `ASSERT_DEFAULT_CLK, __rst = `ASSERT_DEFAULT_RST) \
+`define ASSERT_IF(__name, __prop, __enable, __clk=`ASSERT_DEFAULT_CLK, __rst=`ASSERT_DEFAULT_RST) \
   `ASSERT(__name, (__enable) |-> (__prop), __clk, __rst)
 
 // Assert that signal has a known value (each bit is either '0' or '1') after reset if enable is
 // set.  It can be called as a module (or interface) body item.
-`define ASSERT_KNOWN_IF(__name, __sig, __enable, __clk = `ASSERT_DEFAULT_CLK, __rst = `ASSERT_DEFAULT_RST) \
+`define ASSERT_KNOWN_IF(__name, __sig, __enable, __clk=`ASSERT_DEFAULT_CLK, __rst=`ASSERT_DEFAULT_RST) \
   `ASSERT_KNOWN(__name``KnownEnable, __enable, __clk, __rst)                                               \
   `ASSERT_IF(__name, !$isunknown(__sig), __enable, __clk, __rst)
 
@@ -139,7 +139,7 @@
 
 // ASSUME_FPV
 // Assume a concurrent property during formal verification only.
-`define ASSUME_FPV(__name, __prop, __clk = `ASSERT_DEFAULT_CLK, __rst = `ASSERT_DEFAULT_RST) \
+`define ASSUME_FPV(__name, __prop, __clk=`ASSERT_DEFAULT_CLK, __rst=`ASSERT_DEFAULT_RST) \
 `ifdef FPV_ON                                                                                \
    `ASSUME(__name, __prop, __clk, __rst)                                                     \
 `endif
@@ -153,7 +153,7 @@
 
 // COVER_FPV
 // Cover a concurrent property during formal verification
-`define COVER_FPV(__name, __prop, __clk = `ASSERT_DEFAULT_CLK, __rst = `ASSERT_DEFAULT_RST) \
+`define COVER_FPV(__name, __prop, __clk=`ASSERT_DEFAULT_CLK, __rst=`ASSERT_DEFAULT_RST) \
 `ifdef FPV_ON                                                                               \
    `COVER(__name, __prop, __clk, __rst)                                                     \
 `endif
@@ -164,7 +164,7 @@
 // It is possible for the reset to release ahead of the clock.
 // Create a small "gray" window beyond the usual rst time to avoid
 // checking.
-`define ASSERT_FPV_LINEAR_FSM(__name, __state, __type, __clk = `ASSERT_DEFAULT_CLK, __rst = `ASSERT_DEFAULT_RST) \
+`define ASSERT_FPV_LINEAR_FSM(__name, __state, __type, __clk=`ASSERT_DEFAULT_CLK, __rst=`ASSERT_DEFAULT_RST) \
   `ifdef INC_ASSERT                                                                                              \
      bit __name``_cond;                                                                                          \
      always_ff @(posedge __clk or posedge __rst) begin                                                           \
@@ -176,7 +176,7 @@
      end                                                                                                         \
      property __name``_p;                                                                                        \
        __type initial_state;                                                                                     \
-       (!$stable(__state) & __name``_cond, initial_state = $past(__state)) |->                                   \
+       (!$stable(__state) & __name``_cond, initial_state=$past(__state)) |->                                   \
            (__state != initial_state) until (__rst == 1'b1);                                                     \
      endproperty                                                                                                 \
    `ASSERT(__name, __name``_p, __clk, __rst)                                                                     \

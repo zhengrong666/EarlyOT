@@ -12,7 +12,7 @@ filesets:
       - lowrisc:ip:tlul
       - zgc:ip:rs_code
     files:
-      - rtl/decode.sv
+      - rtl/rsdec.sv
       - rtl/rs_decode_reg_pkg.sv
       - rtl/rs_decode_reg_top.sv
       - rtl/rs_decode.sv

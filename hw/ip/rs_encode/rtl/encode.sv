@@ -750,3 +750,4 @@ module rs_enc (y, x, enable, data, clk, clrn);
 		else y = mem31;
 
 endmodule
+
